@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+@font-face {
+    font-family: 'USN Stencil';
+    src: url('path/to/USN_Stencil.ttf') format('truetype');
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Share Tech Mono', 'USN Stencil', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    color: #00ff00;
+}
+
+#vanta-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    min-height: 100vh;
+}
+
+#logo-container {
+    margin-bottom: 10px; /* Adjust space below logo */
+}
+
+#club-logo {
+    max-width: 300px; /* Adjust logo size if needed */
+}
+
+#content-container {
+    width: 100%;
+}
+
+.content, #actions, #invite-code-form, #trial-form, #loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Ensure buttons are styled correctly */
+button {
+    margin: 10px 0;
+    cursor: pointer;
+    color: white;
+    background: rgba(0, 0, 0, 0.33);
+    border: 2px solid white;
+    padding: 5px 10px;
+    font-family: 'USN Stencil', 'Share Tech Mono', monospace;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+button:hover {
+    background: rgba(0, 0, 0, 0.69);
+}
+
+input, textarea {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid white; /* Changed from #00ff00 to white */
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.name-fields {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.name-fields input {
+    width: 48%; /* Adjust to create more space between inputs */
+}
+
+.name-fields input:first-child {
+    text-align: left;
+}
+
+.name-fields input:last-child {
+    text-align: right;
+}
+
+input.invalid, textarea.invalid {
+    border-color: #ff0000;
+}
+
+.error-message {
+    color: #ff0000;
+    font-size: 0.8em;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+h1 {
+    color: white;
+    font-family: 'USN Stencil', 'Share Tech Mono', monospace;
+    font-size: 2.2em; /* Slightly reduce font size */
+    margin-bottom: 10px; /* Reduce space below heading */
+    text-align: center;
+    line-height: 1.2;
+}
+h2 {
+    color: white;
+    font-family: 'USN Stencil', 'Share Tech Mono', monospace;
+    font-size: 1.8em; /* Slightly reduce font size */
+    margin-bottom: 10px; /* Reduce space below heading */
+    text-align: center;
+    line-height: 1.2;
+}
+
+h4 {
+    color: white;
+    font-family: 'USN Stencil', 'Share Tech Mono', monospace;
+    font-size: 1.2em; /* Slightly reduce font size */
+    margin-bottom: 10px; /* Reduce space below heading */
+    text-align: center;
+    line-height: 1.2;
+}
+
+p {
+    color: white;
+    font-family: 'Share Tech Mono', monospace;
+    margin-bottom: 30px;
+    text-align: center;
+    max-width: 600px;
+}
+
+input.invalid {
+    border-color: #ff0000;
+}
+
+/* Add these styles at the end of your style.css file */
+
+.custom-logo-container {
+    max-width: 300px; /* Adjust this value as needed */
+    margin: 0 auto 10px;
+}
+
+.custom-logo-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#learn-more,
+#actions button,
+#invite-code-form button,
+#trial-form button,
+#back-about {
+    display: inline-block !important;
+    margin: 10px 0;
+    width: 200px;
+}
+
+/* Ensure other elements are visible */
+#actions, #invite-code-form, #trial-form {
+    display: none;
+}
+
+#actions:not(.hidden),
+#invite-code-form:not(.hidden),
+#trial-form:not(.hidden) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Override any conflicting styles */
+.wp-block-button__link,
+.wp-block-button__link:hover,
+.wp-block-button__link:focus,
+.wp-block-button__link:active {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+/* Update the button styles */
+button {
+    margin: 10px 0;
+    cursor: pointer;
+    color: white;
+    background: rgba(0, 0, 0, 0.33);
+    border: 2px solid white;
+    padding: 5px 10px;
+    font-family: 'USN Stencil', 'Share Tech Mono', monospace;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+button:hover {
+    background: rgba(0, 0, 0, 0.69);
+}
+
+/* Update the span styles */
+button span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    white-space: nowrap;
+    transition: font-size 0.3s ease;
+}
+
+/* Adjust text size for buttons with long text */
+#enter-code span,
+#request-trial span,
+#submit-trial span,
+#back-to-home span {
+    font-size: 0.9em; /* Slightly reduce font size for all screen sizes */
+}
+
+@media (max-width: 600px) {
+    #enter-code span,
+    #request-trial span,
+    #submit-trial span,
+    #back-to-home span {
+        font-size: 0.7em; /* Further reduce font size for smaller screens */
+    }
+}
+
+/* Remove this media query as we're now using font-size adjustment */
+/*
+@media (max-width: 600px) {
+    #submit-trial, #back-to-home {
+        font-size: 0.85em;
+    }
+}
+*/
+
+/* Update heading styles */
+h1 {
+    color: white;
+    font-family: 'USN Stencil', 'Share Tech Mono', monospace;
+    font-size: 2.2em; /* Slightly reduce font size */
+    margin-bottom: 5px; /* Reduce space below heading */
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* Add styles for the tagline */
+.tagline {
+    color: white;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1em; /* Slightly reduce font size */
+    margin-top: 5px; /* Reduce space above tagline */
+    margin-bottom: 30px; /* Increase space below tagline */
+    text-align: center;
+}
+
+/* Update button styles to match index page */
+#back-to-home {
+    margin-top: 30px; /* Increase space above the button */
+    margin: 10px 0;
+    cursor: pointer;
+    color: white;
+    background: rgba(0, 0, 0, 0.33);
+    border: 2px solid white;
+    padding: 5px 10px;
+    font-family: 'USN Stencil', 'Share Tech Mono', monospace;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#back-to-home:hover {
+    background: rgba(0, 0, 0, 0.69);
+}
+
+#back-to-home span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    white-space: nowrap;
+    transition: font-size 0.3s ease;
+    font-size: 0.9em;
+}
+
+@media (max-width: 600px) {
+    #logo-container {
+        margin-bottom: 10px; /* Adjust space on smaller screens */
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .tagline {
+        font-size: 0.9em;
+        margin-bottom: 20px; /* Adjust space on smaller screens */
+    }
+
+    #back-to-home {
+        margin-top: 20px; /* Adjust space on smaller screens */
+    }
+
+    #back-to-home span {
+        font-size: 0.7em;
+    }
+}

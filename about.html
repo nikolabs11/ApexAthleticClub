@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Apex Athletic Club</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="vanta-bg"></div>
+    <div id="overlay">
+        <div id="logo-container">
+            <img id="club-logo" src="images/club-logo.png" alt="Apex Athletic Club Logo">
+        </div>
+        <div id="content-container">
+            <div class="content">
+                <h2>WELCOME TO APEX ATHLETIC CLUB</h2>
+                <h4 class="tagline">DEDICATED TO EXCELLENCE</h4>
+                <button id="back-to-home"><span>RETURN TO HOME</span></button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let vantaEffect = VANTA.CELLS({
+                el: "#vanta-bg",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                color1: 0x045034,
+                color2: 0x109963,
+                size: 0.20,
+                speed: 0.00,
+            });
+
+            const inviteCode = sessionStorage.getItem('inviteCode');
+            if (!inviteCode) {
+                window.location.href = 'index.html';
+            }
+
+            document.getElementById('back-to-home').addEventListener('click', function() {
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html>
