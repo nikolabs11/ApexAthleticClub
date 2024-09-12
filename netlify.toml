@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "/about"
+  to = "/login.html"
+  status = 200
+  conditions = {Role = ["member"]}
+
+[context.production.environment]
+  PLAYER1_CODE = "CODE123"
+  PLAYER2_CODE = "CODE456"
+  PLAYER3_CODE = "CODE789"

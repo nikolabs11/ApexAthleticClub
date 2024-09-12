@@ -22,28 +22,21 @@
                 <button id="request-trial"><span>REQUEST TRIAL</span></button>
                 <button id="back">RETURN</button>
             </div>
-            <div id="invite-code-form" class="hidden">
-                <input type="text" id="invite-code-input" placeholder="Enter Invite Code">
-                <button id="submit-code">SUBMIT</button>
-                <button id="back-invite">RETURN</button>
-            </div>
-            <div id="trial-form" class="hidden">
+            <form name="trial-request" method="POST" data-netlify="true" class="hidden" id="trial-form">
                 <div class="name-fields">
-                    <input type="text" id="parent-first-name" placeholder="Parent First Name">
-                    <input type="text" id="parent-last-name" placeholder="Parent Last Name">
+                    <input type="text" name="parent-first-name" placeholder="Parent First Name" required>
+                    <input type="text" name="parent-last-name" placeholder="Parent Last Name" required>
                 </div>
                 <div class="name-fields">
-                    <input type="text" id="player-first-name" placeholder="Player First Name">
-                    <input type="text" id="player-last-name" placeholder="Player Last Name">
+                    <input type="text" name="player-first-name" placeholder="Player First Name" required>
+                    <input type="text" name="player-last-name" placeholder="Player Last Name" required>
                 </div>
-                <input type="email" id="contact-email" placeholder="Contact Email">
-                <div id="email-error" class="error-message"></div>
-                <input type="tel" id="contact-phone" placeholder="Contact Phone">
-                <div id="phone-error" class="error-message"></div>
-                <textarea id="comments" placeholder="Comments or Questions"></textarea>
-                <button id="submit-trial"><span>SUBMIT</span></button>
-                <button id="back-trial">RETURN</button>
-            </div>
+                <input type="email" name="contact-email" placeholder="Contact Email" required>
+                <input type="tel" name="contact-phone" placeholder="Contact Phone" required>
+                <textarea name="comments" placeholder="Comments or Questions"></textarea>
+                <button type="submit"><span>SUBMIT</span></button>
+                <button type="button" id="back-trial">RETURN</button>
+            </form>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
