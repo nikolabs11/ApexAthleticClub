@@ -35,16 +35,50 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function showInviteCodeInput() {
         inviteCodeInput.classList.remove('hidden');
-        enterCode.textContent = 'SUBMIT';
+        enterCode.classList.add('hidden');
         requestTrial.classList.add('hidden');
-        back.classList.remove('hidden');
+
+        // Create and append the SUBMIT button
+        const submitButton = document.createElement('button');
+        submitButton.id = 'submit-code';
+        submitButton.innerHTML = '<span>SUBMIT</span>';
+        actions.appendChild(submitButton);
+
+        // Create and append the RETURN button
+        const returnButton = document.createElement('button');
+        returnButton.id = 'return';
+        returnButton.innerHTML = '<span>RETURN</span>';
+        actions.appendChild(returnButton);
+
+        // Add event listener for the SUBMIT button
+        submitButton.addEventListener('click', function() {
+            const inviteCode = inviteCodeInput.value;
+            const validCodes = ['CODE123', 'CODE456', 'CODE789'];
+
+            if (validCodes.includes(inviteCode)) {
+                localStorage.setItem('loggedIn', 'true');
+                window.location.href = 'about.html';
+            } else {
+                alert('Invalid invite code. Please try again.');
+            }
+        });
+
+        // Add event listener for the RETURN button
+        returnButton.addEventListener('click', function() {
+            hideInviteCodeInput();
+        });
     }
 
     function hideInviteCodeInput() {
         inviteCodeInput.classList.add('hidden');
-        enterCode.textContent = 'ENTER INVITE CODE';
+        enterCode.classList.remove('hidden');
         requestTrial.classList.remove('hidden');
-        back.classList.remove('hidden');
+
+        // Remove the dynamically created SUBMIT and RETURN buttons
+        const submitButton = document.getElementById('submit-code');
+        const returnButton = document.getElementById('return');
+        if (submitButton) submitButton.remove();
+        if (returnButton) returnButton.remove();
     }
 
     learnMore.addEventListener('click', function() {
@@ -62,19 +96,6 @@ document.addEventListener("DOMContentLoaded", function() {
     enterCode.addEventListener('click', function() {
         if (inviteCodeInput.classList.contains('hidden')) {
             showInviteCodeInput();
-        } else {
-            const inviteCode = inviteCodeInput.value;
-            // You would replace this with your actual invite codes
-            const validCodes = ['CODE123', 'CODE456', 'CODE789'];
-
-            if (validCodes.includes(inviteCode)) {
-                // Store the successful login in localStorage
-                localStorage.setItem('loggedIn', 'true');
-                // Redirect to about page
-                window.location.href = 'about.html';
-            } else {
-                alert('Invalid invite code. Please try again.');
-            }
         }
     });
 
