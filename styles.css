@@ -381,8 +381,11 @@ h1 {
     background: rgba(0, 0, 0, 0.33);
     border: 2px solid white;
     color: white;
+    height: 50px; /* Match the height of the buttons */
+    box-sizing: border-box; /* Ensure padding is included in the height */
 }
 
 #invite-code::placeholder {
     color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9em; /* Ensure placeholder text is not cut off */
 }

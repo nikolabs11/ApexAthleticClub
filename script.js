@@ -37,14 +37,14 @@ document.addEventListener("DOMContentLoaded", function() {
         inviteCodeInput.classList.remove('hidden');
         enterCode.textContent = 'SUBMIT';
         requestTrial.classList.add('hidden');
-        back.textContent = 'RETURN';
+        back.classList.remove('hidden');
     }
 
     function hideInviteCodeInput() {
         inviteCodeInput.classList.add('hidden');
         enterCode.textContent = 'ENTER INVITE CODE';
         requestTrial.classList.remove('hidden');
-        back.textContent = 'RETURN';
+        back.classList.remove('hidden');
     }
 
     learnMore.addEventListener('click', function() {
