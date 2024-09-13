@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const actions = document.getElementById('actions');
     const back = document.getElementById('back');
     const enterCode = document.getElementById('enter-code');
+    const inviteCodeInput = document.getElementById('invite-code');
     const requestTrial = document.getElementById('request-trial');
     const trialForm = document.getElementById('trial-form');
     const backTrial = document.getElementById('back-trial');
@@ -39,18 +40,36 @@ document.addEventListener("DOMContentLoaded", function() {
 
     back.addEventListener('click', function() {
         showSection(content);
-    });
-
-    backTrial.addEventListener('click', function() {
-        showSection(actions);
+        inviteCodeInput.classList.add('hidden');
+        enterCode.textContent = 'ENTER INVITE CODE';
     });
 
     enterCode.addEventListener('click', function() {
-        window.location.href = '/about';
+        if (inviteCodeInput.classList.contains('hidden')) {
+            inviteCodeInput.classList.remove('hidden');
+            enterCode.textContent = 'SUBMIT';
+        } else {
+            const inviteCode = inviteCodeInput.value;
+            // You would replace this with your actual invite codes
+            const validCodes = ['CODE123', 'CODE456', 'CODE789'];
+
+            if (validCodes.includes(inviteCode)) {
+                // Store the successful login in localStorage
+                localStorage.setItem('loggedIn', 'true');
+                // Redirect to about page
+                window.location.href = 'about.html';
+            } else {
+                alert('Invalid invite code. Please try again.');
+            }
+        }
     });
 
     requestTrial.addEventListener('click', function() {
         showSection(trialForm);
+    });
+
+    backTrial.addEventListener('click', function() {
+        showSection(actions);
     });
 
     // Initially show only the content section with the learn more button

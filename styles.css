@@ -45,11 +45,11 @@ body {
 }
 
 #logo-container {
-    margin-bottom: 10px; /* Adjust space below logo */
+    margin-bottom: 30px; /* Adjust space below logo */
 }
 
 #club-logo {
-    max-width: 300px; /* Adjust logo size if needed */
+    max-width: 200px; /* Adjust logo size if needed */
 }
 
 #content-container {
@@ -138,7 +138,7 @@ h1 {
     color: white;
     font-family: 'USN Stencil', 'Share Tech Mono', monospace;
     font-size: 2.2em; /* Slightly reduce font size */
-    margin-bottom: 10px; /* Reduce space below heading */
+    margin-bottom: 5px; /* Reduce space below heading */
     text-align: center;
     line-height: 1.2;
 }
@@ -146,7 +146,7 @@ h2 {
     color: white;
     font-family: 'USN Stencil', 'Share Tech Mono', monospace;
     font-size: 1.8em; /* Slightly reduce font size */
-    margin-bottom: 10px; /* Reduce space below heading */
+    margin-bottom: 5px; /* Reduce space below heading */
     text-align: center;
     line-height: 1.2;
 }
@@ -155,7 +155,7 @@ h4 {
     color: white;
     font-family: 'USN Stencil', 'Share Tech Mono', monospace;
     font-size: 1.2em; /* Slightly reduce font size */
-    margin-bottom: 10px; /* Reduce space below heading */
+    margin-bottom: 5px; /* Reduce space below heading */
     text-align: center;
     line-height: 1.2;
 }
@@ -362,4 +362,19 @@ h1 {
     #back-to-home span {
         font-size: 0.7em;
     }
+}
+
+#invite-code {
+    width: 200px;
+    margin: 10px 0;
+    padding: 5px 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1em;
+    background: rgba(0, 0, 0, 0.33);
+    border: 2px solid white;
+    color: white;
+}
+
+#invite-code::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }

@@ -25,6 +25,12 @@
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Check if user is logged in
+            if (!localStorage.getItem('loggedIn')) {
+                window.location.href = 'index.html';
+                return;
+            }
+
             let vantaEffect = VANTA.CELLS({
                 el: "#vanta-bg",
                 mouseControls: true,
@@ -40,6 +46,8 @@
             });
 
             document.getElementById('back-to-home').addEventListener('click', function() {
+                // Clear login status when returning to home
+                localStorage.removeItem('loggedIn');
                 window.location.href = 'index.html';
             });
         });
