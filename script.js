@@ -34,9 +34,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function showInviteCodeInput() {
+        // Remove all existing buttons
+        while (actions.firstChild) {
+            actions.removeChild(actions.firstChild);
+        }
+
+        // Add the invite code input to the actions div
+        actions.appendChild(inviteCodeInput);
         inviteCodeInput.classList.remove('hidden');
-        enterCode.classList.add('hidden');
-        requestTrial.classList.add('hidden');
 
         // Create and append the SUBMIT button
         const submitButton = document.createElement('button');
@@ -70,15 +75,25 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function hideInviteCodeInput() {
-        inviteCodeInput.classList.add('hidden');
+        // Remove all existing elements
+        while (actions.firstChild) {
+            actions.removeChild(actions.firstChild);
+        }
+
+        // Recreate and append the original buttons
+        actions.appendChild(enterCode);
+        actions.appendChild(requestTrial);
+        actions.appendChild(back);
+
+        // Show the original buttons
         enterCode.classList.remove('hidden');
         requestTrial.classList.remove('hidden');
+        back.classList.remove('hidden');
 
-        // Remove the dynamically created SUBMIT and RETURN buttons
-        const submitButton = document.getElementById('submit-code');
-        const returnButton = document.getElementById('return');
-        if (submitButton) submitButton.remove();
-        if (returnButton) returnButton.remove();
+        // Hide the invite code input
+        inviteCodeInput.classList.add('hidden');
+        // Move the invite code input back to its original position in the DOM
+        actions.insertBefore(inviteCodeInput, enterCode);
     }
 
     learnMore.addEventListener('click', function() {
