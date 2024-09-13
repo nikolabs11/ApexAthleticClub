@@ -49,7 +49,7 @@ body {
 }
 
 #club-logo {
-    max-width: 300px; /* Increased from 300px */
+    max-width: 300px; /* KEEP AT 300px */
 }
 
 #content-container {
