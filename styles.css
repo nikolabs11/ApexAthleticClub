@@ -266,12 +266,12 @@ button span {
     text-overflow: ellipsis;
 }
 
-/* Adjust text size for buttons with long text */
+/* Remove the font-size reduction for specific buttons */
 #enter-code span,
 #request-trial span,
 #submit-trial span,
 #back-to-home span {
-    font-size: 0.9em; /* Slightly reduce font size for all screen sizes */
+    font-size: 1em; /* Reset to default size */
 }
 
 @media (max-width: 600px) {
@@ -279,10 +279,11 @@ button span {
     #request-trial span,
     #submit-trial span,
     #back-to-home span {
-        font-size: 0.7em; /* Further reduce font size for smaller screens */
+        font-size: 0.9em; /* Slightly reduce font size for smaller screens */
     }
 }
 
+/* ... rest of your existing styles ... */
 /* Remove this media query as we're now using font-size adjustment */
 /*
 @media (max-width: 600px) {
