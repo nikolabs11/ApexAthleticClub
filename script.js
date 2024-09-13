@@ -34,20 +34,35 @@ document.addEventListener("DOMContentLoaded", function() {
         section.classList.remove('hidden');
     }
 
+    function showInviteCodeInput() {
+        inviteCodeInput.classList.remove('hidden');
+        enterCode.textContent = 'SUBMIT';
+        requestTrial.classList.add('hidden');
+        back.textContent = 'RETURN';
+    }
+
+    function hideInviteCodeInput() {
+        inviteCodeInput.classList.add('hidden');
+        enterCode.textContent = 'ENTER INVITE CODE';
+        requestTrial.classList.remove('hidden');
+        back.textContent = 'RETURN';
+    }
+
     learnMore.addEventListener('click', function() {
         showSection(actions);
     });
 
     back.addEventListener('click', function() {
-        showSection(content);
-        inviteCodeInput.classList.add('hidden');
-        enterCode.textContent = 'ENTER INVITE CODE';
+        if (inviteCodeInput.classList.contains('hidden')) {
+            showSection(content);
+        } else {
+            hideInviteCodeInput();
+        }
     });
 
     enterCode.addEventListener('click', function() {
         if (inviteCodeInput.classList.contains('hidden')) {
-            inviteCodeInput.classList.remove('hidden');
-            enterCode.textContent = 'SUBMIT';
+            showInviteCodeInput();
         } else {
             const inviteCode = inviteCodeInput.value;
             // You would replace this with your actual invite codes
@@ -70,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     backTrial.addEventListener('click', function() {
         showSection(actions);
+        hideInviteCodeInput();
     });
 
     // Initially show only the content section with the learn more button
