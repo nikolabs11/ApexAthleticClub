@@ -38,14 +38,14 @@ document.addEventListener("DOMContentLoaded", function() {
         inviteCodeInput.classList.remove('hidden');
         enterCode.textContent = 'SUBMIT';
         requestTrial.classList.add('hidden');
-        back.classList.remove('hidden');
+        back.textContent = 'RETURN';
     }
 
     function hideInviteCodeInput() {
         inviteCodeInput.classList.add('hidden');
         enterCode.textContent = 'ENTER INVITE CODE';
         requestTrial.classList.remove('hidden');
-        back.classList.remove('hidden');
+        back.textContent = 'RETURN';
     }
 
     learnMore.addEventListener('click', function() {
