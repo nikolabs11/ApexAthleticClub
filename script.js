@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function showInviteCodeInput() {
         inviteCodeInput.classList.remove('hidden');
-        enterCode.classList.add('hidden');
-        requestTrial.classList.add('hidden');
+        enterCode.style.display = 'none';
+        requestTrial.style.display = 'none';
 
         // Create and append the SUBMIT button
         const submitButton = document.createElement('button');
@@ -71,8 +71,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function hideInviteCodeInput() {
         inviteCodeInput.classList.add('hidden');
-        enterCode.classList.remove('hidden');
-        requestTrial.classList.remove('hidden');
+        enterCode.style.display = 'inline-block';
+        requestTrial.style.display = 'inline-block';
 
         // Remove the dynamically created SUBMIT and RETURN buttons
         const submitButton = document.getElementById('submit-code');
