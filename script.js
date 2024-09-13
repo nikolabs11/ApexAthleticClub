@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const inviteCodeInput = document.getElementById('invite-code');
     const requestTrial = document.getElementById('request-trial');
     const trialForm = document.getElementById('trial-form');
-    const backTrial = document.getElementById('back-trial');
 
     function hideAllSections() {
         [content, actions, trialForm].forEach(el => {
@@ -81,11 +80,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     requestTrial.addEventListener('click', function() {
         showSection(trialForm);
-    });
-
-    backTrial.addEventListener('click', function() {
-        showSection(actions);
-        hideInviteCodeInput();
     });
 
     // Initially show only the content section with the learn more button
