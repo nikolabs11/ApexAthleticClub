@@ -161,25 +161,32 @@ document.addEventListener("DOMContentLoaded", function() {
     const submitTrialButton = document.getElementById('submit-trial');
 
     if (trialForm && submitTrialButton) {
-        submitTrialButton.addEventListener('click', function(e) {
+        trialForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            if (trialForm.checkValidity()) {
-                onSubmit();
+            if (this.checkValidity()) {
+                // Form is valid, submit it
+                fetch("/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(new FormData(trialForm)).toString()
+                })
+                .then(() => {
+                    console.log("Form successfully submitted");
+                    alert("Thank you for your submission!");
+                    trialForm.reset();
+                    // Hide trial form and show actions
+                    trialForm.classList.add('hidden');
+                    document.getElementById('actions').classList.remove('hidden');
+                })
+                .catch((error) => {
+                    console.error("Form submission error:", error);
+                    alert("An error occurred. Please try again.");
+                });
             } else {
-                trialForm.classList.add('submitted');
-                trialForm.reportValidity();
+                this.classList.add('submitted');
             }
         });
     }
-
-    trialForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        if (this.checkValidity()) {
-            onSubmit();
-        } else {
-            this.classList.add('submitted');
-        }
-    });
 
     function onSubmit() {
         const form = document.getElementById("trial-form");

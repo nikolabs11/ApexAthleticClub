@@ -27,7 +27,7 @@
                 <button id="request-trial"><span>REQUEST A TRIAL</span></button>
                 <button id="back"><span>RETURN</span></button>
             </div>
-            <form id="trial-form" class="hidden">
+            <form id="trial-form" class="hidden" name="trial-request" method="POST" data-netlify="true" data-netlify-recaptcha="true">
                 <div class="name-fields">
                     <input type="text" name="parentFirstName" placeholder="Parent First Name" required>
                     <input type="text" name="parentLastName" placeholder="Parent Last Name" required>
@@ -65,6 +65,7 @@
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="tel" name="phone" placeholder="Phone Number" required>
                 <textarea name="message" placeholder="Why do you want to join Apex Athletic Club?" required></textarea>
+                <div data-netlify-recaptcha="true"></div>
                 <button type="submit" id="submit-trial">Submit</button>
                 <button type="button" id="back-trial"><span>RETURN</span></button>
             </form>
