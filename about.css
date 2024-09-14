@@ -3,8 +3,6 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: 'Share Tech Mono', monospace;
-    overflow-x: hidden;
-    overflow-y: auto;
 }
 
 #vanta-bg {

@@ -109,8 +109,6 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error('Submit Code button not found');
     }
 
-    // Remove the backFromCode event listener since we're not using it anymore
-
     if (inviteCodeInput) {
         inviteCodeInput.addEventListener('keyup', function(event) {
             if (event.key === 'Enter') {
@@ -134,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const trialFormInputs = trialForm.querySelectorAll('input, select, textarea');
 
-    trialFormInputs.forEach((input) => {
+    trialFormInputs.forEach((input, index) => {
         input.addEventListener('blur', function() {
             this.reportValidity();
         });
@@ -144,14 +142,52 @@ document.addEventListener("DOMContentLoaded", function() {
                 formatPhoneNumber(input);
             }
         });
+
+        // Add this new event listener for keydown
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const nextInput = trialFormInputs[index + 1];
+                if (nextInput) {
+                    nextInput.focus();
+                } else {
+                    // If it's the last input, submit the form
+                    trialForm.dispatchEvent(new Event('submit'));
+                }
+            }
+        });
     });
 
     trialForm.addEventListener('submit', function(e) {
-        if (!this.checkValidity()) {
-            e.preventDefault();
+        e.preventDefault();
+        if (this.checkValidity()) {
+            grecaptcha.enterprise.ready(function() {
+                grecaptcha.enterprise.execute('6LdQpEMqAAAAABt-6hEKIxcgUAGgsALzCEdoZu0J', {action: 'submit'}).then(function(token) {
+                    onSubmit(token);
+                });
+            });
+        } else {
             this.classList.add('submitted');
         }
     });
+
+    function onSubmit(token) {
+        const form = document.getElementById("trial-form");
+        const formData = new FormData(form);
+        
+        // Here you would typically send the form data to your server
+        // along with the reCAPTCHA token for verification
+        console.log("Form submitted with reCAPTCHA token:", token);
+        
+        // For demonstration purposes, we'll just log the form data
+        for (let [key, value] of formData.entries()) {
+            console.log(key + ': ' + value);
+        }
+        
+        // Clear the form and show a success message
+        form.reset();
+        alert("Thank you for your submission!");
+    }
 
     function populateDayDropdown() {
         const daySelect = document.querySelector('select[name="birthDay"]');
@@ -185,7 +221,7 @@ function submitInviteCode() {
         console.error('Invite code input not found');
         return;
     }
-    const code = inviteCodeInput.value.trim();
+    const code = inviteCodeInput.value.trim().toUpperCase();
     console.log('Submitting invite code:', code);
     
     if (code === '') {
@@ -193,9 +229,13 @@ function submitInviteCode() {
         return;
     }
 
-    // Here you would typically send the code to your server for validation
-    // For now, let's simulate a successful code submission without an alert
-    localStorage.setItem('loggedIn', 'true');
-    console.log('Redirecting to about.html');
-    window.location.href = 'about.html'; // Redirect to the about page
+    // Valid invite codes
+    const validCodes = ['AAC2023', 'APEX2023', 'CLUB2023', 'SOCCER24', 'JUDO24', 'FUTSAL24'];
+    if (validCodes.includes(code)) {
+        localStorage.setItem('loggedIn', 'true');
+        console.log('Redirecting to about.html');
+        window.location.href = 'about.html';
+    } else {
+        alert('Invalid invite code. Please try again.');
+    }
 }
