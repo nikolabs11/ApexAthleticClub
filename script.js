@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const trialForm = document.getElementById('trial-form');
     const backTrial = document.getElementById('back-trial');
     const submitCodeButton = document.getElementById('submit-code');
+    const backFromCode = document.getElementById('back-from-code');
 
     console.log("Learn More button:", learnMore);
     console.log("Actions section:", actions);
@@ -47,6 +48,10 @@ document.addEventListener("DOMContentLoaded", function() {
         enterCode.addEventListener('click', function() {
             console.log('Enter Code clicked');
             inviteCodeInput.classList.remove('hidden');
+            submitCodeButton.classList.remove('hidden');
+            back.classList.remove('hidden'); // Show the main back button
+            enterCode.classList.add('hidden');
+            requestTrial.classList.add('hidden');
         });
     } else {
         console.error('Enter Code button not found');
@@ -66,9 +71,18 @@ document.addEventListener("DOMContentLoaded", function() {
     if (back) {
         back.addEventListener('click', function() {
             console.log('Back clicked');
-            content.classList.remove('hidden');
-            actions.classList.add('hidden');
-            inviteCodeInput.classList.add('hidden'); // Hide invite code input
+            if (inviteCodeInput.classList.contains('hidden')) {
+                // If invite code input is hidden, we're in the main actions view
+                content.classList.remove('hidden');
+                actions.classList.add('hidden');
+            } else {
+                // If invite code input is visible, we're in the enter code view
+                inviteCodeInput.classList.add('hidden');
+                submitCodeButton.classList.add('hidden');
+                enterCode.classList.remove('hidden');
+                requestTrial.classList.remove('hidden');
+            }
+            inviteCodeInput.classList.add('hidden');
         });
     } else {
         console.error('Back button not found');
@@ -86,12 +100,27 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     if (submitCodeButton) {
-        submitCodeButton.addEventListener('click', function() {
-            console.log('Submit Code clicked');
+        submitCodeButton.addEventListener('click', function(event) {
+            event.preventDefault();
             submitInviteCode();
         });
+        console.log('Submit code button listener added');
     } else {
         console.error('Submit Code button not found');
+    }
+
+    // Remove the backFromCode event listener since we're not using it anymore
+
+    if (inviteCodeInput) {
+        inviteCodeInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                submitInviteCode();
+            }
+        });
+        console.log('Invite code input listener added');
+    } else {
+        console.error('Invite code input not found');
     }
 
     function formatPhoneNumber(input) {
@@ -157,3 +186,25 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+function submitInviteCode() {
+    console.log('submitInviteCode function called');
+    const inviteCodeInput = document.getElementById('invite-code');
+    if (!inviteCodeInput) {
+        console.error('Invite code input not found');
+        return;
+    }
+    const code = inviteCodeInput.value.trim();
+    console.log('Submitting invite code:', code);
+    
+    if (code === '') {
+        alert('Please enter an invite code.');
+        return;
+    }
+
+    // Here you would typically send the code to your server for validation
+    // For now, let's simulate a successful code submission without an alert
+    localStorage.setItem('loggedIn', 'true');
+    console.log('Redirecting to about.html');
+    window.location.href = 'about.html'; // Redirect to the about page
+}

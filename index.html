@@ -22,6 +22,7 @@
             </div>
             <div id="actions" class="hidden">
                 <input type="text" id="invite-code" placeholder="Enter Invite Code" class="hidden">
+                <button id="submit-code" class="hidden"><span>SUBMIT CODE</span></button>
                 <button id="enter-code"><span>ENTER INVITE CODE</span></button>
                 <button id="request-trial"><span>REQUEST A TRIAL</span></button>
                 <button id="back"><span>RETURN</span></button>
@@ -69,5 +70,12 @@
             </form>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Clear login status when landing on home page
+        localStorage.removeItem('loggedIn');
+    </script>
 </body>
 </html>

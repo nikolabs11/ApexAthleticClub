@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Apex Athletic Club</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="about.css">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="vanta-bg"></div>
     <div id="overlay">
-        <div id="logo-container">
-            <img id="club-logo" src="images/club-logo.png" alt="Apex Athletic Club Logo">
+        <div id="header">
+            <div id="logo-container">
+                <img id="club-logo" src="images/club-logo.png" alt="Apex Athletic Club Logo">
+            </div>
+            <div id="header-text">
+                <h2>WELCOME TO APEX ATHLETIC CLUB</h2>
+                <h4>DEDICATED TO EXCELLENCE</h4>
+            </div>
         </div>
         <div id="content-container">
             <div class="content">
-                <h2>WELCOME TO APEX ATHLETIC CLUB</h2>
-                <h4 class="tagline">DEDICATED TO EXCELLENCE</h4>
-                <button id="back-to-home"><span>RETURN TO HOME</span></button>
+                <p>Apex Athletic Club is an invite-only collective for exceptional individuals. Our players are distinguished in their respect, leadership, and determination to acquire new skills. Our coaches are full-time professionals that utilize best practices from the top youth academies around the world. We offer 12 months of programming across multiple sports with the primary focus on soccer.</p>
+                <button id="return-home">RETURN HOME</button>
             </div>
         </div>
     </div>
@@ -25,8 +30,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Check if user is logged in
             if (!localStorage.getItem('loggedIn')) {
+                console.log('User not logged in, redirecting to home page');
                 window.location.href = 'index.html';
                 return;
             }
@@ -45,11 +50,19 @@
                 speed: 0.00,
             });
 
-            document.getElementById('back-to-home').addEventListener('click', function() {
-                // Clear login status when returning to home
+            document.getElementById('logo-container').addEventListener('click', function() {
                 localStorage.removeItem('loggedIn');
                 window.location.href = 'index.html';
             });
+
+            document.getElementById('return-home').addEventListener('click', function() {
+                localStorage.removeItem('loggedIn');
+                window.location.href = 'index.html';
+            });
+        });
+
+        window.addEventListener('beforeunload', function() {
+            localStorage.removeItem('loggedIn');
         });
     </script>
 </body>
