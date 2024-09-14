@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM fully loaded and parsed");
+
     let vantaEffect = VANTA.CELLS({
         el: "#vanta-bg",
         mouseControls: true,
@@ -21,103 +23,128 @@ document.addEventListener("DOMContentLoaded", function() {
     const inviteCodeInput = document.getElementById('invite-code');
     const requestTrial = document.getElementById('request-trial');
     const trialForm = document.getElementById('trial-form');
+    const backTrial = document.getElementById('back-trial');
+    const submitCodeButton = document.getElementById('submit-code');
 
-    function hideAllSections() {
-        [content, actions, trialForm].forEach(el => {
-            el.classList.add('hidden');
+    console.log("Learn More button:", learnMore);
+    console.log("Actions section:", actions);
+    console.log("Enter Code button:", enterCode);
+    console.log("Request Trial button:", requestTrial);
+    console.log("Back button:", back);
+
+    if (learnMore) {
+        learnMore.addEventListener('click', function() {
+            console.log('Learn More clicked');
+            actions.classList.remove('hidden');
+            content.classList.add('hidden');
+            inviteCodeInput.classList.add('hidden'); // Hide invite code input
         });
+    } else {
+        console.error('Learn More button not found');
     }
 
-    function showSection(section) {
-        hideAllSections();
-        section.classList.remove('hidden');
+    if (enterCode) {
+        enterCode.addEventListener('click', function() {
+            console.log('Enter Code clicked');
+            inviteCodeInput.classList.remove('hidden');
+        });
+    } else {
+        console.error('Enter Code button not found');
     }
 
-    function showInviteCodeInput() {
-        // Remove all existing buttons
-        while (actions.firstChild) {
-            actions.removeChild(actions.firstChild);
+    if (requestTrial) {
+        requestTrial.addEventListener('click', function() {
+            console.log('Request Trial clicked');
+            trialForm.classList.remove('hidden');
+            actions.classList.add('hidden');
+            inviteCodeInput.classList.add('hidden'); // Hide invite code input
+        });
+    } else {
+        console.error('Request Trial button not found');
+    }
+
+    if (back) {
+        back.addEventListener('click', function() {
+            console.log('Back clicked');
+            content.classList.remove('hidden');
+            actions.classList.add('hidden');
+            inviteCodeInput.classList.add('hidden'); // Hide invite code input
+        });
+    } else {
+        console.error('Back button not found');
+    }
+
+    if (backTrial) {
+        backTrial.addEventListener('click', function() {
+            console.log('Back Trial clicked');
+            actions.classList.remove('hidden');
+            trialForm.classList.add('hidden');
+            inviteCodeInput.classList.add('hidden'); // Hide invite code input
+        });
+    } else {
+        console.error('Back Trial button not found');
+    }
+
+    if (submitCodeButton) {
+        submitCodeButton.addEventListener('click', function() {
+            console.log('Submit Code clicked');
+            submitInviteCode();
+        });
+    } else {
+        console.error('Submit Code button not found');
+    }
+
+    function formatPhoneNumber(input) {
+        let numbers = input.value.replace(/\D/g, '');
+        let char = {0:'(',3:') ',6:'-'};
+        input.value = '';
+        for (let i = 0; i < numbers.length && i < 10; i++) {
+            input.value += (char[i] || '') + numbers[i];
         }
+    }
 
-        // Add the invite code input to the actions div
-        actions.appendChild(inviteCodeInput);
-        inviteCodeInput.classList.remove('hidden');
+    const trialFormInputs = trialForm.querySelectorAll('input, select, textarea');
 
-        // Create and append the SUBMIT button
-        const submitButton = document.createElement('button');
-        submitButton.id = 'submit-code';
-        submitButton.innerHTML = '<span>SUBMIT</span>';
-        actions.appendChild(submitButton);
+    trialFormInputs.forEach((input) => {
+        input.addEventListener('blur', function() {
+            this.reportValidity();
+        });
 
-        // Create and append the RETURN button
-        const returnButton = document.createElement('button');
-        returnButton.id = 'return';
-        returnButton.innerHTML = '<span>RETURN</span>';
-        actions.appendChild(returnButton);
-
-        // Add event listener for the SUBMIT button
-        submitButton.addEventListener('click', function() {
-            const inviteCode = inviteCodeInput.value;
-            const validCodes = ['CODE123', 'CODE456', 'CODE789'];
-
-            if (validCodes.includes(inviteCode)) {
-                localStorage.setItem('loggedIn', 'true');
-                window.location.href = 'about.html';
-            } else {
-                alert('Invalid invite code. Please try again.');
+        input.addEventListener('input', function() {
+            if (input.type === 'tel') {
+                formatPhoneNumber(input);
             }
         });
+    });
 
-        // Add event listener for the RETURN button
-        returnButton.addEventListener('click', function() {
-            hideInviteCodeInput();
-        });
+    trialForm.addEventListener('submit', function(e) {
+        if (!this.checkValidity()) {
+            e.preventDefault();
+            this.classList.add('submitted');
+        }
+    });
+
+    function populateDayDropdown() {
+        const daySelect = document.querySelector('select[name="birthDay"]');
+        for (let i = 1; i <= 31; i++) {
+            const option = document.createElement('option');
+            option.value = i.toString().padStart(2, '0');
+            option.textContent = i;
+            daySelect.appendChild(option);
+        }
     }
 
-    function hideInviteCodeInput() {
-        // Remove all existing elements
-        while (actions.firstChild) {
-            actions.removeChild(actions.firstChild);
+    function populateYearDropdown() {
+        const yearSelect = document.querySelector('select[name="birthYear"]');
+        const currentYear = new Date().getFullYear();
+        for (let i = currentYear; i >= currentYear - 100; i--) {
+            const option = document.createElement('option');
+            option.value = i.toString();
+            option.textContent = i;
+            yearSelect.appendChild(option);
         }
-
-        // Recreate and append the original buttons
-        actions.appendChild(enterCode);
-        actions.appendChild(requestTrial);
-        actions.appendChild(back);
-
-        // Show the original buttons
-        enterCode.classList.remove('hidden');
-        requestTrial.classList.remove('hidden');
-        back.classList.remove('hidden');
-
-        // Hide the invite code input
-        inviteCodeInput.classList.add('hidden');
-        // Move the invite code input back to its original position in the DOM
-        actions.insertBefore(inviteCodeInput, enterCode);
     }
 
-    learnMore.addEventListener('click', function() {
-        showSection(actions);
-    });
-
-    back.addEventListener('click', function() {
-        if (inviteCodeInput.classList.contains('hidden')) {
-            showSection(content);
-        } else {
-            hideInviteCodeInput();
-        }
-    });
-
-    enterCode.addEventListener('click', function() {
-        if (inviteCodeInput.classList.contains('hidden')) {
-            showInviteCodeInput();
-        }
-    });
-
-    requestTrial.addEventListener('click', function() {
-        showSection(trialForm);
-    });
-
-    // Initially show only the content section with the learn more button
-    showSection(content);
+    populateDayDropdown();
+    populateYearDropdown();
 });

@@ -6,6 +6,9 @@
     <title>Apex Athletic Club</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div id="vanta-bg"></div>
@@ -15,7 +18,7 @@
         </div>
         <div id="content-container">
             <div class="content">
-                <button id="learn-more">LEARN MORE</button>
+                <button id="learn-more"><span>LEARN MORE</span></button>
             </div>
             <div id="actions" class="hidden">
                 <input type="text" id="invite-code" placeholder="Enter Invite Code" class="hidden">
@@ -24,12 +27,47 @@
                 <button id="back"><span>RETURN</span></button>
             </div>
             <form name="trial-request" method="POST" data-netlify="true" class="hidden" id="trial-form">
-                <!-- ... trial form fields ... -->
+                <div class="name-fields">
+                    <input type="text" name="parentFirstName" placeholder="Parent First Name" required>
+                    <input type="text" name="parentLastName" placeholder="Parent Last Name" required>
+                </div>
+                <div class="name-fields">
+                    <input type="text" name="playerFirstName" placeholder="Player First Name" required>
+                    <input type="text" name="playerLastName" placeholder="Player Last Name" required>
+                </div>
+                <label for="birthday-fields">Player's Birthday:</label>
+                <div class="birthday-fields" id="birthday-fields">
+                    <select name="birthMonth" required>
+                        <option value="" disabled selected>Month</option>
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <select name="birthDay" required>
+                        <option value="" disabled selected>Day</option>
+                        <!-- JavaScript will populate this -->
+                    </select>
+                    <select name="birthYear" required>
+                        <option value="" disabled selected>Year</option>
+                        <!-- JavaScript will populate this -->
+                    </select>
+                </div>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+                <textarea name="message" placeholder="Why do you want to join Apex Athletic Club?" required></textarea>
+                <button type="submit" id="submit-trial"><span>SUBMIT REQUEST</span></button>
+                <button type="button" id="back-trial"><span>RETURN</span></button>
             </form>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>
