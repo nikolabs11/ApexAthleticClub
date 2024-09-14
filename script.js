@@ -164,16 +164,7 @@ document.addEventListener("DOMContentLoaded", function() {
         submitTrialButton.addEventListener('click', function(e) {
             e.preventDefault();
             if (trialForm.checkValidity()) {
-                grecaptcha.enterprise.ready(async () => {
-                    try {
-                        const token = await grecaptcha.enterprise.execute('6LdQpEMqAAAAABt-6hEKIxcgUAGgsALzCEdoZu0J', {action: 'submit'});
-                        console.log("reCAPTCHA token:", token);
-                        onSubmit(token);
-                    } catch (error) {
-                        console.error("reCAPTCHA error:", error);
-                        alert("An error occurred. Please try again.");
-                    }
-                });
+                onSubmit();
             } else {
                 trialForm.classList.add('submitted');
                 trialForm.reportValidity();
@@ -184,23 +175,15 @@ document.addEventListener("DOMContentLoaded", function() {
     trialForm.addEventListener('submit', function(e) {
         e.preventDefault();
         if (this.checkValidity()) {
-            grecaptcha.enterprise.ready(function() {
-                grecaptcha.enterprise.execute('6LdQpEMqAAAAABt-6hEKIxcgUAGgsALzCEdoZu0J', {action: 'submit'}).then(function(token) {
-                    onSubmit(token);
-                });
-            });
+            onSubmit();
         } else {
             this.classList.add('submitted');
         }
     });
 
-    function onSubmit(token) {
+    function onSubmit() {
         const form = document.getElementById("trial-form");
         const formData = new FormData(form);
-        
-        // Here you would typically send the form data to your server
-        // along with the reCAPTCHA token for verification
-        console.log("Form submitted with reCAPTCHA token:", token);
         
         // For demonstration purposes, we'll just log the form data
         for (let [key, value] of formData.entries()) {
