@@ -158,6 +158,29 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    const submitTrialButton = document.getElementById('submit-trial');
+
+    if (trialForm && submitTrialButton) {
+        submitTrialButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (trialForm.checkValidity()) {
+                grecaptcha.enterprise.ready(async () => {
+                    try {
+                        const token = await grecaptcha.enterprise.execute('6LdQpEMqAAAAABt-6hEKIxcgUAGgsALzCEdoZu0J', {action: 'submit'});
+                        console.log("reCAPTCHA token:", token);
+                        onSubmit(token);
+                    } catch (error) {
+                        console.error("reCAPTCHA error:", error);
+                        alert("An error occurred. Please try again.");
+                    }
+                });
+            } else {
+                trialForm.classList.add('submitted');
+                trialForm.reportValidity();
+            }
+        });
+    }
+
     trialForm.addEventListener('submit', function(e) {
         e.preventDefault();
         if (this.checkValidity()) {
