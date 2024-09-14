@@ -147,4 +147,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     populateDayDropdown();
     populateYearDropdown();
+
+    // Enable scrolling after focusing on an input field
+    document.querySelectorAll('input, select, textarea').forEach((element) => {
+        element.addEventListener('focus', function() {
+            setTimeout(() => {
+                document.body.style.overflow = 'auto';
+            }, 100); // Slight delay to allow the browser to handle the focus event
+        });
+    });
 });
