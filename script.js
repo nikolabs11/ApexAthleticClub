@@ -254,7 +254,7 @@ function submitInviteCode() {
     if (validCodes.includes(code)) {
         localStorage.setItem('loggedIn', 'true');
         console.log('Redirecting to about.html');
-        window.location.href = 'about.html';
+        window.location.href = '/about';
     } else {
         alert('Invalid invite code. Please try again.');
     }

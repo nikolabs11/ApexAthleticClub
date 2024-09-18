@@ -13,7 +13,9 @@
     <div id="overlay">
         <div id="header">
             <div id="logo-container">
-                <img id="club-logo" src="images/AAC Logo.png" alt="Apex Athletic Club Logo">
+                <a href="/">
+                    <img id="club-logo" src="images/AAC Logo.png" alt="Apex Athletic Club Logo">
+                </a>
             </div>
             <div id="header-text">
                 <h2>WELCOME TO APEX ATHLETIC CLUB</h2>
@@ -136,7 +138,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             if (!localStorage.getItem('loggedIn')) {
                 console.log('User not logged in, redirecting to home page');
-                window.location.href = 'index.html';
+                window.location.href = '/';
                 return;
             }
 
@@ -154,14 +156,15 @@
                 speed: 0.00,
             });
 
-            document.getElementById('logo-container').addEventListener('click', function() {
+            document.getElementById('logo-container').addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent the default link behavior
                 localStorage.removeItem('loggedIn');
-                window.location.href = 'index.html';
+                window.location.href = '/';
             });
 
             document.getElementById('return-home').addEventListener('click', function() {
                 localStorage.removeItem('loggedIn');
-                window.location.href = 'index.html';
+                window.location.href = '/';
             });
         });
 

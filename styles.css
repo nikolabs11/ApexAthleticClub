@@ -35,8 +35,9 @@ html, body {
     min-height: 100vh;
 }
 
-#logo-container {
-    margin-bottom: 10px;
+#logo-container, #logo-container a {
+    cursor: pointer;
+    display: inline-block; /* This ensures the anchor doesn't change the layout */
 }
 
 #club-logo {
