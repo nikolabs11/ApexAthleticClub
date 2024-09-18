@@ -36,7 +36,7 @@ html, body {
 }
 
 #logo-container {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 #club-logo {
@@ -191,3 +191,39 @@ h1 {
         font-size: 0.7em;
     }
 }
+
+#partnership-container {
+    text-align: center;
+    color: white; /* Keep the text color white */
+}
+
+#partner-logo {
+    max-width: 100px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeInLogo 2s forwards;
+}
+
+#partnership-text {
+    opacity: 0;
+    animation: fadeInText 2s forwards 1s; /* Delay the text fade-in by 1 second */
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes fadeInText {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInLogo {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Remove the fadeInOut keyframes and any other references to #ffcf00 */

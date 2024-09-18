@@ -225,6 +225,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     populateDayDropdown();
     populateYearDropdown();
+
+    const contentContainer = document.getElementById('content-container');
+
+    // Show content container immediately
+    contentContainer.classList.remove('hidden');
+
+    // ... existing code ...
 });
 
 function submitInviteCode() {

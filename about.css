@@ -44,6 +44,14 @@ body, html {
     margin-top: 20px;
 }
 
+#header-text h2 {
+    margin-bottom: 5px; /* Reduce space between welcome and tagline */
+}
+
+#header-text h4 {
+    margin-top: 0; /* Remove top margin from tagline */
+}
+
 #content-container {
     background: white;
     width: 100%;
@@ -56,6 +64,16 @@ body, html {
     color: black;
     padding: 0 20px;
     text-align: center;
+}
+
+.content h3 {
+    margin-top: 60px; /* Increase top margin for section headers */
+    margin-bottom: 20px;
+}
+
+.content h4 {
+    margin-top: 40px; /* Adjust as needed */
+    margin-bottom: 20px;
 }
 
 h2, h4 {
