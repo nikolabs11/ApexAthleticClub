@@ -166,3 +166,62 @@ p {
         font-size: 10px;
     }
 }
+
+.content ul {
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.content ul li {
+    margin-bottom: 10px;
+}
+
+.comparison-table {
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #333;
+    background-color: #fff;
+    table-layout: fixed; /* Added for equal column widths */
+}
+
+.comparison-table th, .comparison-table td {
+    border: 1px solid #045034;
+    padding: 10px;
+    text-align: center;
+    word-wrap: break-word; /* Added to handle long content */
+}
+
+.comparison-table th {
+    background-color: #045034;
+    color: white;
+}
+
+.comparison-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.comparison-table th:first-child,
+.comparison-table td:first-child {
+    width: 30%; /* Adjust the width of the first column */
+}
+
+.comparison-table th:nth-child(2),
+.comparison-table td:nth-child(2) {
+    width: 35%; /* Adjust the width of the Apex Athletic Club column */
+}
+
+.comparison-table th:last-child,
+.comparison-table td:last-child {
+    width: 35%; /* Adjust the width of the Local Youth Soccer Clubs column */
+}
+
+h3, h4 {
+    margin-top: 50px; /* Increased top margin for more spacing */
+    margin-bottom: 20px;
+}
