@@ -201,14 +201,13 @@ h1 {
 #partner-logo {
     max-width: 150px;
     margin-top: 30px;
-    margin-bottom: 10px;
     opacity: 0;
-    animation: fadeInLogo 2s forwards;
+    animation: fadeInLogo 4s forwards;
 }
 
 #partnership-text {
     opacity: 0;
-    animation: fadeInText 2s forwards 1s; /* Delay the text fade-in by 1 second */
+    animation: fadeInText 4s forwards 1s; /* Delay the text fade-in by 1 second */
 }
 
 .hidden {
