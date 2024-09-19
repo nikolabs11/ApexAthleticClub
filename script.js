@@ -250,7 +250,7 @@ function submitInviteCode() {
     }
 
     // Valid invite codes
-    const validCodes = ['AAC2023', 'APEX2023', 'CLUB2023', 'SOCCER24', 'JUDO24', 'FUTSAL24'];
+    const validCodes = ['AAC2023', 'HOLDEN2024'];
     if (validCodes.includes(code)) {
         localStorage.setItem('loggedIn', 'true');
         console.log('Redirecting to about.html');
