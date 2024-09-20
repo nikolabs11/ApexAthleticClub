@@ -231,6 +231,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Show content container immediately
     contentContainer.classList.remove('hidden');
 
+    // Check for invite code in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const inviteCode = urlParams.get('inviteCode');
+    if (inviteCode) {
+        inviteCodeInput.value = inviteCode;
+        submitInviteCode();
+    }
+
     // ... existing code ...
 });
 

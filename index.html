@@ -84,6 +84,14 @@
     <script>
         // Clear login status when landing on home page
         localStorage.removeItem('loggedIn');
+
+        // Check for invite code in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const inviteCode = urlParams.get('inviteCode');
+        if (inviteCode) {
+            document.getElementById('invite-code').value = inviteCode;
+            submitInviteCode();
+        }
     </script>
 </body>
 </html>
