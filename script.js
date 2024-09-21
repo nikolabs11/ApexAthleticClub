@@ -258,7 +258,19 @@ function submitInviteCode() {
     }
 
     // Valid invite codes
-    const validCodes = ['AAC2023', 'HOLDEN2024'];
+    const validCodes = [
+        'AHRIK2024', 'HOLDEN2024', 'JERRY2024', 'VERDI2024', 'SERGEI2024',
+        'SEAN2024', 'RAYYAN2024', 'ERIC2024', 'CAMBRIDGE2024', 'BLAISE2024',
+        'MASON2024', 'JACKSON2024', 'OWEN2024', 'ZAYD2024', 'CONNOR2024',
+        'GABRIEL2024', 'CHANCE2024', 'BRAELON2024', 'ALEXANDER2024', 'ELIAS2024',
+        'ADAM2024', 'IKER2024', 'BRANDON2024', 'KAITO2024', 'GIBSON2024',
+        'LUKE2024', 'AYO2024', 'KIERAN2024', 'CAMERON2024', 'ZINEDDINE2024',
+        'TIANTIAN2024', 'BLAKE2024', 'BRYAN2024', 'DAWSON2024', 'TY2024',
+        'JAKE2024', 'KOSHI2024', 'ANTUAN2024', 'ELI2024', 'EDDI2024', 
+        'LOCKAN2024', 'MASSON2024', 'JOSE2024', 'GIOVANNI2024', 'JHONNATAN2024',
+        'LIAM2024'
+    ];
+
     if (validCodes.includes(code)) {
         localStorage.setItem('loggedIn', 'true');
         console.log('Redirecting to about.html');
