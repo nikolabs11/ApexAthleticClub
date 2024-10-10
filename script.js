@@ -270,6 +270,7 @@ function submitInviteCode() {
         'LOCKAN2024', 'MASSON2024', 'JOSE2024', 'GIOVANNI2024', 'JHONNATAN2024',
         'LIAM2024', 'EDDI2024', 'LUCAS2024', 'IVAN2024', 'BEN2024', // Added Ben's invite code
         'JACK2024', 'OLIVER2024' // Added Jack's and Oliver's invite codes
+        'NEERAV2024' // Added Neerav's invite code
     ];
 
     if (validCodes.includes(code)) {
