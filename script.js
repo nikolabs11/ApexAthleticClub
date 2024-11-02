@@ -269,8 +269,7 @@ function submitInviteCode() {
         'JAKE2024', 'KOSHI2024', 'ANTUAN2024', 'ELI2024', 'EDDI2024', 
         'LOCKAN2024', 'MASSON2024', 'JOSE2024', 'GIOVANNI2024', 'JHONNATAN2024',
         'LIAM2024', 'EDDI2024', 'LUCAS2024', 'IVAN2024', 'BEN2024',
-        'JACK2024', 'OLIVER2024',
-        'NEERAV2024'
+        'JACK2024', 'OLIVER2024', 'NEERAV2024', 'LOGAN2024'
     ];
 
     if (validCodes.includes(code)) {
