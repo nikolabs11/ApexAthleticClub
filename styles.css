@@ -5,7 +5,7 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: 'Share Tech Mono', monospace;
-    background: black;
+    background: transparent;
     color: white;
 }
 
@@ -314,11 +314,12 @@ h1 {
 
 /* Program page specific styles */
 .program-content {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem auto;
     padding: 2rem;
     border-radius: 8px;
-    max-width: 800px;
-    margin: 20px auto;
     color: #333;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
