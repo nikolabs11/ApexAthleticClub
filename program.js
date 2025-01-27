@@ -19,8 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.getElementById('learn-more').addEventListener('click', () => {
-        document.getElementById('program-details').scrollIntoView({
-            behavior: 'smooth'
+        document.querySelector('.program-content').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
         });
     });
 

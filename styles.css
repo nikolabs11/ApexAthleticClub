@@ -330,7 +330,7 @@ h1 {
 }
 
 #invite-code {
-    width: 200px; /* Match button width */
+    width: 300px; /* Buttons are 200px + 100px */
     margin: 10px auto;
 }
 
@@ -346,10 +346,10 @@ input:checked ~ .sport-description {
 }
 
 #next-step {
-    margin-top: 20px;
     display: none;
+    margin-top: 20px;
 }
 
-.sport-selection:has(input:checked) + #next-step {
+.sport-selection:has(input:checked) ~ #next-step {
     display: block;
 }
