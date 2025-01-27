@@ -195,10 +195,14 @@ button:hover {
     background: rgba(0, 0, 0, 0.69);
 }
 
+#add-parent {
+    margin: 10px 0 20px 0;  /* Reduce space around add parent button */
+}
+
 .form-row {
     display: flex;
     gap: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;  /* Consistent spacing between rows */
 }
 
 .form-group {
