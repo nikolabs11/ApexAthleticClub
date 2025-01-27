@@ -29,199 +29,48 @@
 
     <!-- Program content on white background -->
     <div class="program-content">
-        <p style="font-weight: bold; margin-bottom: 40px;">Our coaches are full-time professionals that utilize best practices from the top youth academies around the world. We offer 12 months of programming across multiple sports with the primary focus on soccer.</p>
-        
-        <div class="sport-selection">
-            <!-- Indoor Soccer -->
-            <div class="sport-option">
-                <div class="sport-header">
-                    <input type="checkbox" name="sports" value="indoor-soccer" checked disabled>
-                    <span class="sport-title">Indoor Soccer/Futsal</span>
-                </div>
-                <div class="sport-details">
-                    <div class="text-content">
-                        <div class="timeline"><strong>October - February and May - August</strong></div>
-                        <div class="age-group"><strong>2010s and younger</strong></div>
-                        <div class="schedule"><strong>Mon/Tue/Sat/Sun Evenings</strong></div>
-                        <ul>
-                            <li>Professional, licensed coaches</li>
-                            <li>Focus on technical skills and fast-paced decision making</li>
-                            <li>Small-sided games and futsal tournaments</li>
-                            <li>Perfect for developing close control and creativity</li>
-                        </ul>
-                        <div class="location"><strong>Location: <a href="https://www.google.com/maps/search/?api=1&query=1016+Investment+Blvd" target="_blank">XLSW Apex</a></strong></div>
-                    </div>
-                    <div class="image-container">
-                        <a href="https://example.com/indoor-soccer" target="_blank">
-                            <img src="images/XLSWAPEX.png" alt="Indoor Soccer">
-                        </a>
-                        <a href="https://example.com/us-futsal" target="_blank">
-                            <img src="images/USFUTSAL.png" alt="US Futsal">
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <form id="player-info-form">
+            <h3>Player Information</h3>
+            <label for="parent-name">Parent Name:</label>
+            <input type="text" id="parent-name" name="parent-name" required>
 
-            <!-- Outdoor Soccer -->
-            <div class="sport-option">
-                <div class="sport-header">
-                    <input type="checkbox" name="sports" value="outdoor-soccer" checked disabled>
-                    <span class="sport-title">Outdoor Soccer</span>
-                </div>
-                <div class="sport-details">
-                    <div class="text-content">
-                        <div class="timeline"><strong>March - May and August - October</strong></div>
-                        <div class="age-group"><strong>2010s and younger</strong></div>
-                        <div class="schedule"><strong>Mon/Tue/Sat/Sun Evenings</strong></div>
-                        <ul>
-                            <li>Professional, licensed coaches</li>
-                            <li>Emphasis on tactical understanding and game intelligence</li>
-                            <li>Competitive matches through US Club Soccer</li>
-                            <li>Position-specific training</li>
-                            <li>Focus on building complete players</li>
-                        </ul>
-                        <div class="location"><strong>Location: <a href="https://www.google.com/maps/search/?api=1&query=425+Mills+Park+Dr,+Cary,+NC+27519" target="_blank">Mills Park</a> and <a href="https://www.google.com/maps/search/?api=1&query=511+Scott+King+Rd,+Durham,+NC+27713" target="_blank">CM Herndon Park</a></strong></div>
-                    </div>
-                    <div class="image-container">
-                        <a href="https://example.com/cary-parks" target="_blank">
-                            <img src="images/CPR.png" alt="Cary Parks">
-                        </a>
-                        <a href="https://example.com/durham-parks" target="_blank">
-                            <img src="images/DPR.png" alt="Durham Parks">
-                        </a>
-                        <a href="https://example.com/us-club-soccer" target="_blank">
-                            <img src="images/USCLUBSOCCER.webp" alt="US Club Soccer">
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" required>
 
-            <!-- Small Group Training -->
-            <div class="sport-option">
-                <div class="sport-header">
-                    <input type="checkbox" name="sports" value="small-group-training" checked disabled>
-                    <span class="sport-title">Small Group Training</span>
-                </div>
-                <div class="sport-details">
-                    <div class="text-content">
-                        <div class="timeline"><strong>Year-round</strong></div>
-                        <div class="age-group"><strong>2010s and younger</strong></div>
-                        <div class="schedule"><strong>Flexible scheduling</strong></div>
-                        <ul>
-                            <li>Professional, licensed coaches</li>
-                            <li>Maximum 4 players per coach</li>
-                            <li>Personalized attention and feedback</li>
-                            <li>Focused skill development</li>
-                            <li>Custom training plans based on player needs</li>
-                        </ul>
-                        <div class="location"><strong>Location: <a href="https://www.google.com/maps/search/?api=1&query=1250+Ambergate+Station,+Apex,+NC+27502" target="_blank">Hunter Street Park</a>, <a href="https://www.google.com/maps/search/?api=1&query=2600+Evans+Rd,+Apex,+NC+27502" target="_blank">Apex Nature Park</a>, or <a href="https://www.google.com/maps/search/?api=1&query=1016+Investment+Blvd" target="_blank">XLSW Apex</a></strong></div>
-                    </div>
-                    <div class="image-container">
-                        <a href="https://example.com/xlsw-apex" target="_blank">
-                            <img src="images/XLSWAPEX.png" alt="XLSW Apex">
-                        </a>
-                        <!-- Placeholder for Apex Parks Rec logo -->
-                    </div>
-                </div>
-            </div>
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last-name" required>
 
-            <!-- Judo -->
-            <div class="sport-option">
-                <div class="sport-header">
-                    <input type="checkbox" name="sports" value="judo">
-                    <span class="sport-title">Judo</span>
-                </div>
-                <div class="sport-details">
-                    <div class="text-content">
-                        <div class="timeline"><strong>October - February and May - August</strong></div>
-                        <div class="age-group"><strong>2010s and younger</strong></div>
-                        <div class="schedule"><strong>Wed/Fri 5PM</strong></div>
-                        <ul>
-                            <li>Professional, licensed coaches</li>
-                            <li>Led by experienced black belt instructors</li>
-                            <li>Develops balance, coordination, and mental discipline</li>
-                            <li>Used by top clubs like Ajax for youth training</li>
-                            <li>Enhances physical and mental resilience</li>
-                            <li>Builds confidence and self-defense skills</li>
-                        </ul>
-                        <div class="location"><strong>Location: <a href="https://www.google.com/maps/search/?api=1&query=5563+Western+Blvd,+Suite+12,+Raleigh,+NC+27606" target="_blank">Cary Judo Club</a></strong></div>
-                    </div>
-                    <div class="image-container">
-                        <a href="https://example.com/judo" target="_blank">
-                            <img src="images/CARYJUDOCLUB.png" alt="Judo">
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <label for="birth-year">Birth Year:</label>
+            <input type="number" id="birth-year" name="birth-year" required>
 
-            <!-- Flag Football -->
-            <div class="sport-option">
-                <div class="sport-header">
-                    <input type="checkbox" name="sports" value="flag-football">
-                    <span class="sport-title">Flag Football</span>
-                </div>
-                <div class="sport-details">
-                    <div class="text-content">
-                        <div class="timeline"><strong>March - May and August - October</strong></div>
-                        <div class="age-group"><strong>2010s and younger</strong></div>
-                        <div class="schedule"><strong>Wed/Sat 4-6PM</strong></div>
-                        <div class="coaches"><strong>Professional, licensed coaches</strong></div>
-                        <ul>
-                            <li>Non-contact skill development</li>
-                            <li>Focus on agility and strategic thinking</li>
-                            <li>Great for developing overall athleticism</li>
-                            <li>Teaches field awareness and spatial recognition</li>
-                            <li>Enhances creative thinking for set pieces in soccer</li>
-                            <li>Fun way to cross-train</li>
-                        </ul>
-                        <div class="location"><strong>Location: <a href="https://www.google.com/maps/search/?api=1&query=1016+Investment+Blvd" target="_blank">XLSW Apex</a></strong></div>
-                    </div>
-                    <div class="image-container">
-                        <a href="https://example.com/flag-football" target="_blank">
-                            <img src="images/XLSWAPEX.png" alt="Flag Football">
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
 
-            <!-- Basketball -->
-            <div class="sport-option">
-                <div class="sport-header">
-                    <input type="checkbox" name="sports" value="basketball" disabled>
-                    <span class="sport-title">Basketball</span>
-                </div>
-                <div class="sport-details">
-                    <div class="text-content">
-                        <p style="font-weight: bold; text-transform: uppercase;">COMING SOON</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/USFUTSAL.png" alt="Basketball">
-                    </div>
-                </div>
-            </div>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
 
-            <!-- Tumbling Gymnastics -->
-            <div class="sport-option">
-                <div class="sport-header">
-                    <input type="checkbox" name="sports" value="tumbling-gymnastics" disabled>
-                    <span class="sport-title">Tumbling Gymnastics</span>
-                </div>
-                <div class="sport-details">
-                    <div class="text-content">
-                        <p style="font-weight: bold; text-transform: uppercase;">COMING SOON</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/USFUTSAL.png" alt="Tumbling Gymnastics">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button id="next-step">NEXT</button>
+            <button type="submit" id="next-step">NEXT</button>
+        </form>
     </div>
     <script src="program.js"></script>
     <script>
         document.getElementById('build-program').addEventListener('click', function() {
             document.querySelector('.program-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        document.getElementById('player-info-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const playerData = {
+                parentName: formData.get('parent-name'),
+                firstName: formData.get('first-name'),
+                lastName: formData.get('last-name'),
+                birthYear: formData.get('birth-year'),
+                email: formData.get('email'),
+                phone: formData.get('phone')
+            };
+            localStorage.setItem('playerData', JSON.stringify(playerData));
+            window.location.href = 'next-page.html'; // Redirect to the next page
         });
     </script>
 </body>
