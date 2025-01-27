@@ -5,17 +5,16 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: 'Share Tech Mono', monospace;
-    background: #000000 !important; /* Force black background */
     color: white;
 }
 
 #vanta-bg {
-    z-index: 0;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 0;
 }
 
 #overlay {
@@ -57,8 +56,6 @@ body, html {
 }
 
 button {
-    position: relative;
-    z-index: 2;
     margin: 10px 0;
     cursor: pointer;
     color: white;
@@ -82,35 +79,6 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.sport-selection {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.sport-selection label {
-    cursor: pointer !important;
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    background: #ffffff !important; /* Pure white */
-    border: 2px solid #000000 !important; /* Black border */
-    color: #000000 !important; /* Black text */
-    padding: 15px;
-    margin: 10px 0;
-}
-
-.sport-selection input {
-    display: inline-block !important;
-    margin-right: 10px;
-}
-
-.sport-selection label span {
-    display: inline-block !important;
-    vertical-align: middle;
 }
 
 #content-container {
@@ -311,51 +279,6 @@ h1 {
     margin: 20px 0;
 }
 
-/* Program page specific styles */
-.program-content {
-    position: relative;
-    z-index: 1; /* Bring content to front */
-    background: rgba(255, 255, 255, 0.95) !important;
-    border: 2px solid #000000 !important;
-    color: #333; /* Dark text */
-    width: 90%;
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Ensure Vanta canvas stays behind content */
-#vanta-bg {
-    z-index: -1;
-}
-
-#invite-code {
-    width: 300px; /* Buttons are 200px + 100px */
-    margin: 10px auto;
-}
-
-.sport-description {
-    display: none;
-    font-size: 0.9em;
-    color: #666;
-    margin-top: 5px;
-}
-
-input:checked ~ .sport-description {
-    display: block;
-}
-
-#next-step {
-    display: none;
-    margin-top: 20px;
-}
-
-.sport-selection:has(input:checked) ~ #next-step {
-    display: block;
-}
-
 /* Welcome section styling */
 #welcome-section {
     text-align: center;
@@ -366,76 +289,7 @@ input:checked ~ .sport-description {
     align-items: center;
 }
 
-/* Sport selection styling */
-.sport-title {
-    color: #045034; /* Dark green for sport titles */
-    font-weight: bold;
-}
-
-.sport-description {
-    color: #666; /* Dark gray for descriptions */
-    font-size: 0.9em;
-}
-
-/* Fix sport selection colors */
-.program-content {
-    color: #333; /* Ensures all text is dark by default */
-}
-
-.sport-selection label span {
-    color: #045034 !important; /* Dark green title */
-    font-size: 1.1em;
-    font-weight: 900;
-}
-
-.sport-selection label .sport-description {
-    color: #333333 !important; /* Dark gray */
-    font-size: 0.95em;
-    margin-top: 8px;
-}
-
-.sport-title {
-    color: #045034; /* Maintain dark green for titles */
-}
-
-.sport-description {
-    color: #666; /* Dark gray for descriptions */
-}
-
-/* Sport Details Styling */
-.sport-details {
-    margin-top: 10px;
-    padding: 10px;
-    background: #f8f8f8;
-    border-radius: 4px;
-}
-
-.age-group, .schedule, .requirements {
-    font-size: 0.9em;
-    color: #666;
-    margin: 5px 0;
-}
-
-.benefits {
-    padding-left: 20px;
-    margin: 10px 0 0 0;
-}
-
-.benefits li {
-    font-size: 0.9em;
-    color: #444;
-    margin: 5px 0;
-}
-
-.program-content * {
-    color: #000000 !important; /* Force black text */
-}
-
-.sport-title {
-    color: #045034 !important; /* Dark green titles */
-}
-
-.sport-details {
-    background: #ffffff !important;
-    border: 1px solid #000000 !important;
+#invite-code {
+    width: 300px; /* Buttons are 200px + 100px */
+    margin: 10px auto;
 }
