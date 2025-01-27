@@ -328,3 +328,28 @@ h1 {
 #vanta-bg {
     z-index: -1;
 }
+
+#invite-code {
+    width: 200px; /* Match button width */
+    margin: 10px auto;
+}
+
+.sport-description {
+    display: none;
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+
+input:checked ~ .sport-description {
+    display: block;
+}
+
+#next-step {
+    margin-top: 20px;
+    display: none;
+}
+
+.sport-selection:has(input:checked) + #next-step {
+    display: block;
+}

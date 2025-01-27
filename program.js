@@ -18,16 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
         speed: 0.00
     });
 
-    const learnMoreButton = document.getElementById('learn-more');
-    const welcomeMessage = document.getElementById('welcome-message');
-    const programDetails = document.getElementById('program-details');
-
-    learnMoreButton.addEventListener('click', () => {
-        welcomeMessage.style.opacity = '0';
-        welcomeMessage.style.transform = 'translateY(-20px)';
-        setTimeout(() => {
-            welcomeMessage.classList.add('hidden');
-            programDetails.classList.add('active');
-        }, 500);
+    document.getElementById('learn-more').addEventListener('click', () => {
+        document.getElementById('program-details').scrollIntoView({
+            behavior: 'smooth'
+        });
     });
+
+    // Initialize Next button
+    const nextButton = document.createElement('button');
+    nextButton.textContent = 'NEXT';
+    nextButton.id = 'next-step';
+    nextButton.className = 'hidden';
+    document.querySelector('.program-content').appendChild(nextButton);
 }); 

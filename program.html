@@ -27,7 +27,13 @@
             <p>Apex Athletic Club is an invite-only collective for exceptional individuals. Our players are distinguished by their respect, leadership, and determination to acquire new skills. Our coaches are full-time professionals that utilize best practices from the top youth academies around the world.</p>
             <h3>Build Your Program</h3>
             <div class="sport-selection">
-                <label><input type="checkbox" name="sports" value="indoor-soccer"> Indoor Soccer/Futsal</label>
+                <label>
+                    <input type="checkbox" name="sports" value="indoor-soccer">
+                    Indoor Soccer/Futsal
+                    <div class="sport-description">
+                        Develop quick decision-making and technical skills in confined spaces
+                    </div>
+                </label>
                 <label><input type="checkbox" name="sports" value="outdoor-soccer"> Outdoor Soccer</label>
                 <label><input type="checkbox" name="sports" value="judo"> Judo</label>
                 <label><input type="checkbox" name="sports" value="flag-football"> Flag Football</label>
@@ -37,10 +43,25 @@
     </div>
     <div class="program-content">
         <div id="welcome-message" class="centered">
-            <!-- Welcome content -->
+            <h2>Welcome to Apex Athletic Club</h2>
+            <h4>A Talent Factory for Promising Individuals</h4>
+            <button id="learn-more">LEARN MORE</button>
         </div>
-        <div id="program-details" class="hidden">
-            <!-- Program details -->
+        
+        <div id="program-details">
+            <p>Apex Athletic Club is...</p>
+            <h3>Build Your Program</h3>
+            <div class="sport-selection">
+                <!-- Add descriptions to each sport -->
+                <label>
+                    <input type="checkbox" name="sports" value="indoor-soccer">
+                    Indoor Soccer/Futsal
+                    <div class="sport-description">
+                        Develop quick decision-making and technical skills in confined spaces
+                    </div>
+                </label>
+                <!-- Repeat for other sports -->
+            </div>
         </div>
     </div>
     <script src="program.js"></script>
