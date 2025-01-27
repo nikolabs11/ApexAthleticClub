@@ -87,6 +87,9 @@ button:hover {
     padding: 10px;
     border: 1px solid #045034;
     cursor: pointer;
+    background: #f8f8f8;
+    border-color: #333;
+    color: #333;
 }
 
 #content-container {
@@ -359,6 +362,9 @@ input:checked ~ .sport-description {
     text-align: center;
     color: white;
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Sport selection styling */
@@ -370,4 +376,23 @@ input:checked ~ .sport-description {
 .sport-description {
     color: #666; /* Dark gray for descriptions */
     font-size: 0.9em;
+}
+
+/* Fix sport selection colors */
+.program-content {
+    color: #333; /* Ensures all text is dark by default */
+}
+
+.sport-selection label {
+    background: #f8f8f8;
+    border-color: #333;
+    color: #333; /* Dark text for labels */
+}
+
+.sport-title {
+    color: #045034; /* Maintain dark green for titles */
+}
+
+.sport-description {
+    color: #666; /* Dark gray for descriptions */
 }
