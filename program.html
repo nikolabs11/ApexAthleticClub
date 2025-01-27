@@ -195,13 +195,21 @@
     <div class="program-content" id="personal-info" style="display: none;">
         <form id="player-info-form">
             <h3>Player Information</h3>
-            <label for="parent-name">Parent Name:</label>
-            <input type="text" id="parent-name" name="parent-name" required>
+            
+            <h4>Parent/Guardian Information</h4>
+            <label for="parent-first-name">Parent First Name:</label>
+            <input type="text" id="parent-first-name" name="parent-first-name" required>
+            
+            <label for="parent-last-name">Parent Last Name:</label>
+            <input type="text" id="parent-last-name" name="parent-last-name" required>
+            
+            <button type="button" id="add-parent">Add Another Parent/Guardian</button>
 
-            <label for="first-name">First Name:</label>
+            <h4>Player Information</h4>
+            <label for="first-name">Player First Name:</label>
             <input type="text" id="first-name" name="first-name" required>
 
-            <label for="last-name">Last Name:</label>
+            <label for="last-name">Player Last Name:</label>
             <input type="text" id="last-name" name="last-name" required>
 
             <label for="birth-year">Birth Year:</label>
@@ -229,10 +237,10 @@
             minHeight: 200.00,
             minWidth: 200.00,
             scale: 1.00,
-            color1: 0x0,
-            color2: 0x0,
-            size: 1.50,
-            speed: 1.00
+            size: 3.00,
+            speed: 1.00,
+            color: 0x0,
+            backgroundColor: 0x0
         });
 
         document.getElementById('build-program').addEventListener('click', function() {
@@ -250,7 +258,8 @@
             document.getElementById('personal-info').style.display = 'block';
 
             const playerData = JSON.parse(localStorage.getItem('playerData')) || {};
-            document.getElementById('parent-name').value = playerData.parentName || '';
+            document.getElementById('parent-first-name').value = playerData.parentFirstName || '';
+            document.getElementById('parent-last-name').value = playerData.parentLastName || '';
             document.getElementById('first-name').value = playerData.firstName || '';
             document.getElementById('last-name').value = playerData.lastName || '';
             document.getElementById('birth-year').value = playerData.birthYear || '';
@@ -262,18 +271,35 @@
             programDays.innerHTML = '';
 
             selectedPrograms.forEach(program => {
-                if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
+                if (program === "Indoor Soccer") {
                     if (birthYear <= 2014) {
                         programDays.innerHTML += `
                             <div class="program-days-selection">
-                                <h4>${program}</h4>
+                                <h4>Indoor Soccer</h4>
                                 <label><input type="checkbox" checked disabled> Tuesday</label>
                                 <label><input type="checkbox" checked disabled> Saturday</label>
                             </div>`;
                     } else if (birthYear >= 2010 && birthYear <= 2013) {
                         programDays.innerHTML += `
                             <div class="program-days-selection">
-                                <h4>${program}</h4>
+                                <h4>Indoor Soccer</h4>
+                                <label><input type="checkbox" checked disabled> Monday</label>
+                                <label><input type="checkbox" checked disabled> Sunday</label>
+                            </div>`;
+                    }
+                }
+                if (program === "Outdoor Soccer") {
+                    if (birthYear <= 2014) {
+                        programDays.innerHTML += `
+                            <div class="program-days-selection">
+                                <h4>Outdoor Soccer</h4>
+                                <label><input type="checkbox" checked disabled> Tuesday</label>
+                                <label><input type="checkbox" checked disabled> Saturday</label>
+                            </div>`;
+                    } else if (birthYear >= 2010 && birthYear <= 2013) {
+                        programDays.innerHTML += `
+                            <div class="program-days-selection">
+                                <h4>Outdoor Soccer</h4>
                                 <label><input type="checkbox" checked disabled> Monday</label>
                                 <label><input type="checkbox" checked disabled> Sunday</label>
                             </div>`;
@@ -310,7 +336,8 @@
             event.preventDefault();
             const formData = new FormData(event.target);
             const playerData = {
-                parentName: formData.get('parent-name'),
+                parentFirstName: formData.get('parent-first-name'),
+                parentLastName: formData.get('parent-last-name'),
                 firstName: formData.get('first-name'),
                 lastName: formData.get('last-name'),
                 birthYear: formData.get('birth-year'),
@@ -321,11 +348,12 @@
             alert('Information submitted successfully!');
         });
 
-        // Update preload data to include all fields
+        // Preload test data for HOLDEN2024
         const testCode = "HOLDEN2024";
         if (testCode === "HOLDEN2024") {
             const preloadData = {
-                parentName: "Derick Hitchcock",
+                parentFirstName: "Derick",
+                parentLastName: "Hitchcock",
                 firstName: "Holden",
                 lastName: "Hitchcock",
                 birthYear: "2015",
@@ -334,6 +362,20 @@
             };
             localStorage.setItem('playerData', JSON.stringify(preloadData));
         }
+
+        // Add parent functionality
+        document.getElementById('add-parent').addEventListener('click', function() {
+            const parentSection = document.createElement('div');
+            parentSection.innerHTML = `
+                <h4>Additional Parent/Guardian</h4>
+                <label for="additional-parent-first-name">Parent First Name:</label>
+                <input type="text" name="additional-parent-first-name">
+                
+                <label for="additional-parent-last-name">Parent Last Name:</label>
+                <input type="text" name="additional-parent-last-name">
+            `;
+            this.parentNode.insertBefore(parentSection, this);
+        });
     </script>
 </body>
 </html> 
