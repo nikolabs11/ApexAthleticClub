@@ -70,16 +70,17 @@ body, html {
     padding: 15px;
     background: white;
     color: #333;
-    border-left: 1px solid #ccc; /* Vertical dividing line */
+    border-left: 1px solid rgba(0, 0, 0, 0.1); /* Faded vertical dividing line */
 }
 
-.sport-details > div {
-    flex: 1;
+.text-content {
+    flex: 2;
+    font-size: 0.9em; /* Slightly smaller text */
     margin-right: 20px;
 }
 
 .image-container {
-    flex: 0 0 150px; /* Fixed width for images */
+    flex: 1;
     text-align: center;
 }
 
