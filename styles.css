@@ -384,9 +384,20 @@ input:checked ~ .sport-description {
 }
 
 .sport-selection label {
-    background: #f8f8f8;
-    border-color: #333;
-    color: #333; /* Dark text for labels */
+    background: #f8f8f8 !important;
+    border: 1px solid #333 !important;
+    color: #333 !important;
+}
+
+.sport-selection label span {
+    color: #045034 !important;
+    font-weight: bold;
+}
+
+.sport-selection label .sport-description {
+    color: #666 !important;
+    display: block;
+    font-size: 0.9em;
 }
 
 .sport-title {
