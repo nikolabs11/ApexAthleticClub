@@ -153,7 +153,8 @@ button:hover {
     background: rgba(0, 0, 0, 0.33);
     color: white;
     border: 2px solid white;
-    padding: 15px 40px; /* Increase padding for wider button */
+    width: 400px; /* Explicitly set the width to ensure the text fits */
+    padding: 15px; /* Adjust padding to maintain button height */
     font-family: 'Share Tech Mono', monospace;
     font-size: 1.1em; /* Increase font size */
     cursor: pointer;
@@ -161,6 +162,7 @@ button:hover {
     display: inline-block;
     text-align: center;
     white-space: nowrap; /* Ensure text stays on one line */
+    margin: 0 auto; /* Center the button */
 }
 
 .cta-button:hover {
