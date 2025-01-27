@@ -146,4 +146,22 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* Style for the Learn More button to match home page buttons */
+.cta-button {
+    background: rgba(0, 0, 0, 0.33);
+    color: white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.cta-button:hover {
+    background: rgba(0, 0, 0, 0.69);
 } 
