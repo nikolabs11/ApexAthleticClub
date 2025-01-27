@@ -82,14 +82,11 @@ button:hover {
 }
 
 .sport-selection label {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #045034;
-    cursor: pointer;
-    background: #f8f8f8;
-    border-color: #333;
-    color: #333;
+    background: #ffffff !important; /* Pure white */
+    border: 2px solid #000000 !important; /* Black border */
+    color: #000000 !important; /* Black text */
+    padding: 15px;
+    margin: 10px 0;
 }
 
 #content-container {
@@ -383,21 +380,16 @@ input:checked ~ .sport-description {
     color: #333; /* Ensures all text is dark by default */
 }
 
-.sport-selection label {
-    background: #f8f8f8 !important;
-    border: 1px solid #333 !important;
-    color: #333 !important;
-}
-
 .sport-selection label span {
-    color: #045034 !important;
-    font-weight: bold;
+    color: #045034 !important; /* Dark green title */
+    font-size: 1.1em;
+    font-weight: 900;
 }
 
 .sport-selection label .sport-description {
-    color: #666 !important;
-    display: block;
-    font-size: 0.9em;
+    color: #333333 !important; /* Dark gray */
+    font-size: 0.95em;
+    margin-top: 8px;
 }
 
 .sport-title {
