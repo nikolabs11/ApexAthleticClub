@@ -101,7 +101,7 @@ body, html {
 }
 
 button {
-    background: #045034;
+    background: rgba(255, 255, 255, 0.3);
     color: white;
     border: none;
     margin: 30px auto;
@@ -114,7 +114,7 @@ button {
 }
 
 button:hover {
-    background: #067a4d;
+    background: rgba(255, 255, 255, 0.5);
 }
 
 #overlay {

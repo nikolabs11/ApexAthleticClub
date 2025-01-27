@@ -23,7 +23,7 @@
         <div id="welcome-section">
             <h2>Welcome to Apex Athletic Club</h2>
             <h4>A Talent Factory for Promising Individuals</h4>
-            <button id="learn-more">LEARN MORE</button>
+            <button id="learn-more" style="background: rgba(255, 255, 255, 0.3); color: white;">LEARN MORE</button>
         </div>
     </div>
 
@@ -33,16 +33,16 @@
             <!-- Indoor Soccer -->
             <div class="sport-option">
                 <div class="sport-header">
-                    <input type="checkbox" name="sports" value="indoor-soccer">
+                    <input type="checkbox" name="sports" value="indoor-soccer" checked disabled>
                     <span class="sport-title">Indoor Soccer/Futsal</span>
                 </div>
                 <div class="sport-details">
-                    <div class="age-group">Ages 8-16</div>
+                    <div class="timeline">October - February and May - August</div>
+                    <div class="age-group">2010s and younger</div>
                     <div class="schedule">Mon/Wed/Fri 4-6PM</div>
-                    <div class="requirements">All skill levels welcome</div>
+                    <div class="coaches">Professional, licensed coaches</div>
+                    <div class="location">Location: Apex Indoor Arena, 123 Soccer Lane</div>
                     <ul>
-                        <li>Professional UEFA/USSF licensed coaches</li>
-                        <li>Year-round facility access</li>
                         <li>Focus on technical skills and fast-paced decision making</li>
                         <li>Small-sided games and futsal tournaments</li>
                         <li>Perfect for developing close control and creativity</li>
@@ -53,19 +53,42 @@
             <!-- Outdoor Soccer -->
             <div class="sport-option">
                 <div class="sport-header">
-                    <input type="checkbox" name="sports" value="outdoor-soccer">
+                    <input type="checkbox" name="sports" value="outdoor-soccer" checked disabled>
                     <span class="sport-title">Outdoor Soccer</span>
                 </div>
                 <div class="sport-details">
-                    <div class="age-group">Ages 10-18</div>
+                    <div class="timeline">March - May and August - October</div>
+                    <div class="age-group">2010s and younger</div>
                     <div class="schedule">Tue/Thu 5-7PM</div>
-                    <div class="requirements">Intermediate+ skills</div>
+                    <div class="coaches">Professional, licensed coaches</div>
+                    <div class="location">Location: Apex Outdoor Fields, 456 Grass Blvd</div>
                     <ul>
-                        <li>Training at premium grass facilities</li>
                         <li>Emphasis on tactical understanding and game intelligence</li>
                         <li>Competitive matches through US Club Soccer</li>
                         <li>Position-specific training</li>
                         <li>Focus on building complete players</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Small Group Training -->
+            <div class="sport-option">
+                <div class="sport-header">
+                    <input type="checkbox" name="sports" value="small-group-training" checked disabled>
+                    <span class="sport-title">Small Group Training</span>
+                </div>
+                <div class="sport-details">
+                    <div class="timeline">Year-round</div>
+                    <div class="age-group">2010s and younger</div>
+                    <div class="schedule">Flexible scheduling</div>
+                    <div class="coaches">Professional, licensed coaches</div>
+                    <div class="location">Location: Apex Training Center, 789 Skill St</div>
+                    <ul>
+                        <li>Maximum 4 players per coach</li>
+                        <li>Personalized attention and feedback</li>
+                        <li>Focused skill development</li>
+                        <li>Video analysis sessions</li>
+                        <li>Custom training plans based on player needs</li>
                     </ul>
                 </div>
             </div>
@@ -77,9 +100,11 @@
                     <span class="sport-title">Judo</span>
                 </div>
                 <div class="sport-details">
-                    <div class="age-group">Ages 8-18</div>
+                    <div class="timeline">October - February and May - August</div>
+                    <div class="age-group">2010s and younger</div>
                     <div class="schedule">Tue/Thu 6-8PM</div>
-                    <div class="requirements">All skill levels welcome</div>
+                    <div class="coaches">Professional, licensed coaches</div>
+                    <div class="location">Location: Apex Martial Arts, 321 Judo Ave</div>
                     <ul>
                         <li>Led by experienced black belt instructors</li>
                         <li>Develops balance, coordination, and mental discipline</li>
@@ -97,9 +122,11 @@
                     <span class="sport-title">Flag Football</span>
                 </div>
                 <div class="sport-details">
-                    <div class="age-group">Ages 8-14</div>
+                    <div class="timeline">March - May and August - October</div>
+                    <div class="age-group">2010s and younger</div>
                     <div class="schedule">Wed/Sat 4-6PM</div>
-                    <div class="requirements">All skill levels welcome</div>
+                    <div class="coaches">Professional, licensed coaches</div>
+                    <div class="location">Location: Apex Sports Complex, 654 Flag Rd</div>
                     <ul>
                         <li>Non-contact skill development</li>
                         <li>Focus on agility and strategic thinking</li>
@@ -109,29 +136,8 @@
                     </ul>
                 </div>
             </div>
-
-            <!-- Small Group Training -->
-            <div class="sport-option">
-                <div class="sport-header">
-                    <input type="checkbox" name="sports" value="small-group-training">
-                    <span class="sport-title">Small Group Training</span>
-                </div>
-                <div class="sport-details">
-                    <div class="age-group">Ages 8-18</div>
-                    <div class="schedule">Flexible scheduling</div>
-                    <div class="requirements">All skill levels welcome</div>
-                    <ul>
-                        <li>Maximum 4 players per coach</li>
-                        <li>Personalized attention and feedback</li>
-                        <li>Focused skill development</li>
-                        <li>Video analysis sessions</li>
-                        <li>Custom training plans based on player needs</li>
-                    </ul>
-                </div>
-            </div>
         </div>
         <button id="next-step">NEXT</button>
-        <!-- Back button will be added dynamically -->
     </div>
     <script src="program.js"></script>
 </body>
