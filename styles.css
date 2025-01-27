@@ -5,7 +5,7 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: 'Share Tech Mono', monospace;
-    background: transparent;
+    background: #000000 !important; /* Force black background */
     color: white;
 }
 
@@ -15,7 +15,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 0 !important; /* Ensure Vanta stays behind content */
 }
 
 #overlay {
@@ -328,7 +328,10 @@ h1 {
 
 /* Program page specific styles */
 .program-content {
-    background: white;
+    position: relative;
+    z-index: 1; /* Bring content to front */
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid #000000 !important;
     color: #333; /* Dark text */
     width: 90%;
     max-width: 800px;
@@ -437,4 +440,17 @@ input:checked ~ .sport-description {
     font-size: 0.9em;
     color: #444;
     margin: 5px 0;
+}
+
+.program-content * {
+    color: #000000 !important; /* Force black text */
+}
+
+.sport-title {
+    color: #045034 !important; /* Dark green titles */
+}
+
+.sport-details {
+    background: #ffffff !important;
+    border: 1px solid #000000 !important;
 }
