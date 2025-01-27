@@ -87,11 +87,13 @@ body, html {
     background: #045034;
     color: white;
     border: none;
-    margin-top: 30px;
+    margin: 30px auto; /* Center horizontally */
     width: 200px;
     padding: 10px;
     cursor: pointer;
     transition: background 0.3s ease;
+    display: block; /* Ensure it's a block element for centering */
+    text-align: center;
 }
 
 #next-step:hover {

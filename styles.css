@@ -207,7 +207,8 @@ h1 {
 
 #partnership-container {
     text-align: center;
-    color: white; /* Keep the text color white */
+    color: white;
+    margin-bottom: 20px; /* Add margin to ensure full visibility */
 }
 
 #partner-logo {
