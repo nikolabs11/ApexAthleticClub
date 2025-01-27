@@ -49,6 +49,7 @@
             <label for="phone">Phone Number:</label>
             <input type="tel" id="phone" name="phone" required>
 
+            <button type="button" id="add-parent">Add Parent/Guardian</button>
             <button type="submit" id="next-step">NEXT</button>
         </form>
     </div>
@@ -71,6 +72,25 @@
             };
             localStorage.setItem('playerData', JSON.stringify(playerData));
             window.location.href = 'next-page.html'; // Redirect to the next page
+        });
+
+        // Preload test data for HOLDEN2024
+        const testCode = "HOLDEN2024";
+        if (testCode === "HOLDEN2024") {
+            document.getElementById('first-name').value = "Holden";
+            document.getElementById('last-name').value = "Hitchcock";
+            document.getElementById('birth-year').value = "2015";
+            document.getElementById('email').value = "hitchcock.derick@gmail.com";
+            document.getElementById('phone').value = "+19194515282";
+        }
+
+        // Add Parent/Guardian functionality
+        document.getElementById('add-parent').addEventListener('click', function() {
+            const parentNameField = document.createElement('input');
+            parentNameField.type = 'text';
+            parentNameField.name = 'additional-parent-name';
+            parentNameField.placeholder = 'Additional Parent/Guardian Name';
+            document.getElementById('player-info-form').insertBefore(parentNameField, document.getElementById('add-parent'));
         });
     </script>
 </body>
