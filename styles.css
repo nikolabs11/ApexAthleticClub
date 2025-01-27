@@ -227,3 +227,57 @@ h1 {
 }
 
 /* Remove the fadeInOut keyframes and any other references to #ffcf00 */
+
+/* Checkout Progress Steps */
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid #666;
+    color: #666;
+}
+
+.step.active {
+    border-color: #00ff00;
+    color: #00ff00;
+}
+
+/* Checkout Steps */
+.checkout-step {
+    display: none;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.checkout-step.active {
+    display: block;
+}
+
+.sport-selection {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.sport-selection label {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #00ff00;
+    cursor: pointer;
+}
+
+#card-element {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border: 1px solid #00ff00;
+    margin: 20px 0;
+}

@@ -70,6 +70,7 @@
             const inviteCode = urlParams.get('code');
             if (inviteCode) {
                 const validCodes = [
+                    'TESTCODE2024',
                     'AHRIK2024', 'HOLDEN2024', 'JERRY2024', 'VERDI2024', 'SERGEI2024',
                     'SEAN2024', 'RAYYAN2024', 'ERIC2024', 'CAMBRIDGE2024', 'BLAISE2024',
                     'MASON2024', 'JACKSON2024', 'OWEN2024', 'ZAYD2024', 'CONNOR2024',
@@ -87,7 +88,7 @@
                 if (validCodes.includes(inviteCode.toUpperCase())) {
                     localStorage.setItem('loggedIn', 'true');
                     setTimeout(() => {
-                        window.location.href = '/about.html';
+                        window.location.href = '/checkout?code=' + inviteCode.toUpperCase();
                     }, 2000); // 2-second delay
                 } else {
                     setTimeout(() => {

@@ -165,23 +165,7 @@ document.addEventListener("DOMContentLoaded", function() {
             e.preventDefault();
             if (this.checkValidity()) {
                 // Form is valid, submit it
-                fetch("/", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: new URLSearchParams(new FormData(trialForm)).toString()
-                })
-                .then(() => {
-                    console.log("Form successfully submitted");
-                    alert("Thank you for your submission!");
-                    trialForm.reset();
-                    // Hide trial form and show actions
-                    trialForm.classList.add('hidden');
-                    document.getElementById('actions').classList.remove('hidden');
-                })
-                .catch((error) => {
-                    console.error("Form submission error:", error);
-                    alert("An error occurred. Please try again.");
-                });
+                alert("Form submitted!");  // Test if submission handler triggers
             } else {
                 this.classList.add('submitted');
             }
