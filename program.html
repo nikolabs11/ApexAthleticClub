@@ -209,8 +209,6 @@
                 <button type="button" class="add-parent-button" title="Add Parent/Guardian">+</button>
             </div>
 
-            <button type="button" id="add-parent">Add Another Parent/Guardian</button>
-
             <div class="form-row">
                 <div class="form-group">
                     <label for="first-name">Player First Name:</label>
@@ -363,18 +361,24 @@
             localStorage.setItem('playerData', JSON.stringify(preloadData));
         }
 
-        // Add parent functionality
-        document.getElementById('add-parent').addEventListener('click', function() {
+        // Update the add parent functionality to use the plus button instead
+        document.querySelector('.add-parent-button').addEventListener('click', function() {
             const parentSection = document.createElement('div');
+            parentSection.className = 'form-row parent-section';
             parentSection.innerHTML = `
-                <h4>Additional Parent/Guardian</h4>
-                <label for="additional-parent-first-name">Parent First Name:</label>
-                <input type="text" name="additional-parent-first-name">
-                
-                <label for="additional-parent-last-name">Parent Last Name:</label>
-                <input type="text" name="additional-parent-last-name">
+                <div class="form-group">
+                    <label for="additional-parent-first-name">Parent First Name:</label>
+                    <input type="text" name="additional-parent-first-name">
+                </div>
+                <div class="form-group">
+                    <label for="additional-parent-last-name">Parent Last Name:</label>
+                    <input type="text" name="additional-parent-last-name">
+                </div>
+                <button type="button" class="add-parent-button" title="Add Parent/Guardian">+</button>
             `;
-            this.parentNode.insertBefore(parentSection, this);
+            // Insert the new parent section before the player information section
+            const playerInfoSection = document.querySelector('[for="first-name"]').closest('.form-row');
+            playerInfoSection.parentNode.insertBefore(parentSection, playerInfoSection);
         });
     </script>
 </body>
