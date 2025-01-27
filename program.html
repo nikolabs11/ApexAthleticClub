@@ -36,7 +36,18 @@
                 <span class="sport-title">Indoor Soccer/Futsal</span>
             </div>
             <div class="sport-details">
-                <p>Details about Indoor Soccer/Futsal...</p>
+                <div class="text-content">
+                    <div class="timeline"><strong>October - February and May - August</strong></div>
+                    <div class="age-group"><strong>2010s and younger</strong></div>
+                    <div class="schedule"><strong>Mon/Tue/Sat/Sun Evenings</strong></div>
+                    <ul>
+                        <li>Professional, licensed coaches</li>
+                        <li>Focus on technical skills and fast-paced decision making</li>
+                        <li>Small-sided games and futsal tournaments</li>
+                        <li>Perfect for developing close control and creativity</li>
+                    </ul>
+                    <div class="location"><strong>Location: <a href="https://www.google.com/maps/search/?api=1&query=1016+Investment+Blvd" target="_blank">XLSW Apex</a></strong></div>
+                </div>
                 <div class="image-container">
                     <img src="images/XLSWAPEX.png" alt="Indoor Soccer">
                     <img src="images/USFUTSAL.png" alt="US Futsal">
@@ -124,6 +135,13 @@
     </div>
 
     <script>
+        VANTA.CELLS({
+            el: "#vanta-bg",
+            color1: 0x0,
+            color2: 0x333333,
+            size: 1.2
+        });
+
         document.getElementById('build-program').addEventListener('click', function() {
             document.querySelector('.program-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
