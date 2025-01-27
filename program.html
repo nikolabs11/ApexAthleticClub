@@ -27,8 +27,75 @@
         </div>
     </div>
 
-    <!-- Program content on white background -->
-    <div class="program-content">
+    <!-- Program selection section -->
+    <div class="program-content" id="program-selection">
+        <h3>Select Programs</h3>
+        <div class="sport-option">
+            <div class="sport-header">
+                <input type="checkbox" id="indoor-soccer" name="programs" value="Indoor Soccer">
+                <span class="sport-title">Indoor Soccer/Futsal</span>
+            </div>
+            <div class="sport-details">
+                <p>Details about Indoor Soccer/Futsal...</p>
+                <div class="image-container">
+                    <img src="images/XLSWAPEX.png" alt="Indoor Soccer">
+                    <img src="images/USFUTSAL.png" alt="US Futsal">
+                </div>
+            </div>
+        </div>
+        <div class="sport-option">
+            <div class="sport-header">
+                <input type="checkbox" id="outdoor-soccer" name="programs" value="Outdoor Soccer">
+                <span class="sport-title">Outdoor Soccer</span>
+            </div>
+            <div class="sport-details">
+                <p>Details about Outdoor Soccer...</p>
+                <div class="image-container">
+                    <img src="images/OUTDOORSOCCER.png" alt="Outdoor Soccer">
+                </div>
+            </div>
+        </div>
+        <div class="sport-option">
+            <div class="sport-header">
+                <input type="checkbox" id="judo" name="programs" value="Judo">
+                <span class="sport-title">Judo</span>
+            </div>
+            <div class="sport-details">
+                <p>Details about Judo...</p>
+                <div class="image-container">
+                    <img src="images/JUDO.png" alt="Judo">
+                </div>
+            </div>
+        </div>
+        <div class="sport-option">
+            <div class="sport-header">
+                <input type="checkbox" id="flag-football" name="programs" value="Flag Football">
+                <span class="sport-title">Flag Football</span>
+            </div>
+            <div class="sport-details">
+                <p>Details about Flag Football...</p>
+                <div class="image-container">
+                    <img src="images/FLAGFOOTBALL.png" alt="Flag Football">
+                </div>
+            </div>
+        </div>
+        <div class="sport-option">
+            <div class="sport-header">
+                <input type="checkbox" id="small-group" name="programs" value="Small Group Training">
+                <span class="sport-title">Small Group Training</span>
+            </div>
+            <div class="sport-details">
+                <p>Details about Small Group Training...</p>
+                <div class="image-container">
+                    <img src="images/SMALLGROUPTRAINING.png" alt="Small Group Training">
+                </div>
+            </div>
+        </div>
+        <button id="next-step">NEXT</button>
+    </div>
+
+    <!-- Personal information and day selection section -->
+    <div class="program-content" id="personal-info" style="display: none;">
         <form id="player-info-form">
             <h3>Player Information</h3>
             <label for="parent-name">Parent Name:</label>
@@ -49,55 +116,73 @@
             <label for="phone">Phone Number:</label>
             <input type="tel" id="phone" name="phone" required>
 
-            <h3>Select Programs</h3>
-            <div>
-                <input type="checkbox" id="indoor-soccer" name="programs" value="Indoor Soccer">
-                <label for="indoor-soccer">Indoor Soccer/Futsal</label>
-            </div>
-            <div>
-                <input type="checkbox" id="outdoor-soccer" name="programs" value="Outdoor Soccer">
-                <label for="outdoor-soccer">Outdoor Soccer</label>
-            </div>
-            <div>
-                <input type="checkbox" id="judo" name="programs" value="Judo">
-                <label for="judo">Judo</label>
-            </div>
-            <div>
-                <input type="checkbox" id="flag-football" name="programs" value="Flag Football">
-                <label for="flag-football">Flag Football</label>
-            </div>
-            <div>
-                <input type="checkbox" id="small-group" name="programs" value="Small Group Training">
-                <label for="small-group">Small Group Training</label>
-            </div>
+            <h3>Select Your Program Days</h3>
+            <div id="program-days"></div>
 
-            <button type="button" id="add-parent">Add Parent/Guardian</button>
-            <button type="submit" id="next-step">NEXT</button>
+            <button type="submit">Submit</button>
         </form>
     </div>
-    <script src="program.js"></script>
+
     <script>
         document.getElementById('build-program').addEventListener('click', function() {
             document.querySelector('.program-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
+        document.getElementById('next-step').addEventListener('click', function() {
+            const selectedPrograms = [];
+            document.querySelectorAll('input[name="programs"]:checked').forEach(checkbox => {
+                selectedPrograms.push(checkbox.value);
+            });
+
+            localStorage.setItem('selectedPrograms', JSON.stringify(selectedPrograms));
+
+            document.getElementById('program-selection').style.display = 'none';
+            document.getElementById('personal-info').style.display = 'block';
+
+            const playerData = JSON.parse(localStorage.getItem('playerData')) || {};
+            document.getElementById('parent-name').value = playerData.parentName || '';
+            document.getElementById('first-name').value = playerData.firstName || '';
+            document.getElementById('last-name').value = playerData.lastName || '';
+            document.getElementById('email').value = playerData.email || '';
+            document.getElementById('phone').value = playerData.phone || '';
+
+            const birthYear = parseInt(playerData.birthYear) || 2015;
+            const programDays = document.getElementById('program-days');
+            programDays.innerHTML = '';
+
+            selectedPrograms.forEach(program => {
+                if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
+                    if (birthYear <= 2014) {
+                        programDays.innerHTML += `<p>${program}: Tuesday, Saturday</p>`;
+                    } else if (birthYear >= 2010 && birthYear <= 2013) {
+                        programDays.innerHTML += `<p>${program}: Monday, Sunday</p>`;
+                    }
+                }
+                if (program === "Judo") {
+                    programDays.innerHTML += '<p>Judo: Wednesday, Friday</p>';
+                }
+                if (program === "Flag Football") {
+                    programDays.innerHTML += '<p>Flag Football: Friday, Sunday</p>';
+                }
+                if (program === "Small Group Training") {
+                    programDays.innerHTML += '<p>Small Group Training: Select any/all days and locations</p>';
+                }
+            });
+        });
+
         document.getElementById('player-info-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const formData = new FormData(event.target);
-            const selectedPrograms = [];
-            formData.getAll('programs').forEach(program => selectedPrograms.push(program));
-
             const playerData = {
                 parentName: formData.get('parent-name'),
                 firstName: formData.get('first-name'),
                 lastName: formData.get('last-name'),
                 birthYear: formData.get('birth-year'),
                 email: formData.get('email'),
-                phone: formData.get('phone'),
-                programs: selectedPrograms
+                phone: formData.get('phone')
             };
             localStorage.setItem('playerData', JSON.stringify(playerData));
-            window.location.href = 'next-page.html'; // Redirect to the next page
+            alert('Information submitted successfully!');
         });
 
         // Preload test data for HOLDEN2024
@@ -109,15 +194,6 @@
             document.getElementById('email').value = "hitchcock.derick@gmail.com";
             document.getElementById('phone').value = "+19194515282";
         }
-
-        // Add Parent/Guardian functionality
-        document.getElementById('add-parent').addEventListener('click', function() {
-            const parentNameField = document.createElement('input');
-            parentNameField.type = 'text';
-            parentNameField.name = 'additional-parent-name';
-            parentNameField.placeholder = 'Additional Parent/Guardian Name';
-            document.getElementById('player-info-form').insertBefore(parentNameField, document.getElementById('add-parent'));
-        });
     </script>
 </body>
 </html> 
