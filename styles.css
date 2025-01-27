@@ -5,8 +5,8 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: 'Share Tech Mono', monospace;
-    background: white; /* Set background to white */
-    color: black; /* Set text color to black for contrast */
+    background: black;
+    color: white;
 }
 
 #vanta-bg {
@@ -310,4 +310,20 @@ h1 {
     padding: 15px;
     border: 1px solid #00ff00;
     margin: 20px 0;
+}
+
+/* Program page specific styles */
+.program-content {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 20px auto;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure Vanta canvas stays behind content */
+#vanta-bg {
+    z-index: -1;
 }
