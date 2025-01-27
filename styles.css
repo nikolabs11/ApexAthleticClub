@@ -314,13 +314,13 @@ h1 {
 
 /* Program page specific styles */
 .program-content {
-    background: rgba(255, 255, 255, 0.95);
+    background: white;
+    color: #333; /* Dark text */
     width: 90%;
     max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
     border-radius: 8px;
-    color: #333;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -352,4 +352,22 @@ input:checked ~ .sport-description {
 
 .sport-selection:has(input:checked) ~ #next-step {
     display: block;
+}
+
+/* Welcome section styling */
+#welcome-section {
+    text-align: center;
+    color: white;
+    margin-top: 2rem;
+}
+
+/* Sport selection styling */
+.sport-title {
+    color: #045034; /* Dark green for sport titles */
+    font-weight: bold;
+}
+
+.sport-description {
+    color: #666; /* Dark gray for descriptions */
+    font-size: 0.9em;
 }
