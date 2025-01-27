@@ -82,11 +82,25 @@ button:hover {
 }
 
 .sport-selection label {
+    cursor: pointer !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
     background: #ffffff !important; /* Pure white */
     border: 2px solid #000000 !important; /* Black border */
     color: #000000 !important; /* Black text */
     padding: 15px;
     margin: 10px 0;
+}
+
+.sport-selection input {
+    display: inline-block !important;
+    margin-right: 10px;
+}
+
+.sport-selection label span {
+    display: inline-block !important;
+    vertical-align: middle;
 }
 
 #content-container {
@@ -398,4 +412,29 @@ input:checked ~ .sport-description {
 
 .sport-description {
     color: #666; /* Dark gray for descriptions */
+}
+
+/* Sport Details Styling */
+.sport-details {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8f8f8;
+    border-radius: 4px;
+}
+
+.age-group, .schedule, .requirements {
+    font-size: 0.9em;
+    color: #666;
+    margin: 5px 0;
+}
+
+.benefits {
+    padding-left: 20px;
+    margin: 10px 0 0 0;
+}
+
+.benefits li {
+    font-size: 0.9em;
+    color: #444;
+    margin: 5px 0;
 }
