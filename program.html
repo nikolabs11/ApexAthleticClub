@@ -241,8 +241,22 @@
             <h3>Program Days</h3>
             <div id="program-days"></div>
 
-            <button type="submit">Submit</button>
+            <div class="navigation-buttons">
+                <button type="button" id="go-back">Go Back</button>
+                <button type="button" id="next-step">Next</button>
+            </div>
         </form>
+    </div>
+
+    <!-- Add new summary section -->
+    <div class="program-content" id="summary-section" style="display: none;">
+        <h3>Program Summary</h3>
+        <div id="summary-content"></div>
+        
+        <div class="navigation-buttons">
+            <button type="button" id="back-to-form">Go Back</button>
+            <button type="submit" id="submit-final">Submit</button>
+        </div>
     </div>
 
     <script>
@@ -361,7 +375,7 @@
             localStorage.setItem('playerData', JSON.stringify(preloadData));
         }
 
-        // Update the add parent functionality to use the plus button instead
+        // Update the add parent functionality
         document.querySelector('.add-parent-button').addEventListener('click', function() {
             const parentSection = document.createElement('div');
             parentSection.className = 'form-row parent-section';
@@ -374,11 +388,58 @@
                     <label for="additional-parent-last-name">Parent Last Name:</label>
                     <input type="text" name="additional-parent-last-name">
                 </div>
-                <button type="button" class="add-parent-button" title="Add Parent/Guardian">+</button>
+                <button type="button" class="remove-parent-button" title="Remove Parent/Guardian">−</button>
             `;
-            // Insert the new parent section before the player information section
-            const playerInfoSection = document.querySelector('[for="first-name"]').closest('.form-row');
-            playerInfoSection.parentNode.insertBefore(parentSection, playerInfoSection);
+            
+            // Insert after the last parent section
+            const lastParentSection = [...document.querySelectorAll('.parent-section')].pop();
+            lastParentSection.after(parentSection);
+
+            // Add remove functionality
+            parentSection.querySelector('.remove-parent-button').addEventListener('click', function() {
+                parentSection.remove();
+            });
+        });
+
+        // Navigation functionality
+        document.getElementById('go-back').addEventListener('click', function() {
+            document.getElementById('personal-info').style.display = 'none';
+            document.getElementById('program-selection').style.display = 'block';
+        });
+
+        document.getElementById('next-step').addEventListener('click', function() {
+            // Gather all form data
+            const formData = new FormData(document.getElementById('player-info-form'));
+            const selectedPrograms = JSON.parse(localStorage.getItem('selectedPrograms'));
+            
+            // Create summary HTML
+            const summaryContent = document.getElementById('summary-content');
+            summaryContent.innerHTML = `
+                <h4>Player Information</h4>
+                <p>Name: ${formData.get('first-name')} ${formData.get('last-name')}</p>
+                <p>Birth Year: ${formData.get('birth-year')}</p>
+                
+                <h4>Parent Information</h4>
+                <p>Primary Parent: ${formData.get('parent-first-name')} ${formData.get('parent-last-name')}</p>
+                ${[...document.querySelectorAll('[name="additional-parent-first-name"]')].map((input, i) => 
+                    `<p>Additional Parent ${i + 1}: ${input.value} ${document.querySelectorAll('[name="additional-parent-last-name"]')[i].value}</p>`
+                ).join('')}
+                
+                <h4>Contact Information</h4>
+                <p>Email: ${formData.get('email')}</p>
+                <p>Phone: ${formData.get('phone')}</p>
+                
+                <h4>Selected Programs</h4>
+                ${selectedPrograms.map(program => `<p>${program}</p>`).join('')}
+            `;
+
+            document.getElementById('personal-info').style.display = 'none';
+            document.getElementById('summary-section').style.display = 'block';
+        });
+
+        document.getElementById('back-to-form').addEventListener('click', function() {
+            document.getElementById('summary-section').style.display = 'none';
+            document.getElementById('personal-info').style.display = 'block';
         });
     </script>
 </body>
