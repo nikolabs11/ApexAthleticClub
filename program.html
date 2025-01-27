@@ -28,47 +28,107 @@
     </div>
 
     <!-- Program content on white background -->
-    <div class="program-content" style="background:white;color:black">
-        <div id="program-details">
-            <div class="sport-selection">
-                <!-- Indoor Soccer/Futsal -->
-                <label>
+    <div class="program-content">
+        <div class="sport-selection">
+            <!-- Indoor Soccer -->
+            <div class="sport-option">
+                <div class="sport-header">
                     <input type="checkbox" name="sports" value="indoor-soccer">
                     <span class="sport-title">Indoor Soccer/Futsal</span>
-                    <div class="sport-details">
-                        <div class="age-group">Ages 8-16</div>
-                        <div class="schedule">Mon/Wed/Fri 4-6PM</div>
-                        <div class="requirements">All skill levels welcome</div>
-                        <ul class="benefits">
-                            <li>Professional UEFA/USSF licensed coaches</li>
-                            <li>Year-round facility access</li>
-                            <li>Technical skills development</li>
-                            <li>Weekly futsal tournaments</li>
-                        </ul>
-                    </div>
-                </label>
+                </div>
+                <div class="sport-details">
+                    <div class="age-group">Ages 8-16</div>
+                    <div class="schedule">Mon/Wed/Fri 4-6PM</div>
+                    <div class="requirements">All skill levels welcome</div>
+                    <ul>
+                        <li>Professional UEFA/USSF licensed coaches</li>
+                        <li>Year-round facility access</li>
+                        <li>Technical skills development</li>
+                        <li>Weekly futsal tournaments</li>
+                    </ul>
+                </div>
+            </div>
 
-                <!-- Outdoor Soccer -->
-                <label>
+            <!-- Outdoor Soccer -->
+            <div class="sport-option">
+                <div class="sport-header">
                     <input type="checkbox" name="sports" value="outdoor-soccer">
                     <span class="sport-title">Outdoor Soccer</span>
-                    <div class="sport-details">
-                        <div class="age-group">Ages 10-18</div>
-                        <div class="schedule">Tue/Thu 5-7PM</div>
-                        <div class="requirements">Intermediate+ skills</div>
-                        <ul class="benefits">
-                            <li>Premium grass facilities</li>
-                            <li>US Club Soccer competitions</li>
-                            <li>Position-specific training</li>
-                            <li>Tactical development focus</li>
-                        </ul>
-                    </div>
-                </label>
-
-                <!-- Add other sports following the same pattern -->
+                </div>
+                <div class="sport-details">
+                    <div class="age-group">Ages 10-18</div>
+                    <div class="schedule">Tue/Thu 5-7PM</div>
+                    <div class="requirements">Intermediate+ skills</div>
+                    <ul>
+                        <li>Premium grass facilities</li>
+                        <li>US Club Soccer competitions</li>
+                        <li>Position-specific training</li>
+                        <li>Tactical development focus</li>
+                    </ul>
+                </div>
             </div>
-            <button id="next-step" class="hidden">NEXT</button>
+
+            <!-- Judo -->
+            <div class="sport-option">
+                <div class="sport-header">
+                    <input type="checkbox" name="sports" value="judo">
+                    <span class="sport-title">Judo</span>
+                </div>
+                <div class="sport-details">
+                    <div class="age-group">Ages 8-18</div>
+                    <div class="schedule">Tue/Thu 6-8PM</div>
+                    <div class="requirements">All skill levels welcome</div>
+                    <ul>
+                        <li>Led by experienced black belt instructors</li>
+                        <li>Develops balance, coordination, and mental discipline</li>
+                        <li>Competition opportunities through USA Judo</li>
+                        <li>Perfect complement to soccer training</li>
+                        <li>Builds confidence and self-defense skills</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Flag Football -->
+            <div class="sport-option">
+                <div class="sport-header">
+                    <input type="checkbox" name="sports" value="flag-football">
+                    <span class="sport-title">Flag Football</span>
+                </div>
+                <div class="sport-details">
+                    <div class="age-group">Ages 8-14</div>
+                    <div class="schedule">Wed/Sat 4-6PM</div>
+                    <div class="requirements">All skill levels welcome</div>
+                    <ul>
+                        <li>Non-contact skill development</li>
+                        <li>Focus on agility and strategic thinking</li>
+                        <li>Great for developing overall athleticism</li>
+                        <li>Teaches field awareness and spatial recognition</li>
+                        <li>Fun way to cross-train</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Small Group Training -->
+            <div class="sport-option">
+                <div class="sport-header">
+                    <input type="checkbox" name="sports" value="small-group-training">
+                    <span class="sport-title">Small Group Training</span>
+                </div>
+                <div class="sport-details">
+                    <div class="age-group">Ages 8-18</div>
+                    <div class="schedule">Flexible scheduling</div>
+                    <div class="requirements">All skill levels welcome</div>
+                    <ul>
+                        <li>Maximum 4 players per coach</li>
+                        <li>Personalized attention and feedback</li>
+                        <li>Focused skill development</li>
+                        <li>Video analysis sessions</li>
+                        <li>Custom training plans based on player needs</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+        <button id="next-step">NEXT</button>
     </div>
     <script src="program.js"></script>
 </body>
