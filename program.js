@@ -31,4 +31,31 @@ document.addEventListener("DOMContentLoaded", () => {
     nextButton.id = 'next-step';
     nextButton.className = 'hidden';
     document.querySelector('.program-content').appendChild(nextButton);
+
+    const programContent = document.querySelector('.program-content');
+
+    nextButton.addEventListener('click', () => {
+        // Logic to move to the next step
+        // For now, just simulate moving to the next step
+        if (!document.getElementById('back-step')) {
+            const backButton = document.createElement('button');
+            backButton.id = 'back-step';
+            backButton.textContent = 'BACK';
+            backButton.style.margin = '10px auto';
+            backButton.style.display = 'block';
+            backButton.style.background = '#045034';
+            backButton.style.color = 'white';
+            backButton.style.border = 'none';
+            backButton.style.width = '200px';
+            backButton.style.padding = '10px';
+            backButton.style.cursor = 'pointer';
+            backButton.style.transition = 'background 0.3s ease';
+            backButton.addEventListener('click', () => {
+                // Logic to go back to the previous step
+                // For now, just simulate going back
+                programContent.scrollIntoView({ behavior: 'smooth' });
+            });
+            programContent.appendChild(backButton);
+        }
+    });
 }); 

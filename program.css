@@ -98,4 +98,52 @@ body, html {
 
 #next-step:hover {
     background: #067a4d;
+}
+
+button {
+    background: #045034;
+    color: white;
+    border: none;
+    margin: 30px auto;
+    width: 200px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: block;
+    text-align: center;
+}
+
+button:hover {
+    background: #067a4d;
+}
+
+#overlay {
+    position: relative;
+    z-index: 2; /* Ensure it's above the Vanta background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
+
+#logo-container {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 20px;
+}
+
+#club-logo {
+    max-width: 300px;
+}
+
+#welcome-section {
+    text-align: center;
+    color: white;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 } 
