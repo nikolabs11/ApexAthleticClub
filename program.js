@@ -19,9 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const learnMoreButton = document.getElementById('learn-more');
+    const welcomeMessage = document.getElementById('welcome-message');
     const programDetails = document.getElementById('program-details');
 
     learnMoreButton.addEventListener('click', () => {
-        programDetails.classList.toggle('hidden');
+        welcomeMessage.style.opacity = '0';
+        welcomeMessage.style.transform = 'translateY(-20px)';
+        setTimeout(() => {
+            welcomeMessage.classList.add('hidden');
+            programDetails.classList.add('active');
+        }, 500);
     });
 }); 
