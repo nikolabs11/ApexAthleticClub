@@ -70,25 +70,25 @@ body, html {
     padding: 15px;
     background: white;
     color: #333;
-    border-left: 1px solid rgba(0, 0, 0, 0.1); /* Faded vertical dividing line */
 }
 
 .text-content {
-    flex: 2;
-    font-size: 0.9em; /* Slightly smaller text */
-    margin-right: 20px;
+    flex: 3;
+    margin-right: 40px;
+    font-size: 0.9em;
 }
 
 .image-container {
     flex: 1;
-    text-align: center;
+    text-align: right;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-left: auto;
 }
 
 .image-container img {
-    max-width: 80px; /* Smaller images */
+    max-width: 80px;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

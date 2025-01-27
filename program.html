@@ -33,8 +33,8 @@
         <!-- Indoor Soccer -->
         <div class="sport-option">
             <div class="sport-header">
-                <input type="checkbox" id="indoor-soccer" name="programs" value="Indoor Soccer">
-                <span class="sport-title">Indoor Soccer/Futsal</span>
+                <input type="checkbox" id="indoor-soccer" name="programs" value="Indoor Soccer" checked disabled>
+                <span class="sport-title">Indoor Soccer/Futsal (Required)</span>
             </div>
             <div class="sport-details">
                 <div class="text-content">
@@ -59,8 +59,8 @@
         <!-- Outdoor Soccer -->
         <div class="sport-option">
             <div class="sport-header">
-                <input type="checkbox" id="outdoor-soccer" name="programs" value="Outdoor Soccer">
-                <span class="sport-title">Outdoor Soccer</span>
+                <input type="checkbox" id="outdoor-soccer" name="programs" value="Outdoor Soccer" checked disabled>
+                <span class="sport-title">Outdoor Soccer (Required)</span>
             </div>
             <div class="sport-details">
                 <div class="text-content">
@@ -142,8 +142,8 @@
         <!-- Small Group Training -->
         <div class="sport-option">
             <div class="sport-header">
-                <input type="checkbox" id="small-group" name="programs" value="Small Group Training">
-                <span class="sport-title">Small Group Training</span>
+                <input type="checkbox" id="small-group" name="programs" value="Small Group Training" checked disabled>
+                <span class="sport-title">Small Group Training (Required)</span>
             </div>
             <div class="sport-details">
                 <div class="text-content">
@@ -174,9 +174,6 @@
             </div>
             <div class="sport-details">
                 <p style="font-weight: bold; text-transform: uppercase;">COMING SOON</p>
-                <div class="image-container">
-                    <img src="images/USFUTSAL.png" alt="Basketball">
-                </div>
             </div>
         </div>
 
@@ -188,9 +185,6 @@
             </div>
             <div class="sport-details">
                 <p style="font-weight: bold; text-transform: uppercase;">COMING SOON</p>
-                <div class="image-container">
-                    <img src="images/USFUTSAL.png" alt="Tumbling Gymnastics">
-                </div>
             </div>
         </div>
 
@@ -229,9 +223,16 @@
     <script>
         VANTA.CELLS({
             el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
             color1: 0x0,
-            color2: 0x333333,
-            size: 1.2
+            color2: 0x0,
+            size: 1.50,
+            speed: 1.00
         });
 
         document.getElementById('build-program').addEventListener('click', function() {
@@ -263,9 +264,19 @@
             selectedPrograms.forEach(program => {
                 if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
                     if (birthYear <= 2014) {
-                        programDays.innerHTML += `<p>${program}: Tuesday, Saturday</p>`;
+                        programDays.innerHTML += `
+                            <div class="program-days-selection">
+                                <h4>${program}</h4>
+                                <label><input type="checkbox" checked disabled> Tuesday</label>
+                                <label><input type="checkbox" checked disabled> Saturday</label>
+                            </div>`;
                     } else if (birthYear >= 2010 && birthYear <= 2013) {
-                        programDays.innerHTML += `<p>${program}: Monday, Sunday</p>`;
+                        programDays.innerHTML += `
+                            <div class="program-days-selection">
+                                <h4>${program}</h4>
+                                <label><input type="checkbox" checked disabled> Monday</label>
+                                <label><input type="checkbox" checked disabled> Sunday</label>
+                            </div>`;
                     }
                 }
                 if (program === "Judo") {
@@ -275,7 +286,22 @@
                     programDays.innerHTML += '<p>Flag Football: Friday, Sunday</p>';
                 }
                 if (program === "Small Group Training") {
-                    programDays.innerHTML += '<p>Small Group Training: Select any/all days and locations</p>';
+                    programDays.innerHTML += `
+                        <div class="program-days-selection">
+                            <h4>Small Group Training Locations</h4>
+                            <label><input type="checkbox"> Hunter Street Park</label>
+                            <label><input type="checkbox"> Apex Nature Park</label>
+                            <label><input type="checkbox"> XLSW Apex</label>
+                            
+                            <h4>Available Days</h4>
+                            <label><input type="checkbox"> Monday</label>
+                            <label><input type="checkbox"> Tuesday</label>
+                            <label><input type="checkbox"> Wednesday</label>
+                            <label><input type="checkbox"> Thursday</label>
+                            <label><input type="checkbox"> Friday</label>
+                            <label><input type="checkbox"> Saturday</label>
+                            <label><input type="checkbox"> Sunday</label>
+                        </div>`;
                 }
             });
         });
@@ -298,6 +324,7 @@
         // Preload test data for HOLDEN2024
         const testCode = "HOLDEN2024";
         if (testCode === "HOLDEN2024") {
+            document.getElementById('parent-name').value = "Derick Hitchcock";
             document.getElementById('first-name').value = "Holden";
             document.getElementById('last-name').value = "Hitchcock";
             document.getElementById('birth-year').value = "2015";
