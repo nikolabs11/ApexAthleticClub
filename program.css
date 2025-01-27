@@ -153,7 +153,7 @@ button:hover {
     background: rgba(0, 0, 0, 0.33);
     color: white;
     border: 2px solid white;
-    padding: 15px 30px; /* Increase padding for larger button */
+    padding: 15px 40px; /* Increase padding for wider button */
     font-family: 'Share Tech Mono', monospace;
     font-size: 1.1em; /* Increase font size */
     cursor: pointer;
