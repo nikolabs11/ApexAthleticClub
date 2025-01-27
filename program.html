@@ -49,6 +49,28 @@
             <label for="phone">Phone Number:</label>
             <input type="tel" id="phone" name="phone" required>
 
+            <h3>Select Programs</h3>
+            <div>
+                <input type="checkbox" id="indoor-soccer" name="programs" value="Indoor Soccer">
+                <label for="indoor-soccer">Indoor Soccer/Futsal</label>
+            </div>
+            <div>
+                <input type="checkbox" id="outdoor-soccer" name="programs" value="Outdoor Soccer">
+                <label for="outdoor-soccer">Outdoor Soccer</label>
+            </div>
+            <div>
+                <input type="checkbox" id="judo" name="programs" value="Judo">
+                <label for="judo">Judo</label>
+            </div>
+            <div>
+                <input type="checkbox" id="flag-football" name="programs" value="Flag Football">
+                <label for="flag-football">Flag Football</label>
+            </div>
+            <div>
+                <input type="checkbox" id="small-group" name="programs" value="Small Group Training">
+                <label for="small-group">Small Group Training</label>
+            </div>
+
             <button type="button" id="add-parent">Add Parent/Guardian</button>
             <button type="submit" id="next-step">NEXT</button>
         </form>
@@ -62,13 +84,17 @@
         document.getElementById('player-info-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const formData = new FormData(event.target);
+            const selectedPrograms = [];
+            formData.getAll('programs').forEach(program => selectedPrograms.push(program));
+
             const playerData = {
                 parentName: formData.get('parent-name'),
                 firstName: formData.get('first-name'),
                 lastName: formData.get('last-name'),
                 birthYear: formData.get('birth-year'),
                 email: formData.get('email'),
-                phone: formData.get('phone')
+                phone: formData.get('phone'),
+                programs: selectedPrograms
             };
             localStorage.setItem('playerData', JSON.stringify(playerData));
             window.location.href = 'next-page.html'; // Redirect to the next page

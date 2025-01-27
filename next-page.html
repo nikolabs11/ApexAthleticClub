@@ -44,18 +44,24 @@
                 const birthYear = parseInt(playerData.birthYear);
                 const programDays = document.getElementById('program-days');
 
-                // Determine available days based on birth year
-                if (birthYear <= 2014) {
-                    programDays.innerHTML += '<p>Indoor Soccer: Tuesday, Saturday</p>';
-                    programDays.innerHTML += '<p>Outdoor Soccer: Tuesday, Saturday</p>';
-                } else if (birthYear >= 2010 && birthYear <= 2013) {
-                    programDays.innerHTML += '<p>Indoor Soccer: Monday, Sunday</p>';
-                    programDays.innerHTML += '<p>Outdoor Soccer: Monday, Sunday</p>';
-                }
-
-                programDays.innerHTML += '<p>Judo: Wednesday, Friday</p>';
-                programDays.innerHTML += '<p>Flag Football: Friday, Sunday</p>';
-                programDays.innerHTML += '<p>Small Group Training: Select any/all days and locations</p>';
+                playerData.programs.forEach(program => {
+                    if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
+                        if (birthYear <= 2014) {
+                            programDays.innerHTML += `<p>${program}: Tuesday, Saturday</p>`;
+                        } else if (birthYear >= 2010 && birthYear <= 2013) {
+                            programDays.innerHTML += `<p>${program}: Monday, Sunday</p>`;
+                        }
+                    }
+                    if (program === "Judo") {
+                        programDays.innerHTML += '<p>Judo: Wednesday, Friday</p>';
+                    }
+                    if (program === "Flag Football") {
+                        programDays.innerHTML += '<p>Flag Football: Friday, Sunday</p>';
+                    }
+                    if (program === "Small Group Training") {
+                        programDays.innerHTML += '<p>Small Group Training: Select any/all days and locations</p>';
+                    }
+                });
             }
         });
     </script>
