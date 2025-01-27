@@ -255,13 +255,13 @@ function submitInviteCode() {
         'LIAM2024', 'EDDI2024', 'LUCAS2024', 'IVAN2024', 'BEN2024',
         'JACK2024', 'OLIVER2024', 'NEERAV2024', 'LOGAN2024', 'JAXON2024',
         'BENNETT2024', 'COOPER2024', 'JAMESON2024', 'ATHARV2024', 'KABIR2024',
-        'SHRAVIN2024', 'AYAAN2024' // Added Ayaan
+        'SHRAVIN2024', 'AYAAN2024'
     ];
 
     if (validCodes.includes(code)) {
         localStorage.setItem('loggedIn', 'true');
-        console.log('Redirecting to about.html');
-        window.location.href = '/about';
+        console.log('Redirecting to program.html');
+        window.location.href = '/program.html';
     } else {
         alert('Invalid invite code. Please try again.');
     }
