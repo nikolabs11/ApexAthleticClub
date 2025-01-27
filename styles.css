@@ -10,15 +10,17 @@ body, html {
 }
 
 #vanta-bg {
+    z-index: 0;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0 !important; /* Ensure Vanta stays behind content */
 }
 
 #overlay {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,6 +31,8 @@ body, html {
 }
 
 #logo-container {
+    position: relative;
+    z-index: 2;
     margin-bottom: 20px;
 }
 
@@ -53,19 +57,25 @@ body, html {
 }
 
 button {
+    position: relative;
+    z-index: 2;
     margin: 10px 0;
     cursor: pointer;
     color: white;
-    background: #045034;
-    border: none;
-    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.33);
+    border: 2px solid white;
+    padding: 5px 10px;
     font-family: 'Share Tech Mono', monospace;
     font-size: 1em;
-    transition: background 0.3s ease;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button:hover {
-    background: #109963;
+    background: rgba(0, 0, 0, 0.69);
 }
 
 .centered {
@@ -119,31 +129,6 @@ button:hover {
 }
 
 /* Button Styles */
-button {
-    margin: 10px 0;
-    cursor: pointer;
-    color: white;
-    background: rgba(0, 0, 0, 0.33);
-    border: 2px solid white;
-    padding: 5px 10px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 1em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: all 0.3s ease;
-    width: 200px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 10px;
-}
-
-button:hover {
-    background: rgba(0, 0, 0, 0.69);
-}
-
 button span {
     display: flex;
     justify-content: center;
