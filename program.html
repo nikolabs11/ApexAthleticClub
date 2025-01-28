@@ -419,77 +419,181 @@
             document.getElementById('program-selection').style.display = 'block';
         });
 
-        document.getElementById('to-summary').addEventListener('click', function() {
-            // Get all form data
-            const formData = new FormData(document.getElementById('player-info-form'));
-            const selectedPrograms = JSON.parse(localStorage.getItem('selectedPrograms'));
+        document.getElementById('to-summary').addEventListener('click', function(e) {
+            e.preventDefault();
             
-            // Get selected days for Judo
-            const selectedJudoDays = [...document.querySelectorAll('[name="judo-days"]:checked')]
-                .map(cb => cb.parentElement.textContent.trim());
+            // Remove any existing error messages
+            document.querySelectorAll('.error-message').forEach(msg => msg.remove());
+            document.querySelectorAll('.input-error').forEach(input => input.classList.remove('input-error'));
             
-            // Get selected small group training options
-            const selectedLocations = [...document.querySelectorAll('[name="sg-locations"]:checked')]
-                .map(cb => cb.parentElement.textContent.trim());
-            const selectedDays = [...document.querySelectorAll('[name="sg-days"]:checked')]
-                .map(cb => cb.parentElement.textContent.trim());
+            let isValid = true;
             
-            // Create summary HTML
-            const summaryContent = document.getElementById('summary-content');
-            summaryContent.innerHTML = `
-                <h4>Player Information</h4>
-                <p>Name: ${formData.get('first-name')} ${formData.get('last-name')}</p>
-                <p>Birth Year: ${formData.get('birth-year')}</p>
+            // Validate parent information
+            const parentFirstName = document.getElementById('parent-first-name');
+            const parentLastName = document.getElementById('parent-last-name');
+            if (!parentFirstName.value.trim()) {
+                showError(parentFirstName, 'Parent first name is required');
+                isValid = false;
+            }
+            if (!parentLastName.value.trim()) {
+                showError(parentLastName, 'Parent last name is required');
+                isValid = false;
+            }
+            
+            // Validate player information
+            const requiredFields = ['first-name', 'last-name', 'email', 'phone', 'birth-year'];
+            requiredFields.forEach(field => {
+                const input = document.getElementById(field);
+                if (!input.value.trim()) {
+                    showError(input, `${field.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} is required`);
+                    isValid = false;
+                }
+            });
+            
+            // Validate Small Group Training selections
+            const smallGroupSelected = JSON.parse(localStorage.getItem('selectedPrograms')).includes('Small Group Training');
+            if (smallGroupSelected) {
+                const locations = document.querySelectorAll('[name="sg-locations"]:checked');
+                const days = document.querySelectorAll('[name="sg-days"]:checked');
                 
-                <h4>Parent Information</h4>
-                <p>Primary Parent: ${formData.get('parent-first-name')} ${formData.get('parent-last-name')}</p>
-                ${[...document.querySelectorAll('[name="additional-parent-first-name"]')].map((input, i) => 
-                    `<p>Additional Parent ${i + 1}: ${input.value} ${document.querySelectorAll('[name="additional-parent-last-name"]')[i].value}</p>`
-                ).join('')}
+                if (locations.length === 0) {
+                    showError(document.querySelector('.location-options'), 'Please select at least one location');
+                    isValid = false;
+                }
+                if (days.length === 0) {
+                    showError(document.querySelector('.day-options'), 'Please select at least one day');
+                    isValid = false;
+                }
+            }
+            
+            // Validate Judo days if selected
+            const judoSelected = JSON.parse(localStorage.getItem('selectedPrograms')).includes('Judo');
+            if (judoSelected) {
+                const judoDays = document.querySelectorAll('[name="judo-days"]:checked');
+                if (judoDays.length === 0) {
+                    showError(document.querySelector('[name="judo-days"]').closest('.program-days-selection'), 
+                             'Please select at least one day for Judo');
+                    isValid = false;
+                }
+            }
+            
+            // If all valid, proceed to summary
+            if (isValid) {
+                // Get all form data
+                const formData = new FormData(document.getElementById('player-info-form'));
+                const selectedPrograms = JSON.parse(localStorage.getItem('selectedPrograms'));
                 
-                <h4>Contact Information</h4>
-                <p>Email: ${formData.get('email')}</p>
-                <p>Phone: ${formData.get('phone')}</p>
+                // Get selected days for Judo
+                const selectedJudoDays = [...document.querySelectorAll('[name="judo-days"]:checked')]
+                    .map(cb => cb.parentElement.textContent.trim());
                 
-                <h4>Selected Programs and Days</h4>
-                ${selectedPrograms.map(program => {
-                    if (program === "Small Group Training") {
-                        return `
-                            <div>
-                                <p>${program}</p>
-                                <p>Locations: ${selectedLocations.join(', ') || 'None selected'}</p>
-                                <p>Days: ${selectedDays.join(', ') || 'None selected'}</p>
-                            </div>`;
-                    } else if (program === "Judo") {
-                        return `
-                            <div>
-                                <p>${program}</p>
-                                <p>Days: ${selectedJudoDays.join(', ') || 'None selected'}</p>
-                            </div>`;
-                    } else {
-                        const birthYear = parseInt(formData.get('birth-year'));
-                        let days = '';
-                        if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
-                            days = birthYear >= 2015 ? 'Tuesday, Saturday' : 'Monday, Sunday';
-                        } else if (program === "Flag Football") {
-                            days = 'Friday, Sunday';
-                        }
-                        return `
-                            <div>
-                                <p>${program}</p>
-                                <p>Days: ${days}</p>
-                            </div>`;
-                    }
-                }).join('')}
-            `;
+                // Get selected small group training options
+                const selectedLocations = [...document.querySelectorAll('[name="sg-locations"]:checked')]
+                    .map(cb => cb.parentElement.textContent.trim());
+                const selectedDays = [...document.querySelectorAll('[name="sg-days"]:checked')]
+                    .map(cb => cb.parentElement.textContent.trim());
+                
+                // Create summary HTML
+                const summaryContent = document.getElementById('summary-content');
+                summaryContent.innerHTML = `
+                    <div class="summary-section">
+                        <div class="summary-block">
+                            <h4>Player Information</h4>
+                            <div class="summary-item">
+                                <strong>Name:</strong> ${formData.get('first-name')} ${formData.get('last-name')}
+                            </div>
+                            <div class="summary-item">
+                                <strong>Birth Year:</strong> ${formData.get('birth-year')}
+                            </div>
+                        </div>
 
-            document.getElementById('personal-info').style.display = 'none';
-            document.getElementById('summary-section').style.display = 'block';
+                        <div class="summary-block">
+                            <h4>Parent Information</h4>
+                            <div class="summary-item">
+                                <strong>Primary Parent:</strong> ${formData.get('parent-first-name')} ${formData.get('parent-last-name')}
+                            </div>
+                            ${[...document.querySelectorAll('[name="additional-parent-first-name"]')].map((input, i) => `
+                                <div class="summary-item">
+                                    <strong>Additional Parent ${i + 1}:</strong> ${input.value} ${document.querySelectorAll('[name="additional-parent-last-name"]')[i].value}
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="summary-block">
+                            <h4>Contact Information</h4>
+                            <div class="summary-item">
+                                <strong>Email:</strong> ${formData.get('email')}
+                            </div>
+                            <div class="summary-item">
+                                <strong>Phone:</strong> ${formData.get('phone')}
+                            </div>
+                        </div>
+
+                        <div class="summary-block">
+                            <h4>Selected Programs and Schedule</h4>
+                            ${selectedPrograms.map(program => {
+                                if (program === "Small Group Training") {
+                                    return `
+                                        <div class="program-summary">
+                                            <h5>${program}</h5>
+                                            <div class="summary-item">
+                                                <strong>Training Locations:</strong> ${selectedLocations.join(', ') || 'None selected'}
+                                            </div>
+                                            <div class="summary-item">
+                                                <strong>Training Days:</strong> ${selectedDays.join(', ') || 'None selected'}
+                                            </div>
+                                        </div>`;
+                                } else if (program === "Judo") {
+                                    return `
+                                        <div class="program-summary">
+                                            <h5>${program}</h5>
+                                            <div class="summary-item">
+                                                <strong>Training Days:</strong> ${selectedJudoDays.join(', ') || 'None selected'}
+                                            </div>
+                                        </div>`;
+                                } else {
+                                    const birthYear = parseInt(formData.get('birth-year'));
+                                    let days = '';
+                                    if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
+                                        days = birthYear >= 2015 ? 'Tuesday, Saturday' : 'Monday, Sunday';
+                                    } else if (program === "Flag Football") {
+                                        days = 'Friday, Sunday';
+                                    }
+                                    return `
+                                        <div class="program-summary">
+                                            <h5>${program}</h5>
+                                            <div class="summary-item">
+                                                <strong>Training Days:</strong> ${days}
+                                            </div>
+                                        </div>`;
+                                }
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('personal-info').style.display = 'none';
+                document.getElementById('summary-section').style.display = 'block';
+            }
         });
 
-        document.getElementById('back-to-form').addEventListener('click', function() {
-            document.getElementById('summary-section').style.display = 'none';
-            document.getElementById('personal-info').style.display = 'block';
+        // Helper function to show error messages
+        function showError(element, message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            element.classList.add('input-error');
+            element.parentNode.appendChild(errorDiv);
+        }
+
+        // Add event listeners for header rows
+        document.querySelectorAll('.sport-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const checkbox = this.querySelector('input[type="checkbox"]');
+                if (!checkbox.disabled) {
+                    checkbox.checked = !checkbox.checked;
+                }
+            });
         });
     </script>
 </body>

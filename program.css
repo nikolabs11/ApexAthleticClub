@@ -50,6 +50,7 @@ body, html {
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    user-select: none;
 }
 
 .sport-header input[type="checkbox"] {
@@ -277,4 +278,56 @@ button:hover {
 
 .navigation-buttons button:hover {
     background: #067a4d;
+}
+
+.summary-section {
+    padding: 20px;
+}
+
+.summary-block {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.summary-block:last-child {
+    border-bottom: none;
+}
+
+.summary-block h4 {
+    color: #045034;
+    margin-bottom: 15px;
+}
+
+.summary-item {
+    margin: 10px 0;
+    line-height: 1.4;
+}
+
+.program-summary {
+    margin: 15px 0;
+    padding-left: 15px;
+}
+
+.program-summary h5 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    color: #ff0000;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.input-error {
+    border-color: #ff0000;
+}
+
+.input-error:focus {
+    outline-color: #ff0000;
+}
+
+.sport-header:hover {
+    background: #e5e5e5;
 } 
