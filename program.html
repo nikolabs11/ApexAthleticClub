@@ -12,7 +12,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
-            emailjs.init("YOUR_PUBLIC_KEY"); // We'll need to get this from EmailJS
+            emailjs.init("orACw4cPmMD066o2G");
         })();
     </script>
 </head>
@@ -639,24 +639,35 @@
         document.getElementById('submit-final').addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Get all the summary content
-            const summaryHTML = document.getElementById('summary-content').innerHTML;
+            const formData = new FormData(document.getElementById('player-info-form'));
+            const selectedPrograms = JSON.parse(localStorage.getItem('selectedPrograms'));
             
-            // Create form data for email
-            const emailData = {
-                to: "brett@apexraptors.com",
-                subject: "New Program Registration",
-                html: summaryHTML
+            // Create template parameters
+            const templateParams = {
+                to_email: "brett@apexraptors.com",
+                player_name: `${formData.get('first-name')} ${formData.get('last-name')}`,
+                birth_year: formData.get('birth-year'),
+                parent_name: `${formData.get('parent-first-name')} ${formData.get('parent-last-name')}`,
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                programs: selectedPrograms.join(', '),
+                summary: document.getElementById('summary-content').innerHTML
             };
 
-            // You'll need an email service - here's an example using EmailJS
-            emailjs.send("service_id", "template_id", emailData)
-                .then(function(response) {
-                    alert("Registration submitted successfully!");
-                    window.location.href = '/'; // Redirect to home page
-                }, function(error) {
-                    alert("Error submitting registration. Please try again.");
-                });
+            emailjs.send(
+                "service_jqvfs2x",
+                "template_3ls7ajq",
+                templateParams
+            ).then(
+                function(response) {
+                    alert("Registration submitted successfully! You will receive a confirmation email shortly.");
+                    window.location.href = '/';
+                },
+                function(error) {
+                    alert("Error submitting registration. Please try again or contact support.");
+                    console.error("EmailJS Error:", error);
+                }
+            );
         });
     </script>
 </body>
