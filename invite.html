@@ -71,22 +71,53 @@
             
             if (inviteCode) {
                 const validCodes = [
-                    'TIANTIAN2024', 'BLAKE2024', 'BRYAN2024', 'DAWSON2024', 'TY2024',
-                    'JAKE2024', 'KOSHI2024', 'ANTUAN2024', 'ELI2024', 'EDDI2024', 
-                    'LOCKAN2024', 'MASSON2024', 'JOSE2024', 'GIOVANNI2024', 'JHONNATAN2024',
-                    'LIAM2024', 'EDDI2024', 'LUCAS2024', 'IVAN2024', 'BEN2024',
-                    'JACK2024', 'OLIVER2024', 'NEERAV2024', 'LOGAN2024', 'JAXON2024',
-                    'BENNETT2024', 'COOPER2024', 'JAMESON2024', 'ATHARV2024', 'KABIR2024',
-                    'SHRAVIN2024', 'AYAAN2024', 'HOLDEN2024' // Added Holden
+                    'TIANTIAN2025', 'BLAKE2025', 'BRYAN2025', 'DAWSON2025', 'TY2025',
+                    'JAKE2025', 'KOSHI2025', 'ANTUAN2025', 'ELI2025', 'EDDI2025', 
+                    'LOCKAN2025', 'MASSON2025', 'JOSE2025', 'GIOVANNI2025', 'JHONNATAN2025',
+                    'LIAM2025', 'EDDI2025', 'LUCAS2025', 'IVAN2025', 'BEN2025',
+                    'JACK2025', 'OLIVER2025', 'NEERAV2025', 'LOGAN2025', 'JAXON2025',
+                    'BENNETT2025', 'COOPER2025', 'JAMESON2025', 'ATHARV2025', 'KABIR2025',
+                    'SHRAVIN2025', 'AYAAN2025', 'HOLDEN2025', 'YUHI2025', 'AHRIK2025',
+                    'RAYYAN2025'
                 ];
 
-                if (inviteCode === 'HOLDEN2024') {
+                if (inviteCode === 'HOLDEN2025') {
                     const preloadData = {
                         firstName: "Holden",
                         lastName: "Hitchcock",
                         birthYear: "2015",
                         email: "hitchcock.derick@gmail.com",
                         phone: "+19194515282"
+                    };
+                    localStorage.setItem('playerData', JSON.stringify(preloadData));
+                    window.location.href = 'program.html';
+                } else if (inviteCode === 'YUHI2025') {
+                    const preloadData = {
+                        firstName: "Yuhi",
+                        lastName: "Kaya",
+                        birthYear: "2015",
+                        email: "tkaya1984@gmail.com",
+                        phone: "+19197105437"
+                    };
+                    localStorage.setItem('playerData', JSON.stringify(preloadData));
+                    window.location.href = 'program.html';
+                } else if (inviteCode === 'AHRIK2025') {
+                    const preloadData = {
+                        firstName: "Ahrik",
+                        lastName: "Mathur",
+                        birthYear: "2015",
+                        email: "smathurmd@gmail.com",
+                        phone: "+17189861869"
+                    };
+                    localStorage.setItem('playerData', JSON.stringify(preloadData));
+                    window.location.href = 'program.html';
+                } else if (inviteCode === 'RAYYAN2025') {
+                    const preloadData = {
+                        firstName: "Rayyan",
+                        lastName: "Shanti",
+                        birthYear: "2015",
+                        email: "naelshanti13@gmail.com",
+                        phone: "+19198408094"
                     };
                     localStorage.setItem('playerData', JSON.stringify(preloadData));
                     window.location.href = 'program.html';
@@ -110,13 +141,43 @@
             e.preventDefault();
             const inviteCode = document.getElementById('invite-code').value.toUpperCase();
             
-            if (inviteCode === 'HOLDEN2024') {
+            if (inviteCode === 'HOLDEN2025') {
                 const preloadData = {
                     firstName: "Holden",
                     lastName: "Hitchcock",
                     birthYear: "2015",
                     email: "hitchcock.derick@gmail.com",
                     phone: "+19194515282"
+                };
+                localStorage.setItem('playerData', JSON.stringify(preloadData));
+                window.location.href = 'program.html';
+            } else if (inviteCode === 'YUHI2025') {
+                const preloadData = {
+                    firstName: "Yuhi",
+                    lastName: "Kaya",
+                    birthYear: "2015",
+                    email: "tkaya1984@gmail.com",
+                    phone: "+19197105437"
+                };
+                localStorage.setItem('playerData', JSON.stringify(preloadData));
+                window.location.href = 'program.html';
+            } else if (inviteCode === 'AHRIK2025') {
+                const preloadData = {
+                    firstName: "Ahrik",
+                    lastName: "Mathur",
+                    birthYear: "2015",
+                    email: "smathurmd@gmail.com",
+                    phone: "+17189861869"
+                };
+                localStorage.setItem('playerData', JSON.stringify(preloadData));
+                window.location.href = 'program.html';
+            } else if (inviteCode === 'RAYYAN2025') {
+                const preloadData = {
+                    firstName: "Rayyan",
+                    lastName: "Shanti",
+                    birthYear: "2015",
+                    email: "naelshanti13@gmail.com",
+                    phone: "+19198408094"
                 };
                 localStorage.setItem('playerData', JSON.stringify(preloadData));
                 window.location.href = 'program.html';
