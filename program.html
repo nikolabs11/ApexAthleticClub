@@ -730,9 +730,12 @@
             );
         });
 
-        // Update the scrollToTop function to use window.scrollTo
+        // Update the scrollToTop function to target the white background
         function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const whiteBackgroundElement = document.querySelector('.program-content');
+            if (whiteBackgroundElement) {
+                whiteBackgroundElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
     </script>
 </body>
