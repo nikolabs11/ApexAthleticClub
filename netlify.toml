@@ -3,6 +3,19 @@
   command = "echo 'No build needed'"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200 
+  from = "/about.html"
+  to = "/program.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/checkout.html"
+  to = "/program.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/invite.html"
+  to = "/program.html"
+  status = 301
+  force = true 

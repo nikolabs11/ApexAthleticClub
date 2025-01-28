@@ -1,3 +1,5 @@
-/invite    /invite.html   200
+/about.html /program.html 301
+/checkout.html /program.html 301
+/invite.html /program.html 301
 /program   /program.html  200
 /*         /index.html    200 
