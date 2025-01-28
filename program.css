@@ -353,4 +353,17 @@ button:hover {
 
 .zelle-button:hover {
     background: #5939B3;
+}
+
+.program-description {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+.program-description p {
+    margin: 10px 0;
+    color: #fff;
 } 
