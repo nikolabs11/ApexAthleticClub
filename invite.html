@@ -104,6 +104,25 @@
         }
         
         window.onload = processInviteCode;
+
+        document.getElementById('invite-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const inviteCode = document.getElementById('invite-code').value.toUpperCase();
+            
+            if (inviteCode === 'HOLDEN2024') {
+                const preloadData = {
+                    firstName: "Holden",
+                    lastName: "Hitchcock",
+                    birthYear: "2015",
+                    email: "hitchcock.derick@gmail.com",
+                    phone: "+19194515282"
+                };
+                localStorage.setItem('playerData', JSON.stringify(preloadData));
+                window.location.href = 'program.html';
+            } else {
+                alert('Invalid invite code. Please try again.');
+            }
+        });
     </script>
 </body>
 </html>

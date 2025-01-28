@@ -4,13 +4,13 @@
 
 [[redirects]]
   from = "/about.html"
-  to = "/program.html"
+  to = "/invite.html"
   status = 301
   force = true
 
 [[redirects]]
   from = "/checkout.html"
-  to = "/program.html"
+  to = "/invite.html"
   status = 301
   force = true
 
