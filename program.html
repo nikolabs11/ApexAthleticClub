@@ -243,7 +243,7 @@
 
             <div class="navigation-buttons">
                 <button type="button" id="go-back">Go Back</button>
-                <button type="button" id="next-step">Next</button>
+                <button type="button" id="to-summary">Next</button>
             </div>
         </form>
     </div>
@@ -287,6 +287,7 @@
             localStorage.setItem('selectedPrograms', JSON.stringify(selectedPrograms));
             document.getElementById('program-selection').style.display = 'none';
             document.getElementById('personal-info').style.display = 'block';
+            document.getElementById('summary-section').style.display = 'none';
 
             // Load preloaded data if it exists
             const playerData = JSON.parse(localStorage.getItem('playerData')) || {};
@@ -320,8 +321,8 @@
                     programDays.innerHTML += `
                         <div class="program-days-selection">
                             <h4>Judo</h4>
-                            <label><input type="checkbox" checked disabled> Wednesday</label>
-                            <label><input type="checkbox" checked disabled> Friday</label>
+                            <label><input type="checkbox" name="judo-days"> Wednesday</label>
+                            <label><input type="checkbox" name="judo-days"> Friday</label>
                         </div>`;
                 }
                 if (program === "Flag Football") {
@@ -418,10 +419,14 @@
             document.getElementById('program-selection').style.display = 'block';
         });
 
-        document.getElementById('next-step').addEventListener('click', function() {
+        document.getElementById('to-summary').addEventListener('click', function() {
             // Get all form data
             const formData = new FormData(document.getElementById('player-info-form'));
             const selectedPrograms = JSON.parse(localStorage.getItem('selectedPrograms'));
+            
+            // Get selected days for Judo
+            const selectedJudoDays = [...document.querySelectorAll('[name="judo-days"]:checked')]
+                .map(cb => cb.parentElement.textContent.trim());
             
             // Get selected small group training options
             const selectedLocations = [...document.querySelectorAll('[name="sg-locations"]:checked')]
@@ -455,13 +460,17 @@
                                 <p>Locations: ${selectedLocations.join(', ') || 'None selected'}</p>
                                 <p>Days: ${selectedDays.join(', ') || 'None selected'}</p>
                             </div>`;
+                    } else if (program === "Judo") {
+                        return `
+                            <div>
+                                <p>${program}</p>
+                                <p>Days: ${selectedJudoDays.join(', ') || 'None selected'}</p>
+                            </div>`;
                     } else {
                         const birthYear = parseInt(formData.get('birth-year'));
                         let days = '';
                         if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
                             days = birthYear >= 2015 ? 'Tuesday, Saturday' : 'Monday, Sunday';
-                        } else if (program === "Judo") {
-                            days = 'Wednesday, Friday';
                         } else if (program === "Flag Football") {
                             days = 'Friday, Sunday';
                         }
