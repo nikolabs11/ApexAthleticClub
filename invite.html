@@ -68,33 +68,34 @@
         function processInviteCode() {
             const urlParams = new URLSearchParams(window.location.search);
             const inviteCode = urlParams.get('code');
+            
             if (inviteCode) {
                 const validCodes = [
-                    'TESTCODE2024',
-                    'AHRIK2024', 'HOLDEN2024', 'JERRY2024', 'VERDI2024', 'SERGEI2024',
-                    'SEAN2024', 'RAYYAN2024', 'ERIC2024', 'CAMBRIDGE2024', 'BLAISE2024',
-                    'MASON2024', 'JACKSON2024', 'OWEN2024', 'ZAYD2024', 'CONNOR2024',
-                    'GABRIEL2024', 'CHANCE2024', 'BRAELON2024', 'ALEXANDER2024', 'ELIAS2024',
-                    'ADAM2024', 'IKER2024', 'BRANDON2024', 'KAITO2024', 'GIBSON2024',
-                    'LUKE2024', 'AYO2024', 'KIERAN2024', 'CAMERON2024', 'ZINEDDINE2024',
                     'TIANTIAN2024', 'BLAKE2024', 'BRYAN2024', 'DAWSON2024', 'TY2024',
                     'JAKE2024', 'KOSHI2024', 'ANTUAN2024', 'ELI2024', 'EDDI2024', 
                     'LOCKAN2024', 'MASSON2024', 'JOSE2024', 'GIOVANNI2024', 'JHONNATAN2024',
                     'LIAM2024', 'EDDI2024', 'LUCAS2024', 'IVAN2024', 'BEN2024',
                     'JACK2024', 'OLIVER2024', 'NEERAV2024', 'LOGAN2024', 'JAXON2024',
                     'BENNETT2024', 'COOPER2024', 'JAMESON2024', 'ATHARV2024', 'KABIR2024',
-                    'SHRAVIN2024', 'AYAAN2024' // Added Ayaan
+                    'SHRAVIN2024', 'AYAAN2024', 'HOLDEN2024' // Added Holden
                 ];
-                if (validCodes.includes(inviteCode.toUpperCase())) {
+
+                if (inviteCode === 'HOLDEN2024') {
+                    const preloadData = {
+                        firstName: "Holden",
+                        lastName: "Hitchcock",
+                        birthYear: "2015",
+                        email: "hitchcock.derick@gmail.com",
+                        phone: "+19194515282"
+                    };
+                    localStorage.setItem('playerData', JSON.stringify(preloadData));
+                    window.location.href = 'program.html';
+                } else if (validCodes.includes(inviteCode.toUpperCase())) {
                     localStorage.setItem('loggedIn', 'true');
-                    setTimeout(() => {
-                        window.location.href = '/checkout?code=' + inviteCode.toUpperCase();
-                    }, 2000); // 2-second delay
+                    window.location.href = 'program.html';
                 } else {
-                    setTimeout(() => {
-                        alert('Invalid invite code. Redirecting to home page.');
-                        window.location.href = '/';
-                    }, 2000); // 2-second delay
+                    alert('Invalid invite code. Redirecting to home page.');
+                    window.location.href = '/';
                 }
             } else {
                 setTimeout(() => {
@@ -118,6 +119,9 @@
                     phone: "+19194515282"
                 };
                 localStorage.setItem('playerData', JSON.stringify(preloadData));
+                window.location.href = 'program.html';
+            } else if (validCodes.includes(inviteCode)) {
+                localStorage.setItem('loggedIn', 'true');
                 window.location.href = 'program.html';
             } else {
                 alert('Invalid invite code. Please try again.');
