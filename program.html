@@ -497,121 +497,124 @@
                 }
             }
             
+            if (!isValid) {
+                scrollToTop();
+                return;
+            }
+            
             // If all valid, proceed to summary
-            if (isValid) {
-                // Get all form data
-                const formData = new FormData(document.getElementById('player-info-form'));
-                const selectedPrograms = JSON.parse(localStorage.getItem('selectedPrograms'));
-                
-                // Get selected days for Judo
-                const selectedJudoDays = [...document.querySelectorAll('[name="judo-days"]:checked')]
-                    .map(cb => cb.parentElement.textContent.trim());
-                
-                // Get selected small group training options
-                const selectedLocations = [...document.querySelectorAll('[name="sg-locations"]:checked')]
-                    .map(cb => cb.parentElement.textContent.trim());
-                const selectedDays = [...document.querySelectorAll('[name="sg-days"]:checked')]
-                    .map(cb => cb.parentElement.textContent.trim());
-                
-                // Create summary HTML
-                const summaryContent = document.getElementById('summary-content');
-                summaryContent.innerHTML = `
-                    <div class="summary-section">
-                        <div class="summary-block">
-                            <h4>Player Information</h4>
-                            <div class="summary-item">
-                                <strong>Name:</strong> ${formData.get('first-name')} ${formData.get('last-name')}
-                            </div>
-                            <div class="summary-item">
-                                <strong>Birth Year:</strong> ${formData.get('birth-year')}
-                            </div>
+            // Get all form data
+            const formData = new FormData(document.getElementById('player-info-form'));
+            const selectedPrograms = JSON.parse(localStorage.getItem('selectedPrograms'));
+            
+            // Get selected days for Judo
+            const selectedJudoDays = [...document.querySelectorAll('[name="judo-days"]:checked')]
+                .map(cb => cb.parentElement.textContent.trim());
+            
+            // Get selected small group training options
+            const selectedLocations = [...document.querySelectorAll('[name="sg-locations"]:checked')]
+                .map(cb => cb.parentElement.textContent.trim());
+            const selectedDays = [...document.querySelectorAll('[name="sg-days"]:checked')]
+                .map(cb => cb.parentElement.textContent.trim());
+            
+            // Create summary HTML
+            const summaryContent = document.getElementById('summary-content');
+            summaryContent.innerHTML = `
+                <div class="summary-section">
+                    <div class="summary-block">
+                        <h4>Player Information</h4>
+                        <div class="summary-item">
+                            <strong>Name:</strong> ${formData.get('first-name')} ${formData.get('last-name')}
                         </div>
-
-                        <div class="summary-block">
-                            <h4>Parent Information</h4>
-                            <div class="summary-item">
-                                <strong>Primary Parent:</strong> ${formData.get('parent-first-name')} ${formData.get('parent-last-name')}
-                            </div>
-                            ${[...document.querySelectorAll('[name="additional-parent-first-name"]')].map((input, i) => `
-                                <div class="summary-item">
-                                    <strong>Additional Parent ${i + 1}:</strong> ${input.value} ${document.querySelectorAll('[name="additional-parent-last-name"]')[i].value}
-                                </div>
-                            `).join('')}
+                        <div class="summary-item">
+                            <strong>Birth Year:</strong> ${formData.get('birth-year')}
                         </div>
+                    </div>
 
-                        <div class="summary-block">
-                            <h4>Contact Information</h4>
-                            <div class="summary-item">
-                                <strong>Email:</strong> ${formData.get('email')}
-                            </div>
-                            <div class="summary-item">
-                                <strong>Phone:</strong> ${formData.get('phone')}
-                            </div>
+                    <div class="summary-block">
+                        <h4>Parent Information</h4>
+                        <div class="summary-item">
+                            <strong>Primary Parent:</strong> ${formData.get('parent-first-name')} ${formData.get('parent-last-name')}
                         </div>
+                        ${[...document.querySelectorAll('[name="additional-parent-first-name"]')].map((input, i) => `
+                            <div class="summary-item">
+                                <strong>Additional Parent ${i + 1}:</strong> ${input.value} ${document.querySelectorAll('[name="additional-parent-last-name"]')[i].value}
+                            </div>
+                        `).join('')}
+                    </div>
 
-                        <div class="summary-block">
-                            <h4>Selected Programs and Schedule</h4>
-                            ${selectedPrograms.map(program => {
-                                if (program === "Small Group Training") {
-                                    return `
-                                        <div class="program-summary">
-                                            <h5>${program}</h5>
-                                            <div class="summary-item">
-                                                <strong>Training Locations:</strong> ${selectedLocations.join(', ') || 'None selected'}
-                                            </div>
-                                            <div class="summary-item">
-                                                <strong>Training Days:</strong> ${selectedDays.join(', ') || 'None selected'}
-                                            </div>
-                                        </div>`;
-                                } else if (program === "Judo") {
-                                    return `
-                                        <div class="program-summary">
-                                            <h5>${program}</h5>
-                                            <div class="summary-item">
-                                                <strong>Training Days:</strong> ${selectedJudoDays.join(', ') || 'None selected'}
-                                            </div>
-                                        </div>`;
-                                } else {
-                                    const birthYear = parseInt(formData.get('birth-year'));
-                                    let days = '';
-                                    if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
-                                        days = birthYear >= 2015 ? 'Tuesday, Saturday' : 'Monday, Sunday';
-                                    } else if (program === "Flag Football") {
-                                        days = 'Friday, Sunday';
-                                    }
-                                    return `
-                                        <div class="program-summary">
-                                            <h5>${program}</h5>
-                                            <div class="summary-item">
-                                                <strong>Training Days:</strong> ${days}
-                                            </div>
-                                        </div>`;
+                    <div class="summary-block">
+                        <h4>Contact Information</h4>
+                        <div class="summary-item">
+                            <strong>Email:</strong> ${formData.get('email')}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Phone:</strong> ${formData.get('phone')}
+                        </div>
+                    </div>
+
+                    <div class="summary-block">
+                        <h4>Selected Programs and Schedule</h4>
+                        ${selectedPrograms.map(program => {
+                            if (program === "Small Group Training") {
+                                return `
+                                    <div class="program-summary">
+                                        <h5>${program}</h5>
+                                        <div class="summary-item">
+                                            <strong>Training Locations:</strong> ${selectedLocations.join(', ') || 'None selected'}
+                                        </div>
+                                        <div class="summary-item">
+                                            <strong>Training Days:</strong> ${selectedDays.join(', ') || 'None selected'}
+                                        </div>
+                                    </div>`;
+                            } else if (program === "Judo") {
+                                return `
+                                    <div class="program-summary">
+                                        <h5>${program}</h5>
+                                        <div class="summary-item">
+                                            <strong>Training Days:</strong> ${selectedJudoDays.join(', ') || 'None selected'}
+                                        </div>
+                                    </div>`;
+                            } else {
+                                const birthYear = parseInt(formData.get('birth-year'));
+                                let days = '';
+                                if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
+                                    days = birthYear >= 2015 ? 'Tuesday, Saturday' : 'Monday, Sunday';
+                                } else if (program === "Flag Football") {
+                                    days = 'Friday, Sunday';
                                 }
-                            }).join('')}
-                        </div>
+                                return `
+                                    <div class="program-summary">
+                                        <h5>${program}</h5>
+                                        <div class="summary-item">
+                                            <strong>Training Days:</strong> ${days}
+                                        </div>
+                                    </div>`;
+                            }
+                        }).join('')}
+                    </div>
 
-                        <div class="summary-block">
-                            <h4>Payment Information</h4>
-                            <div class="summary-item">
-                                <p>Monthly Program Fee: <strong>$200.00</strong></p>
-                                <p>Please complete payment via Zelle to proceed:</p>
-                                <div class="zelle-info">
-                                    <strong>Zelle Email:</strong> brett@apexraptors.com
-                                    <p>Amount: $200.00</p>
-                                    <a href="https://enroll.zellepay.com/qr-codes?data=brett@apexraptors.com" 
-                                       class="zelle-button" 
-                                       target="_blank">
-                                       Pay with Zelle
-                                    </a>
-                                </div>
+                    <div class="summary-block">
+                        <h4>Payment Information</h4>
+                        <div class="summary-item">
+                            <p>Monthly Program Fee: <strong>$200.00</strong></p>
+                            <p>Please complete payment via Zelle to proceed:</p>
+                            <div class="zelle-info">
+                                <strong>Zelle Email:</strong> brett@apexraptors.com
+                                <p>Amount: $200.00</p>
+                                <a href="https://enroll.zellepay.com/qr-codes?data=brett@apexraptors.com" 
+                                   class="zelle-button" 
+                                   target="_blank">
+                                   Pay with Zelle
+                                </a>
                             </div>
                         </div>
                     </div>
-                `;
+                </div>
+            `;
 
-                document.getElementById('personal-info').style.display = 'none';
-                document.getElementById('summary-section').style.display = 'block';
-            }
+            document.getElementById('personal-info').style.display = 'none';
+            document.getElementById('summary-section').style.display = 'block';
         });
 
         // Helper function to show error messages
