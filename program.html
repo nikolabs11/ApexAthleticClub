@@ -586,14 +586,20 @@
             element.parentNode.appendChild(errorDiv);
         }
 
-        // Add event listeners for header rows
+        // Update the header click event listener
         document.querySelectorAll('.sport-header').forEach(header => {
-            header.addEventListener('click', function() {
+            header.addEventListener('click', function(e) {
                 const checkbox = this.querySelector('input[type="checkbox"]');
-                if (!checkbox.disabled) {
+                if (!checkbox.disabled && e.target !== checkbox) {  // Only toggle if not disabled and not clicking checkbox directly
                     checkbox.checked = !checkbox.checked;
                 }
             });
+        });
+
+        // Add back the event listener for the back-to-form button
+        document.getElementById('back-to-form').addEventListener('click', function() {
+            document.getElementById('summary-section').style.display = 'none';
+            document.getElementById('personal-info').style.display = 'block';
         });
     </script>
 </body>
