@@ -440,23 +440,19 @@
 
         document.getElementById('to-summary').addEventListener('click', function(e) {
             e.preventDefault();
-            scrollToTop();
-            
-            // Remove any existing error messages
-            document.querySelectorAll('.error-message').forEach(msg => msg.remove());
-            document.querySelectorAll('.input-error').forEach(input => input.classList.remove('input-error'));
             
             let isValid = true;
-            
+            let errorMessage = '';
+
             // Validate parent information
             const parentFirstName = document.getElementById('parent-first-name');
             const parentLastName = document.getElementById('parent-last-name');
             if (!parentFirstName.value.trim()) {
-                showError(parentFirstName, 'Parent first name is required');
+                errorMessage += 'Parent first name is required.\n';
                 isValid = false;
             }
             if (!parentLastName.value.trim()) {
-                showError(parentLastName, 'Parent last name is required');
+                errorMessage += 'Parent last name is required.\n';
                 isValid = false;
             }
             
@@ -465,7 +461,7 @@
             requiredFields.forEach(field => {
                 const input = document.getElementById(field);
                 if (!input.value.trim()) {
-                    showError(input, `${field.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} is required`);
+                    errorMessage += `${field.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} is required.\n`;
                     isValid = false;
                 }
             });
@@ -477,11 +473,11 @@
                 const days = document.querySelectorAll('[name="sg-days"]:checked');
                 
                 if (locations.length === 0) {
-                    showError(document.querySelector('.location-options'), 'Please select at least one location');
+                    errorMessage += 'Please select at least one location for Small Group Training.\n';
                     isValid = false;
                 }
                 if (days.length === 0) {
-                    showError(document.querySelector('.day-options'), 'Please select at least one day');
+                    errorMessage += 'Please select at least one day for Small Group Training.\n';
                     isValid = false;
                 }
             }
@@ -491,14 +487,14 @@
             if (judoSelected) {
                 const judoDays = document.querySelectorAll('[name="judo-days"]:checked');
                 if (judoDays.length === 0) {
-                    showError(document.querySelector('[name="judo-days"]').closest('.program-days-selection'), 
-                             'Please select at least one day for Judo');
+                    errorMessage += 'Please select at least one day for Judo.\n';
                     isValid = false;
                 }
             }
             
             if (!isValid) {
-                scrollToTop();
+                alert(errorMessage); // Show popup alert with error messages
+                scrollToTop(); // Scroll to top after alert is acknowledged
                 return;
             }
             
