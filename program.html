@@ -498,6 +498,7 @@
             }
             
             if (!isValid) {
+                scrollToTop();
                 return;
             }
             
@@ -729,9 +730,9 @@
             );
         });
 
-        // Add this helper function at the bottom of your script
+        // Update the scrollToTop function to use window.scrollTo
         function scrollToTop() {
-            document.querySelector('.program-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
