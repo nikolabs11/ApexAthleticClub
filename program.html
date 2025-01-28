@@ -635,7 +635,7 @@
             document.getElementById('personal-info').style.display = 'block';
         });
 
-        // Update submit handler to send email
+        // Update submit handler with better error logging
         document.getElementById('submit-final').addEventListener('click', function(e) {
             e.preventDefault();
             
@@ -651,23 +651,23 @@
                 email: formData.get('email'),
                 phone: formData.get('phone'),
                 programs: selectedPrograms.join(', '),
-                summary: document.getElementById('summary-content').innerHTML
+                message: document.getElementById('summary-content').innerHTML // Changed from 'summary' to 'message'
             };
 
-            emailjs.send(
-                "service_jqvfs2x",
-                "template_3ls7ajq",
-                templateParams
-            ).then(
-                function(response) {
-                    alert("Registration submitted successfully! You will receive a confirmation email shortly.");
-                    window.location.href = '/';
-                },
-                function(error) {
-                    alert("Error submitting registration. Please try again or contact support.");
-                    console.error("EmailJS Error:", error);
-                }
-            );
+            console.log('Sending email with params:', templateParams); // Debug log
+
+            emailjs.send("service_jqvfs2x", "template_3ls7ajq", templateParams)
+                .then(
+                    function(response) {
+                        console.log("SUCCESS", response);
+                        alert("Registration submitted successfully! You will receive a confirmation email shortly.");
+                        window.location.href = '/';
+                    },
+                    function(error) {
+                        console.log("FAILED", error);
+                        alert(`Error submitting registration: ${error.text}`);
+                    }
+                );
         });
     </script>
 </body>
