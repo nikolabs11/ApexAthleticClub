@@ -642,32 +642,59 @@
             const formData = new FormData(document.getElementById('player-info-form'));
             const selectedPrograms = JSON.parse(localStorage.getItem('selectedPrograms'));
             
-            // Create template parameters
-            const templateParams = {
+            // Format programs list
+            const programs_list = selectedPrograms.map(program => {
+                let training_days = '';
+                let location = '';
+                
+                if (program === "Small Group Training") {
+                    training_days = [...document.querySelectorAll('[name="sg-days"]:checked')]
+                        .map(cb => cb.parentElement.textContent.trim()).join(', ');
+                    location = [...document.querySelectorAll('[name="sg-locations"]:checked')]
+                        .map(cb => cb.parentElement.textContent.trim()).join(', ');
+                } else if (program === "Judo") {
+                    training_days = [...document.querySelectorAll('[name="judo-days"]:checked')]
+                        .map(cb => cb.parentElement.textContent.trim()).join(', ');
+                } else if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
+                    training_days = parseInt(formData.get('birth-year')) >= 2015 ? 'Tuesday, Saturday' : 'Monday, Sunday';
+                } else if (program === "Flag Football") {
+                    training_days = 'Friday, Sunday';
+                }
+
+                return {
+                    program_name: program,
+                    training_days: training_days,
+                    location: location
+                };
+            });
+
+            // Send admin notification
+            emailjs.send("service_jqvfs2x", "template_3ls7ajq", {
                 to_email: "brett@apexraptors.com",
                 player_name: `${formData.get('first-name')} ${formData.get('last-name')}`,
                 birth_year: formData.get('birth-year'),
                 parent_name: `${formData.get('parent-first-name')} ${formData.get('parent-last-name')}`,
                 email: formData.get('email'),
                 phone: formData.get('phone'),
-                programs: selectedPrograms.join(', '),
-                message: document.getElementById('summary-content').innerHTML // Changed from 'summary' to 'message'
-            };
-
-            console.log('Sending email with params:', templateParams); // Debug log
-
-            emailjs.send("service_jqvfs2x", "template_3ls7ajq", templateParams)
-                .then(
-                    function(response) {
-                        console.log("SUCCESS", response);
-                        alert("Registration submitted successfully! You will receive a confirmation email shortly.");
-                        window.location.href = '/';
-                    },
-                    function(error) {
-                        console.log("FAILED", error);
-                        alert(`Error submitting registration: ${error.text}`);
-                    }
-                );
+                programs_list: programs_list
+            }).then(function() {
+                // Send confirmation email to registrant
+                return emailjs.send("service_jqvfs2x", "confirmation_template_id", {
+                    to_email: formData.get('email'),
+                    player_name: `${formData.get('first-name')} ${formData.get('last-name')}`,
+                    birth_year: formData.get('birth-year'),
+                    programs_list: programs_list
+                });
+            }).then(
+                function(response) {
+                    alert("Registration submitted successfully! You will receive a confirmation email shortly.");
+                    window.location.href = '/';
+                },
+                function(error) {
+                    console.log("FAILED", error);
+                    alert(`Error submitting registration: ${error.text}`);
+                }
+            );
         });
     </script>
 </body>
