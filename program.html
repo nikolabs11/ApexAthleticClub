@@ -440,6 +440,7 @@
 
         document.getElementById('to-summary').addEventListener('click', function(e) {
             e.preventDefault();
+            scrollToTop(); // Call this immediately to ensure it happens first
             
             let isValid = true;
             let errorMessage = '';
@@ -494,7 +495,7 @@
             
             if (!isValid) {
                 alert(errorMessage); // Show popup alert with error messages
-                scrollToTop(); // Scroll to top after alert is acknowledged
+                scrollToTop(); // Ensure this is called if validation fails
                 return;
             }
             
@@ -726,11 +727,16 @@
             );
         });
 
-        // Update the scrollToTop function to target the white background
+        // Update the scrollToTop function to ensure it targets the correct element
         function scrollToTop() {
             const whiteBackgroundElement = document.querySelector('.program-content');
             if (whiteBackgroundElement) {
-                whiteBackgroundElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const rect = whiteBackgroundElement.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                window.scrollTo({
+                    top: rect.top + scrollTop,
+                    behavior: 'smooth'
+                });
             }
         }
     </script>
