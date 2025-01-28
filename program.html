@@ -9,6 +9,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY"); // We'll need to get this from EmailJS
+        })();
+    </script>
 </head>
 <body>
     <div id="vanta-bg"></div>
@@ -283,6 +289,16 @@
             document.querySelectorAll('input[name="programs"]:checked').forEach(checkbox => {
                 selectedPrograms.push(checkbox.value);
             });
+
+            // Check if at least 2 optional programs are selected
+            const optionalPrograms = selectedPrograms.filter(program => 
+                !["Indoor Soccer", "Outdoor Soccer", "Small Group Training"].includes(program)
+            );
+
+            if (optionalPrograms.length < 2) {
+                alert('Please select at least 2 additional programs (Judo, Flag Football, etc.)');
+                return;
+            }
 
             localStorage.setItem('selectedPrograms', JSON.stringify(selectedPrograms));
             document.getElementById('program-selection').style.display = 'none';
@@ -569,6 +585,23 @@
                                 }
                             }).join('')}
                         </div>
+
+                        <div class="summary-block">
+                            <h4>Payment Information</h4>
+                            <div class="summary-item">
+                                <p>Monthly Program Fee: <strong>$200.00</strong></p>
+                                <p>Please complete payment via Zelle to proceed:</p>
+                                <div class="zelle-info">
+                                    <strong>Zelle Email:</strong> brett@apexraptors.com
+                                    <p>Amount: $200.00</p>
+                                    <a href="https://enroll.zellepay.com/qr-codes?data=brett@apexraptors.com" 
+                                       class="zelle-button" 
+                                       target="_blank">
+                                       Pay with Zelle
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `;
 
@@ -600,6 +633,30 @@
         document.getElementById('back-to-form').addEventListener('click', function() {
             document.getElementById('summary-section').style.display = 'none';
             document.getElementById('personal-info').style.display = 'block';
+        });
+
+        // Update submit handler to send email
+        document.getElementById('submit-final').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get all the summary content
+            const summaryHTML = document.getElementById('summary-content').innerHTML;
+            
+            // Create form data for email
+            const emailData = {
+                to: "brett@apexraptors.com",
+                subject: "New Program Registration",
+                html: summaryHTML
+            };
+
+            // You'll need an email service - here's an example using EmailJS
+            emailjs.send("service_id", "template_id", emailData)
+                .then(function(response) {
+                    alert("Registration submitted successfully!");
+                    window.location.href = '/'; // Redirect to home page
+                }, function(error) {
+                    alert("Error submitting registration. Please try again.");
+                });
         });
     </script>
 </body>

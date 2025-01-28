@@ -330,4 +330,27 @@ button:hover {
 
 .sport-header:hover {
     background: #e5e5e5;
+}
+
+.zelle-info {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.zelle-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 24px;
+    background: #6B4CD5;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.zelle-button:hover {
+    background: #5939B3;
 } 
