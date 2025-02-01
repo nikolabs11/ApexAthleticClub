@@ -397,19 +397,6 @@
             alert('Information submitted successfully!');
         });
 
-        // Preload test data for HOLDEN2024
-        const testCode = "HOLDEN2024";
-        if (testCode === "HOLDEN2024") {
-            const preloadData = {
-                firstName: "Holden",
-                lastName: "Hitchcock",
-                birthYear: "2015",
-                email: "hitchcock.derick@gmail.com",
-                phone: "+19194515282"
-            };
-            localStorage.setItem('playerData', JSON.stringify(preloadData));
-        }
-
         // Update the add parent functionality
         document.querySelector('.add-parent-button').addEventListener('click', function() {
             const parentSection = document.createElement('div');
