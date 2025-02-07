@@ -51,14 +51,14 @@
                 <div class="text-content">
                     <div class="timeline"><strong>October - February and May - August</strong></div>
                     <div class="age-group"><strong>2014s and younger</strong></div>
-                    <div class="schedule"><strong>Tuesday and Saturday Evenings</strong></div>
+                    <div class="schedule"><strong>Tuesday and Saturday</strong></div>
                     <ul>
                         <li>Professional, licensed coaches</li>
                         <li>Focus on technical skills and fast-paced decision making</li>
                         <li>Small-sided games and futsal tournaments</li>
                         <li>Perfect for developing close control and creativity</li>
                     </ul>
-                    <div class="location"><strong>Location: <a href="https://www.google.com/maps/search/?api=1&query=1016+Investment+Blvd" target="_blank">XLSW Apex</a></strong></div>
+                    <div class="location"><strong>Location: <a href="https://goo.gl/maps/h2VgMBNPgP9RmvJR6" target="_blank">XL Sports World Apex</a></strong></div>
                 </div>
                 <div class="image-container">
                     <img src="images/XLSWAPEX.png" alt="Indoor Soccer">
@@ -75,9 +75,9 @@
             </div>
             <div class="sport-details">
                 <div class="text-content">
-                    <div class="timeline"><strong>March - May and August - October</strong></div>
+                    <div class="timeline"><strong>October - February and May - August</strong></div>
                     <div class="age-group"><strong>2014s and younger</strong></div>
-                    <div class="schedule"><strong>Tuesday and Saturday Evenings</strong></div>
+                    <div class="schedule"><strong>Tuesday and Saturday</strong></div>
                     <ul>
                         <li>Professional, licensed coaches</li>
                         <li>Emphasis on tactical understanding and game intelligence</li>
@@ -85,7 +85,7 @@
                         <li>Position-specific training</li>
                         <li>Focus on building complete players</li>
                     </ul>
-                    <div class="location"><strong>Location: <a href="https://www.google.com/maps/search/?api=1&query=425+Mills+Park+Dr,+Cary,+NC+27519" target="_blank">Mills Park</a> and <a href="https://www.google.com/maps/search/?api=1&query=511+Scott+King+Rd,+Durham,+NC+27713" target="_blank">CM Herndon Park</a></strong></div>
+                    <div class="location"><strong>Location: <a href="https://maps.app.goo.gl/Ld5YPTFVKGBxKGqb7" target="_blank">Piney Wood Park</a></strong></div>
                 </div>
                 <div class="image-container">
                     <img src="images/CPR.png" alt="Cary Parks">
@@ -157,9 +157,8 @@
             </div>
             <div class="sport-details">
                 <div class="text-content">
-                    <div class="timeline"><strong>March - May and August - October</strong></div>
+                    <div class="timeline"><strong>Tuesday and Sunday</strong></div>
                     <div class="age-group"><strong>2014s and younger</strong></div>
-                    <div class="schedule"><strong>Friday and Sunday Evenings</strong></div>
                     <div class="coaches"><strong>Professional, licensed coaches</strong></div>
                     <ul>
                         <li>Non-contact skill development</li>
@@ -169,7 +168,7 @@
                         <li>Enhances creative thinking for set pieces in soccer</li>
                         <li>Fun way to cross-train</li>
                     </ul>
-                    <div class="location"><strong>Location: <a href="https://www.google.com/maps/search/?api=1&query=1016+Investment+Blvd" target="_blank">XLSW Apex</a></strong></div>
+                    <div class="location"><strong>Location: <a href="https://goo.gl/maps/h2VgMBNPgP9RmvJR6" target="_blank">XL Sports World Apex</a></strong></div>
                 </div>
                 <div class="image-container">
                     <img src="images/XLSWAPEX.png" alt="Flag Football">
@@ -270,6 +269,19 @@
         </div>
     </div>
 
+    <!-- Example snippet for invite code input -->
+    <form id="inviteForm">
+        <input type="text" id="inviteCodeInput" placeholder="Enter Invite Code">
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="playerInfo">
+        <p>Name: <span id="playerName"></span></p>
+        <p>Year: <span id="playerYear"></span></p>
+        <p>Phone: <span id="playerPhone"></span></p>
+        <p>Email: <span id="playerEmail"></span></p>
+    </div>
+
     <script>
         VANTA.CELLS({
             el: "#vanta-bg",
@@ -328,17 +340,10 @@
             programDays.innerHTML = '';
 
             selectedPrograms.forEach(program => {
-                if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
+                if (program === "Indoor Soccer") {
                     const days = birthYear >= 2015 ? ['Tuesday', 'Saturday'] : ['Monday', 'Sunday'];
-                    programDays.innerHTML += `
-                        <div class="program-days-selection">
-                            <h4>${program}</h4>
-                            ${days.map(day => `
-                                <label>
-                                    <input type="checkbox" checked disabled> ${day}
-                                </label>
-                            `).join('')}
-                        </div>`;
+                } else if (program === "Outdoor Soccer") {
+                    const days = birthYear >= 2015 ? ['Tuesday', 'Saturday'] : ['Monday', 'Sunday'];
                 }
                 if (program === "Judo") {
                     programDays.innerHTML += `
@@ -352,7 +357,7 @@
                     programDays.innerHTML += `
                         <div class="program-days-selection">
                             <h4>Flag Football</h4>
-                            <label><input type="checkbox" checked disabled> Friday</label>
+                            <label><input type="checkbox" checked disabled> Tuesday</label>
                             <label><input type="checkbox" checked disabled> Sunday</label>
                         </div>`;
                 }
@@ -570,7 +575,7 @@
                                 if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
                                     days = birthYear >= 2015 ? 'Tuesday, Saturday' : 'Monday, Sunday';
                                 } else if (program === "Flag Football") {
-                                    days = 'Friday, Sunday';
+                                    days = 'Tuesday, Sunday';
                                 }
                                 return `
                                     <div class="program-summary">
@@ -670,10 +675,10 @@
                             .map(cb => cb.parentElement.textContent.trim()).join(', ');
                         schedule = `\n    Days: ${days}`;
                     } else if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
-                        const days = parseInt(formData.get('birth-year')) >= 2015 ? 'Tuesday, Saturday' : 'Monday, Sunday';
+                        const days = birthYear >= 2015 ? 'Tuesday, Saturday' : 'Monday, Sunday';
                         schedule = `\n    Days: ${days}`;
                     } else if (program === "Flag Football") {
-                        schedule = '\n    Days: Friday, Sunday';
+                        schedule = '\n    Days: Tuesday, Sunday';
                     }
                     return `${program}${schedule}`;
                 }).join('\n\n')}
@@ -729,6 +734,38 @@
                     top: rect.top + scrollTop,
                     behavior: 'smooth'
                 });
+            }
+        }
+
+        document.getElementById('inviteForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const inviteCode = document.getElementById('inviteCodeInput').value;
+            if (inviteCode) {
+                window.location.href = `program.html?invite_code=${inviteCode}`;
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const inviteCode = urlParams.get('invite_code');
+
+            if (inviteCode) {
+                displayPlayerInfo(inviteCode);
+            }
+        });
+
+        function displayPlayerInfo(code) {
+            const playerInfo = {
+                'ELLIOT2025': { name: 'Elliot Haxell', year: 2016, phone: '(919) 622-5755', email: 'susanna.haxell@gmail.com' },
+                'COOPER2025': { name: 'Cooper Young', year: 2017, phone: '(919) 624-1961', email: 'laurafranklin919@aol.com' }
+            };
+
+            const info = playerInfo[code];
+            if (info) {
+                document.getElementById('playerName').textContent = info.name;
+                document.getElementById('playerYear').textContent = info.year;
+                document.getElementById('playerPhone').textContent = info.phone;
+                document.getElementById('playerEmail').textContent = info.email;
             }
         }
     </script>
