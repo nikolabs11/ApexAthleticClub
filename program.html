@@ -778,8 +778,12 @@
             // Simulate network delay for 1.5 seconds
             setTimeout(() => {
                 if (validCodes.includes(code)) {
-                    displayPlayerInfo(code);
-                    loadingDiv.style.display = 'none';
+                    // Keep the loading message visible
+                    loadingDiv.textContent = 'Valid invite code - redirecting...';
+                    // Wait another second before redirecting
+                    setTimeout(() => {
+                        window.location.href = `program.html?invite_code=${code}`;
+                    }, 1000);
                 } else {
                     loadingDiv.textContent = 'Invalid invite code';
                     setTimeout(() => {
