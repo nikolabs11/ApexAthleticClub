@@ -75,9 +75,9 @@
             </div>
             <div class="sport-details">
                 <div class="text-content">
-                    <div class="timeline"><strong>October - February and May - August</strong></div>
+                    <div class="timeline"><strong>March - May and August - October</strong></div>
                     <div class="age-group"><strong>2014s and younger</strong></div>
-                    <div class="schedule"><strong>Tuesday and Saturday</strong></div>
+                    <div class="schedule"><strong>Fridays</strong></div>
                     <ul>
                         <li>Professional, licensed coaches</li>
                         <li>Emphasis on tactical understanding and game intelligence</li>
@@ -132,7 +132,7 @@
                 <div class="text-content">
                     <div class="timeline"><strong>October - February and May - August</strong></div>
                     <div class="age-group"><strong>2010s and younger</strong></div>
-                    <div class="schedule"><strong>Wed/Fri 5PM</strong></div>
+                    <div class="schedule"><strong>Wednesdays and Fridays 5:00 PM</strong></div>
                     <ul>
                         <li>Professional, licensed coaches</li>
                         <li>Led by experienced black belt instructors</li>
@@ -157,9 +157,9 @@
             </div>
             <div class="sport-details">
                 <div class="text-content">
-                    <div class="timeline"><strong>Tuesday and Sunday</strong></div>
+                    <div class="timeline"><strong>March - May and August - October</strong></div>
                     <div class="age-group"><strong>2014s and younger</strong></div>
-                    <div class="coaches"><strong>Professional, licensed coaches</strong></div>
+                    <div class="schedule"><strong>Tuesdays and Sundays</strong></div>
                     <ul>
                         <li>Non-contact skill development</li>
                         <li>Focus on agility and strategic thinking</li>
@@ -281,6 +281,9 @@
         <p>Phone: <span id="playerPhone"></span></p>
         <p>Email: <span id="playerEmail"></span></p>
     </div>
+
+    <!-- Add loading div -->
+    <div id="loading" style="display: none; text-align: center; margin: 20px;"></div>
 
     <script>
         VANTA.CELLS({
@@ -741,9 +744,50 @@
             event.preventDefault();
             const inviteCode = document.getElementById('inviteCodeInput').value;
             if (inviteCode) {
-                window.location.href = `program.html?invite_code=${inviteCode}`;
+                handleInviteCode(inviteCode);
             }
         });
+
+        // Update the program details sections to be consistent
+        const sportDetails = {
+            "Indoor Soccer": {
+                timeline: "October - February and May - August",
+                schedule: "Tuesdays and Saturdays"
+            },
+            "Outdoor Soccer": {
+                timeline: "March - May and August - October",
+                schedule: "Fridays"
+            },
+            "Judo": {
+                timeline: "October - February and May - August",
+                schedule: "Wednesdays and Fridays 5:00 PM"
+            },
+            "Flag Football": {
+                timeline: "March - May and August - October",
+                schedule: "Tuesdays and Sundays"
+            }
+        };
+
+        // Add loading state and validation for invite codes
+        function handleInviteCode(code) {
+            const validCodes = ['ELLIOT2025', 'COOPER2025'];
+            const loadingDiv = document.getElementById('loading');
+            loadingDiv.style.display = 'block';
+            loadingDiv.textContent = 'Checking invite code...';
+
+            // Simulate network delay for 1.5 seconds
+            setTimeout(() => {
+                if (validCodes.includes(code)) {
+                    displayPlayerInfo(code);
+                    loadingDiv.style.display = 'none';
+                } else {
+                    loadingDiv.textContent = 'Invalid invite code';
+                    setTimeout(() => {
+                        loadingDiv.style.display = 'none';
+                    }, 2000);
+                }
+            }, 1500);
+        }
 
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
