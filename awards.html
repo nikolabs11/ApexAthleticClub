@@ -45,8 +45,16 @@
         }
 
         /* Text color adjustments */
-        .content h1, .content h2, .content p {
+        .content h1 {
+            color: #fff; /* White text for main content on Vanta background */
+        }
+
+        .content h2, .content p {
             color: #000; /* Black text for main content */
+        }
+
+        .top-10-section h3 {
+            color: #000; /* Black text for top 10 section header */
         }
 
         .top-10-list, .top-10-item {
@@ -309,7 +317,7 @@
                 complete: function(results) {
                     console.log('CSV loaded:', results);
                     console.log('CSV Headers:', results.meta.fields);
-                    const data = results.data;
+                    const data = results.data || []; // Ensure data is an array
                     // Populate all tables
                     tables.forEach(table => {
                         const tableId = table.id.replace('#', '');
