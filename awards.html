@@ -44,10 +44,17 @@
             overflow-x: hidden;
         }
 
-        /* Fix text color */
-        .content h1, .content h2, .content p, 
-        table.dataTable tbody td {
-            color: #000;
+        /* Text color adjustments */
+        .content h1, .content h2, .content p {
+            color: #000; /* Black text for main content */
+        }
+
+        .top-10-list, .top-10-item {
+            color: #000; /* Black text for top 10 list */
+        }
+
+        #vanta-bg h1, #vanta-bg h2, #vanta-bg p {
+            color: #fff; /* White text for Vanta background */
         }
 
         /* Top 10 Selection Styling */
@@ -304,7 +311,8 @@
                     console.log('CSV Headers:', results.meta.fields);
                     const data = results.data;
                     // Populate all tables
-                    Object.keys(topTenSelections).forEach(tableId => {
+                    tables.forEach(table => {
+                        const tableId = table.id.replace('#', '');
                         const tbody = $(`#${tableId} tbody`);
                         data.forEach(player => {
                             if (player.Birthdate) {
