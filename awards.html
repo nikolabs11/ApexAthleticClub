@@ -24,7 +24,7 @@
         }
         
         #content-container {
-            max-width: 98%;  /* Almost full width */
+            max-width: 90%;
             margin: 0 auto;
         }
         
@@ -33,14 +33,35 @@
             margin-top: 20px;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            box-sizing: border-box; /* Include padding in width calculation */
+            box-sizing: border-box;
+            overflow: hidden; /* Prevent table overflow */
         }
         
         /* Make tables take up more space */
         .dataTables_wrapper {
             width: 100%;
             margin: 0 auto;
-            overflow-x: auto; /* Add horizontal scroll if needed */
+            overflow-x: hidden;
+        }
+
+        /* Fix text color */
+        .content h1, .content h2, .content p, 
+        table.dataTable tbody td {
+            color: #000;
+        }
+
+        /* Top 10 Selection Styling */
+        .top-10-controls {
+            margin: 10px 0;
+        }
+
+        .in-top-10 {
+            background-color: #e6ffe6 !important;
+        }
+
+        .rank-number {
+            font-weight: bold;
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -60,12 +81,14 @@
                 <div class="awards-section">
                     <!-- Balon D'XL Award -->
                     <h2>Balon D'XL</h2>
+                    <div class="top-10-list"></div>
                     <table id="balonDXLAward" class="display">
                         <thead>
                             <tr>
                                 <th>Player Name</th>
                                 <th>Team</th>
                                 <th>Age</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -172,6 +195,16 @@
         });
 
         $(document).ready(function() {
+            // Track top 10 selections for each award
+            const topTenSelections = {
+                balonDXLAward: [],
+                mostImprovedAward: [],
+                bestForwardAward: [],
+                bestMidfielderAward: [],
+                bestDefenderAward: [],
+                bestGoalkeeperAward: []
+            };
+
             // Initialize DataTables
             const tables = [
                 '#balonDXLAward',
@@ -182,10 +215,15 @@
                 '#bestGoalkeeperAward'
             ].forEach(tableId => {
                 $(tableId).DataTable({
-                    pageLength: 10,
+                    pageLength: 12,
                     lengthChange: false,
                     searching: true,
-                    ordering: true
+                    ordering: true,
+                    columnDefs: [{
+                        targets: -1,
+                        data: null,
+                        defaultContent: '<button class="add-to-top-10">Add to Top 10</button>'
+                    }]
                 });
             });
 
@@ -198,25 +236,83 @@
                     console.log('CSV loaded:', results);
                     console.log('CSV Headers:', results.meta.fields);
                     const data = results.data;
-                    const tbody = $('#balonDXLAward tbody');
-                    data.forEach(player => {
-                        console.log('Processing player:', player);
-                        if (player.Birthdate) {
-                            const age = calculateAge(new Date(player.Birthdate));
-                            tbody.append(`
-                                <tr>
-                                    <td>${player['First Name']} ${player['Last Name']}</td>
-                                    <td>Team Placeholder</td>
-                                    <td>${age}</td>
-                                </tr>
-                            `);
-                        }
+                    // Populate all tables
+                    Object.keys(topTenSelections).forEach(tableId => {
+                        const tbody = $(`#${tableId} tbody`);
+                        data.forEach(player => {
+                            if (player.Birthdate) {
+                                const age = calculateAge(new Date(player.Birthdate));
+                                tbody.append(`
+                                    <tr>
+                                        <td>${player['First Name']} ${player['Last Name']}</td>
+                                        <td>Team Placeholder</td>
+                                        <td>${age}</td>
+                                        <td></td>
+                                    </tr>
+                                `);
+                            }
+                        });
+                    });
+
+                    // Initialize DataTables after populating
+                    $('.display').each(function() {
+                        $(this).DataTable().draw();
                     });
                 },
                 error: function(error) {
                     console.error('Error parsing CSV:', error);
                 }
             });
+
+            // Handle adding/removing from top 10
+            $('.display').on('click', '.add-to-top-10', function() {
+                const table = $(this).closest('table');
+                const tableId = table.attr('id');
+                const row = $(this).closest('tr');
+                const playerName = row.find('td:first').text();
+
+                if (row.hasClass('in-top-10')) {
+                    // Remove from top 10
+                    removeFromTopTen(tableId, playerName);
+                    row.removeClass('in-top-10');
+                    $(this).text('Add to Top 10');
+                } else if (topTenSelections[tableId].length < 10) {
+                    // Add to top 10
+                    addToTopTen(tableId, playerName);
+                    row.addClass('in-top-10');
+                    $(this).text('Remove from Top 10');
+                } else {
+                    alert('You can only select 10 players');
+                }
+            });
+
+            function addToTopTen(tableId, playerName) {
+                topTenSelections[tableId].push(playerName);
+                updateTopTenDisplay(tableId);
+            }
+
+            function removeFromTopTen(tableId, playerName) {
+                const index = topTenSelections[tableId].indexOf(playerName);
+                if (index > -1) {
+                    topTenSelections[tableId].splice(index, 1);
+                    updateTopTenDisplay(tableId);
+                }
+            }
+
+            function updateTopTenDisplay(tableId) {
+                const container = $(`#${tableId}`).siblings('.top-10-list');
+                container.empty();
+                topTenSelections[tableId].forEach((player, index) => {
+                    container.append(`
+                        <div class="top-10-item" data-player="${player}">
+                            <span class="rank-number">${index + 1}.</span>
+                            ${player}
+                            <button class="move-up">↑</button>
+                            <button class="move-down">↓</button>
+                        </div>
+                    `);
+                });
+            }
 
             function calculateAge(birthdate) {
                 const diff = Date.now() - birthdate.getTime();
