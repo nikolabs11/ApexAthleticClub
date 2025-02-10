@@ -3,114 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player Awards</title>
+    <title>Player Awards - XL Sports World</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
+    <style>
+        /* Styles specific to awards page */
+        #logo-container {
+            max-width: 150px;  /* Make logo smaller */
+            margin: 20px auto;
+        }
+        
+        #club-logo {
+            width: 100%;
+            height: auto;
+        }
+        
+        #content-container {
+            max-width: 98%;  /* Almost full width */
+            margin: 0 auto;
+        }
+        
+        .awards-section {
+            padding: 30px;
+            margin-top: 20px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+        
+        /* Make tables take up more space */
+        .dataTables_wrapper {
+            width: 100%;
+            margin: 0 auto;
+            overflow-x: auto; /* Add horizontal scroll if needed */
+        }
+    </style>
 </head>
 <body>
-    <h1>Player Awards</h1>
+    <div id="vanta-bg"></div>
+    <div id="overlay">
+        <div id="logo-container">
+            <a href="/">
+                <img id="club-logo" src="images/xlswapex.png" alt="XL Sports World Logo">
+            </a>
+        </div>
+        <div id="content-container">
+            <div class="content">
+                <h1>Player Awards</h1>
 
-    <!-- Balon D'XL Award -->
-    <h2>Balon D'XL</h2>
-    <table id="balonDXLAward" class="display">
-        <thead>
-            <tr>
-                <th>Player Name</th>
-                <th>Position</th>
-                <th>Team</th>
-                <th>Age Group</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Add player data here -->
-        </tbody>
-    </table>
+                <!-- Awards Tables -->
+                <div class="awards-section">
+                    <!-- Balon D'XL Award -->
+                    <h2>Balon D'XL</h2>
+                    <table id="balonDXLAward" class="display">
+                        <thead>
+                            <tr>
+                                <th>Player Name</th>
+                                <th>Team</th>
+                                <th>Age</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Player data will be populated here -->
+                        </tbody>
+                    </table>
 
-    <!-- Most Improved Award -->
-    <h2>Most Improved</h2>
-    <table id="mostImprovedAward" class="display">
-        <thead>
-            <tr>
-                <th>Player Name</th>
-                <th>Position</th>
-                <th>Team</th>
-                <th>Age Group</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Add player data here -->
-        </tbody>
-    </table>
+                    <!-- Most Improved Award -->
+                    <h2>Most Improved</h2>
+                    <table id="mostImprovedAward" class="display">
+                        <thead>
+                            <tr>
+                                <th>Player Name</th>
+                                <th>Position</th>
+                                <th>Team</th>
+                                <th>Age Group</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Add player data here -->
+                        </tbody>
+                    </table>
 
-    <!-- Best Forward Award -->
-    <h2>Best Forward</h2>
-    <table id="bestForwardAward" class="display">
-        <thead>
-            <tr>
-                <th>Player Name</th>
-                <th>Team</th>
-                <th>Age Group</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Add player data here -->
-        </tbody>
-    </table>
+                    <!-- Best Forward Award -->
+                    <h2>Best Forward</h2>
+                    <table id="bestForwardAward" class="display">
+                        <thead>
+                            <tr>
+                                <th>Player Name</th>
+                                <th>Team</th>
+                                <th>Age Group</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Add player data here -->
+                        </tbody>
+                    </table>
 
-    <!-- Best Midfielder Award -->
-    <h2>Best Midfielder</h2>
-    <table id="bestMidfielderAward" class="display">
-        <thead>
-            <tr>
-                <th>Player Name</th>
-                <th>Team</th>
-                <th>Age Group</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Add player data here -->
-        </tbody>
-    </table>
+                    <!-- Best Midfielder Award -->
+                    <h2>Best Midfielder</h2>
+                    <table id="bestMidfielderAward" class="display">
+                        <thead>
+                            <tr>
+                                <th>Player Name</th>
+                                <th>Team</th>
+                                <th>Age Group</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Add player data here -->
+                        </tbody>
+                    </table>
 
-    <!-- Best Defender Award -->
-    <h2>Best Defender</h2>
-    <table id="bestDefenderAward" class="display">
-        <thead>
-            <tr>
-                <th>Player Name</th>
-                <th>Team</th>
-                <th>Age Group</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Add player data here -->
-        </tbody>
-    </table>
+                    <!-- Best Defender Award -->
+                    <h2>Best Defender</h2>
+                    <table id="bestDefenderAward" class="display">
+                        <thead>
+                            <tr>
+                                <th>Player Name</th>
+                                <th>Team</th>
+                                <th>Age Group</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Add player data here -->
+                        </tbody>
+                    </table>
 
-    <!-- Best Goalkeeper Award -->
-    <h2>Best Goalkeeper</h2>
-    <table id="bestGoalkeeperAward" class="display">
-        <thead>
-            <tr>
-                <th>Player Name</th>
-                <th>Team</th>
-                <th>Age Group</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Add player data here -->
-        </tbody>
-    </table>
+                    <!-- Best Goalkeeper Award -->
+                    <h2>Best Goalkeeper</h2>
+                    <table id="bestGoalkeeperAward" class="display">
+                        <thead>
+                            <tr>
+                                <th>Player Name</th>
+                                <th>Team</th>
+                                <th>Age Group</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Add player data here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script>
+        // Initialize Vanta.js background
+        VANTA.CELLS({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            color1: 0x8B1739, // XL Sports World burgundy
+            color2: 0x333333, // Dark grey
+            size: 0.20,
+            speed: 0.00
+        });
+
         $(document).ready(function() {
-            $('#balonDXLAward').DataTable();
-            $('#mostImprovedAward').DataTable();
-            $('#bestForwardAward').DataTable();
-            $('#bestMidfielderAward').DataTable();
-            $('#bestDefenderAward').DataTable();
-            $('#bestGoalkeeperAward').DataTable();
+            // Initialize DataTables
+            const tables = [
+                '#balonDXLAward',
+                '#mostImprovedAward',
+                '#bestForwardAward',
+                '#bestMidfielderAward',
+                '#bestDefenderAward',
+                '#bestGoalkeeperAward'
+            ].forEach(tableId => {
+                $(tableId).DataTable({
+                    pageLength: 10,
+                    lengthChange: false,
+                    searching: true,
+                    ordering: true
+                });
+            });
+
+            // Load and parse the CSV file
+            console.log('Attempting to load CSV file...');
+            Papa.parse('./data/CustomerSearchReport-02_10_2025_05_36pm.csv', {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    console.log('CSV loaded:', results);
+                    console.log('CSV Headers:', results.meta.fields);
+                    const data = results.data;
+                    const tbody = $('#balonDXLAward tbody');
+                    data.forEach(player => {
+                        console.log('Processing player:', player);
+                        if (player.Birthdate) {
+                            const age = calculateAge(new Date(player.Birthdate));
+                            tbody.append(`
+                                <tr>
+                                    <td>${player['First Name']} ${player['Last Name']}</td>
+                                    <td>Team Placeholder</td>
+                                    <td>${age}</td>
+                                </tr>
+                            `);
+                        }
+                    });
+                },
+                error: function(error) {
+                    console.error('Error parsing CSV:', error);
+                }
+            });
+
+            function calculateAge(birthdate) {
+                const diff = Date.now() - birthdate.getTime();
+                const ageDate = new Date(diff);
+                return Math.abs(ageDate.getUTCFullYear() - 1970);
+            }
         });
     </script>
 </body>

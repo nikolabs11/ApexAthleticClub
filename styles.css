@@ -372,3 +372,36 @@ h1 {
 #next-step:hover {
     background: #067a4d;
 }
+
+/* Add to your existing styles.css */
+.awards-section {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.awards-section h2 {
+    color: #0a2240; /* XL Sports World blue */
+    margin-top: 30px;
+}
+
+/* DataTables customization */
+.dataTables_wrapper {
+    background: white;
+    padding: 20px;
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
+table.dataTable thead th {
+    background-color: #0a2240;
+    color: white;
+}
+
+table.dataTable tbody tr:hover {
+    background-color: #f0f4f8;
+}
+
+/* Make sure the CSV file is in your website directory */
