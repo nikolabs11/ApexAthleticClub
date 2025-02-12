@@ -59,16 +59,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Example: Ensure scrollToTop is only called when transitioning sections
-    function scrollToTop() {
-        const whiteBackgroundElement = document.querySelector('.program-content:not([style*="display: none"])');
-        if (whiteBackgroundElement) {
-            whiteBackgroundElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+    // Ensure event listeners are not causing repeated actions
+    const buildProgramButton = document.getElementById('build-program');
+    if (buildProgramButton) {
+        buildProgramButton.addEventListener('click', function() {
+            if (programContent) {
+                programContent.style.display = 'block'; // Ensure the content is visible
+                programContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
     }
-
-    // Check event listeners for repeated triggers
-    document.getElementById('build-program').addEventListener('click', function() {
-        document.querySelector('.program-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
 }); 
