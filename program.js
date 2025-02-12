@@ -58,4 +58,17 @@ document.addEventListener("DOMContentLoaded", () => {
             programContent.appendChild(backButton);
         }
     });
+
+    // Example: Ensure scrollToTop is only called when transitioning sections
+    function scrollToTop() {
+        const whiteBackgroundElement = document.querySelector('.program-content:not([style*="display: none"])');
+        if (whiteBackgroundElement) {
+            whiteBackgroundElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
+    // Check event listeners for repeated triggers
+    document.getElementById('build-program').addEventListener('click', function() {
+        document.querySelector('.program-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
 }); 
