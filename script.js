@@ -1,19 +1,27 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DOM fully loaded and parsed");
 
-    let vantaEffect = VANTA.CELLS({
-        el: "#vanta-bg",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        color1: 0x045034,
-        color2: 0x109963,
-        size: 0.20,
-        speed: 0.00,
-    });
+    if (!localStorage.getItem('loggedIn')) {
+        window.location.href = '/invite.html';
+        return;
+    }
+    
+    // Only initialize Vanta if element exists
+    if (document.getElementById('vanta-bg')) {
+        let vantaEffect = VANTA.CELLS({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            color1: 0x045034,
+            color2: 0x109963,
+            size: 0.20,
+            speed: 0.00,
+        });
+    }
 
     const learnMore = document.getElementById('learn-more');
     const content = document.querySelector('.content');
@@ -254,3 +262,32 @@ function submitInviteCode() {
         alert('Invalid invite code. Please try again.');
     }
 }
+
+/* Prevent scroll jumping */
+html {
+    scroll-behavior: auto !important;
+}
+
+/* Fix canvas positioning */
+#vanta-bg {
+    position: fixed !important;
+    z-index: 0 !important;
+}
+
+window.addEventListener('beforeunload', function() {
+    localStorage.removeItem('loggedIn');
+});
+
+document.getElementById('build-program').addEventListener('click', function(e) {
+    e.preventDefault();
+    const programContent = document.querySelector('.program-content');
+    if (programContent) {
+        programContent.style.display = 'block';
+        setTimeout(() => { // Add slight delay
+            programContent.scrollIntoView({
+                behavior: 'auto', // Change to 'auto' instead of 'smooth'
+                block: 'start'
+            });
+        }, 50);
+    }
+});
