@@ -3,51 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Processing Invite Code - Apex Athletic Club</title>
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <title>Enter Invite Code - Apex Athletic Club</title>
+    <link rel="stylesheet" href="program.css">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: 'Share Tech Mono', monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: black;
-            color: white; /* Changed to white */
-        }
-        #vanta-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        #overlay {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 20px;
-        }
-        #club-logo {
-            max-width: 300px;
-            margin-bottom: 20px;
-        }
-        #processing-text {
-            font-size: 1.2em;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
     <div id="vanta-bg"></div>
     <div id="overlay">
-        <img id="club-logo" src="images/AAC Logo.png" alt="Apex Athletic Club Logo">
-        <p id="processing-text">Processing invite code...</p>
+        <div id="logo-container">
+            <a href="/">
+                <img id="club-logo" src="images/AAC Logo.png" alt="Apex Athletic Club Logo">
+            </a>
+        </div>
+        
+        <div class="program-content">
+            <h3>Enter Your Invite Code</h3>
+            <form id="inviteForm">
+                <input type="text" id="inviteCodeInput" placeholder="Enter Invite Code">
+                <button type="submit">Submit</button>
+            </form>
+            <div id="loading" style="display: none; text-align: center; margin: 20px;"></div>
+        </div>
     </div>
 
     <script>
@@ -65,129 +44,33 @@
             speed: 0.00
         });
 
-        function processInviteCode() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const inviteCode = urlParams.get('code');
-            
+        document.getElementById('inviteForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const inviteCode = document.getElementById('inviteCodeInput').value.toUpperCase();
             if (inviteCode) {
-                const validCodes = [
-                    'TIANTIAN2025', 'BLAKE2025', 'BRYAN2025', 'DAWSON2025', 'TY2025',
-                    'JAKE2025', 'KOSHI2025', 'ANTUAN2025', 'ELI2025', 'EDDI2025', 
-                    'LOCKAN2025', 'MASSON2025', 'JOSE2025', 'GIOVANNI2025', 'JHONNATAN2025',
-                    'LIAM2025', 'EDDI2025', 'LUCAS2025', 'IVAN2025', 'BEN2025',
-                    'JACK2025', 'OLIVER2025', 'NEERAV2025', 'LOGAN2025', 'JAXON2025',
-                    'BENNETT2025', 'COOPER2025', 'JAMESON2025', 'ATHARV2025', 'KABIR2025',
-                    'SHRAVIN2025', 'AYAAN2025', 'HOLDEN2025', 'YUHI2025', 'AHRIK2025',
-                    'RAYYAN2025'
-                ];
-
-                if (inviteCode === 'HOLDEN2025') {
-                    const preloadData = {
-                        firstName: "Holden",
-                        lastName: "Hitchcock",
-                        birthYear: "2015",
-                        email: "hitchcock.derick@gmail.com",
-                        phone: "+19194515282"
-                    };
-                    localStorage.setItem('playerData', JSON.stringify(preloadData));
-                    window.location.href = 'program.html';
-                } else if (inviteCode === 'YUHI2025') {
-                    const preloadData = {
-                        firstName: "Yuhi",
-                        lastName: "Kaya",
-                        birthYear: "2015",
-                        email: "tkaya1984@gmail.com",
-                        phone: "+19197105437"
-                    };
-                    localStorage.setItem('playerData', JSON.stringify(preloadData));
-                    window.location.href = 'program.html';
-                } else if (inviteCode === 'AHRIK2025') {
-                    const preloadData = {
-                        firstName: "Ahrik",
-                        lastName: "Mathur",
-                        birthYear: "2015",
-                        email: "smathurmd@gmail.com",
-                        phone: "+17189861869"
-                    };
-                    localStorage.setItem('playerData', JSON.stringify(preloadData));
-                    window.location.href = 'program.html';
-                } else if (inviteCode === 'RAYYAN2025') {
-                    const preloadData = {
-                        firstName: "Rayyan",
-                        lastName: "Shanti",
-                        birthYear: "2015",
-                        email: "naelshanti13@gmail.com",
-                        phone: "+19198408094"
-                    };
-                    localStorage.setItem('playerData', JSON.stringify(preloadData));
-                    window.location.href = 'program.html';
-                } else if (validCodes.includes(inviteCode.toUpperCase())) {
-                    localStorage.setItem('loggedIn', 'true');
-                    window.location.href = 'program.html';
-                } else {
-                    alert('Invalid invite code. Redirecting to home page.');
-                    window.location.href = '/';
-                }
-            } else {
-                setTimeout(() => {
-                    window.location.href = '/';
-                }, 2000); // 2-second delay
-            }
-        }
-        
-        window.onload = processInviteCode;
-
-        document.getElementById('invite-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const inviteCode = document.getElementById('invite-code').value.toUpperCase();
-            
-            if (inviteCode === 'HOLDEN2025') {
-                const preloadData = {
-                    firstName: "Holden",
-                    lastName: "Hitchcock",
-                    birthYear: "2015",
-                    email: "hitchcock.derick@gmail.com",
-                    phone: "+19194515282"
-                };
-                localStorage.setItem('playerData', JSON.stringify(preloadData));
-                window.location.href = 'program.html';
-            } else if (inviteCode === 'YUHI2025') {
-                const preloadData = {
-                    firstName: "Yuhi",
-                    lastName: "Kaya",
-                    birthYear: "2015",
-                    email: "tkaya1984@gmail.com",
-                    phone: "+19197105437"
-                };
-                localStorage.setItem('playerData', JSON.stringify(preloadData));
-                window.location.href = 'program.html';
-            } else if (inviteCode === 'AHRIK2025') {
-                const preloadData = {
-                    firstName: "Ahrik",
-                    lastName: "Mathur",
-                    birthYear: "2015",
-                    email: "smathurmd@gmail.com",
-                    phone: "+17189861869"
-                };
-                localStorage.setItem('playerData', JSON.stringify(preloadData));
-                window.location.href = 'program.html';
-            } else if (inviteCode === 'RAYYAN2025') {
-                const preloadData = {
-                    firstName: "Rayyan",
-                    lastName: "Shanti",
-                    birthYear: "2015",
-                    email: "naelshanti13@gmail.com",
-                    phone: "+19198408094"
-                };
-                localStorage.setItem('playerData', JSON.stringify(preloadData));
-                window.location.href = 'program.html';
-            } else if (validCodes.includes(inviteCode)) {
-                localStorage.setItem('loggedIn', 'true');
-                window.location.href = 'program.html';
-            } else {
-                alert('Invalid invite code. Please try again.');
+                handleInviteCode(inviteCode);
             }
         });
+
+        function handleInviteCode(code) {
+            const validCodes = ['ELLIOT2025', 'COOPER2025'];
+            const loadingDiv = document.getElementById('loading');
+            loadingDiv.style.display = 'block';
+            loadingDiv.textContent = 'Checking invite code...';
+            setTimeout(() => {
+                if (validCodes.includes(code)) {
+                    loadingDiv.textContent = 'Valid invite code - redirecting...';
+                    setTimeout(() => {
+                        window.location.href = `program.html?invite_code=${code}`;
+                    }, 1000);
+                } else {
+                    loadingDiv.textContent = 'Invalid invite code';
+                    setTimeout(() => {
+                        loadingDiv.style.display = 'none';
+                    }, 2000);
+                }
+            }, 1500);
+        }
     </script>
 </body>
 </html>

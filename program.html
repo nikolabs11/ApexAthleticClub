@@ -15,6 +15,50 @@
             emailjs.init("orACw4cPmMD066o2G");
         })();
     </script>
+    <style>
+        #program-type-selection {
+            padding-top: 10px;
+        }
+        #program-type-selection .program-description {
+            margin-top: 0;
+        }
+        #program-type-selection h3 {
+            margin-top: 10px;
+        }
+        .program-type-button {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 15px;
+            font-size: 18px;
+            color: white;
+            background-color: #045034;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .program-type-button:hover {
+            background-color: #109963;
+        }
+        .zelle-pay-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #6d1ed4;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .zelle-pay-button:hover {
+            background-color: #5718a8;
+        }
+    </style>
 </head>
 <body>
     <div id="vanta-bg"></div>
@@ -33,14 +77,24 @@
         </div>
     </div>
 
-    <!-- Program selection section -->
-    <div class="program-content" id="program-selection">
+    <!-- NEW: Program Type Selection Section -->
+    <div class="program-content" id="program-type-selection">
         <div class="program-description">
+            <h3>About Us</h3>
             <p>Our coaches are full-time professionals that utilize best practices from the top youth academies around the world. We offer 12 months of programming across multiple sports with the primary focus on soccer.</p>
             
             <p>Training and development within our Raptors Academy is guaranteed but placement on official Raptors teams is not. Playing on official Raptors teams is dependent on development, attendance, and performances in games. Regardless, we will have teams and games for all Apex Athletic Club players.</p>
         </div>
-        <h3>Select Programs</h3>
+
+        <h3>Choose Your Program Type</h3>
+        <p>Please select your preferred training option:</p>
+        <button id="btn-full-program" class="program-type-button">Full Program (Raptors Teams)</button>
+        <button id="btn-small-group" class="program-type-button">Small Group Sessions Only</button>
+    </div>
+
+    <!-- Program selection section (for Full Program) -->
+    <div class="program-content" id="program-selection" style="display: none;">
+        <h3>Select Programs (Choose 2 Additional)</h3>
         <!-- Indoor Soccer -->
         <div class="sport-option">
             <div class="sport-header">
@@ -95,7 +149,7 @@
             </div>
         </div>
 
-        <!-- Small Group Training -->
+        <!-- Small Group Training (required for full program) -->
         <div class="sport-option">
             <div class="sport-header">
                 <input type="checkbox" id="small-group" name="programs" value="Small Group Training" checked disabled>
@@ -117,14 +171,13 @@
                 </div>
                 <div class="image-container">
                     <img src="images/XLSWAPEX.png" alt="XLSW Apex">
-                    <!-- Placeholder for Apex Parks Rec logo -->
                 </div>
             </div>
         </div>
 
         <!-- Judo -->
         <div class="sport-option">
-            <div class="sport-header">
+            <div class="sport-header" onclick="document.getElementById('judo').click()">
                 <input type="checkbox" id="judo" name="programs" value="Judo">
                 <span class="sport-title">Judo</span>
             </div>
@@ -151,7 +204,7 @@
 
         <!-- Flag Football -->
         <div class="sport-option">
-            <div class="sport-header">
+            <div class="sport-header" onclick="document.getElementById('flag-football').click()">
                 <input type="checkbox" id="flag-football" name="programs" value="Flag Football">
                 <span class="sport-title">Flag Football</span>
             </div>
@@ -198,7 +251,10 @@
             </div>
         </div>
 
-        <button id="next-step">NEXT</button>
+        <div class="navigation-buttons">
+            <button id="back-to-type-selection">Go Back</button>
+            <button id="next-step">NEXT</button>
+        </div>
     </div>
 
     <!-- Personal information and day selection section -->
@@ -233,11 +289,16 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required 
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                           title="Please enter a valid email address">
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" required>
+                    <input type="tel" id="phone" name="phone" required
+                           pattern="\(\d{3}\) \d{3}-\d{4}"
+                           title="Phone number format: (XXX) XXX-XXXX"
+                           placeholder="(XXX) XXX-XXXX">
                 </div>
             </div>
 
@@ -249,11 +310,69 @@
             </div>
 
             <h3>Program Days</h3>
-            <div id="program-days"></div>
+            <div id="program-days">
+                <!-- Indoor Soccer (Required) -->
+                <div class="program-schedule">
+                    <h4>Indoor Soccer/Futsal</h4>
+                    <p>Fixed Schedule: Tuesdays and Saturdays at XL Sports World Apex</p>
+                </div>
+                
+                <!-- Outdoor Soccer (Required) -->
+                <div class="program-schedule">
+                    <h4>Outdoor Soccer</h4>
+                    <p>Fixed Schedule: Fridays at Piney Wood Park</p>
+                </div>
+                
+                <!-- Small Group Training -->
+                <div class="program-schedule">
+                    <h4>Small Group Training</h4>
+                    <div class="location-selection">
+                        <p>Select preferred locations:</p>
+                        <div class="location-checkboxes">
+                            <label><input type="checkbox" name="sgt-locations" value="hunter"> Hunter Street Park</label>
+                            <label><input type="checkbox" name="sgt-locations" value="apex"> Apex Nature Park</label>
+                            <label><input type="checkbox" name="sgt-locations" value="xlsw"> XL Sports World Apex</label>
+                        </div>
+                    </div>
+                    <div class="day-selection">
+                        <p>Select available days (minimum 2):</p>
+                        <label><input type="checkbox" name="sgt-days" value="monday"> Monday</label>
+                        <label><input type="checkbox" name="sgt-days" value="tuesday"> Tuesday</label>
+                        <label><input type="checkbox" name="sgt-days" value="wednesday"> Wednesday</label>
+                        <label><input type="checkbox" name="sgt-days" value="thursday"> Thursday</label>
+                        <label><input type="checkbox" name="sgt-days" value="friday"> Friday</label>
+                        <label><input type="checkbox" name="sgt-days" value="saturday"> Saturday</label>
+                        <label><input type="checkbox" name="sgt-days" value="sunday"> Sunday</label>
+                    </div>
+                </div>
+                
+                <!-- Judo (if selected) -->
+                <div class="program-schedule" id="judo-schedule" style="display: none;">
+                    <h4>Judo</h4>
+                    <p>Location: Cary Judo Club</p>
+                    <div class="day-selection">
+                        <p>Select preferred day:</p>
+                        <label><input type="radio" name="judo-days" value="wednesday"> Wednesday 5:00 PM</label>
+                        <label><input type="radio" name="judo-days" value="friday"> Friday 5:00 PM</label>
+                    </div>
+                </div>
+                
+                <!-- Flag Football (if selected) -->
+                <div class="program-schedule" id="flag-football-schedule" style="display: none;">
+                    <h4>Flag Football</h4>
+                    <p>Location: XL Sports World Apex</p>
+                    <div class="day-selection">
+                        <p>Available days:</p>
+                        <label><input type="checkbox" name="ff-days" value="tuesday" checked disabled> Tuesday</label>
+                        <label><input type="checkbox" name="ff-days" value="sunday" checked disabled> Sunday</label>
+                    </div>
+                </div>
+            </div>
 
             <div class="navigation-buttons">
-                <button type="button" id="go-back">Go Back</button>
-                <button type="button" id="to-summary">Next</button>
+                <button type="button" id="back-to-selection" class="cta-button" style="display: none;">Go Back</button>
+                <button type="button" id="back-to-program" class="cta-button" style="display: none;">Go Back</button>
+                <button type="button" id="next-to-summary" class="cta-button">Next</button>
             </div>
         </form>
     </div>
@@ -261,11 +380,32 @@
     <!-- Add new summary section -->
     <div class="program-content" id="summary-section" style="display: none;">
         <h3>Program Summary</h3>
-        <div id="summary-content"></div>
+        <div id="summary-content">
+            <div class="program-summary"></div>
+            <div class="schedule-summary"></div>
+            <div class="payment-options">
+                <h4>Payment Options</h4>
+                <select id="payment-plan-select">
+                    <!-- Options will be populated based on program type -->
+                </select>
+                <p>Selected Amount: <span id="selected-fee">$0</span></p>
+                
+                <div class="payment-instructions">
+                    <h4>Pay with Zelle</h4>
+                    <div class="zelle-details">
+                        <p>Send to: <strong>brett@apexraptors.com</strong></p>
+                        <p id="zelle-amount">Amount: $0</p>
+                        <button id="zelle-button" class="zelle-pay-button">
+                            Pay with Zelle
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="navigation-buttons">
-            <button type="button" id="back-to-form">Go Back</button>
-            <button type="submit" id="submit-final">Submit</button>
+            <button type="button" id="back-to-form" class="cta-button">Go Back</button>
+            <button type="submit" id="submit-final" class="cta-button">Submit</button>
         </div>
     </div>
 
@@ -300,400 +440,138 @@
             speed: 0.00
         });
 
+        document.getElementById('btn-full-program').addEventListener('click', function() {
+            document.getElementById('program-type-selection').style.display = 'none';
+            document.getElementById('program-selection').style.display = 'block';
+            scrollToTop();
+        });
+
+        document.getElementById('btn-small-group').addEventListener('click', function() {
+            document.getElementById('program-type-selection').style.display = 'none';
+            document.getElementById('personal-info').style.display = 'block';
+            document.getElementById('back-to-selection').style.display = 'block';
+            document.getElementById('back-to-program').style.display = 'none';
+            document.querySelectorAll('.program-schedule').forEach(schedule => {
+                schedule.style.display = 'none';
+            });
+            document.querySelector('.program-schedule:nth-child(3)').style.display = 'block';
+            scrollToTop();
+        });
+
         document.getElementById('build-program').addEventListener('click', function() {
             document.querySelector('.program-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
         document.getElementById('next-step').addEventListener('click', function() {
-            scrollToTop();
-            
-            const selectedPrograms = [];
-            document.querySelectorAll('input[name="programs"]:checked').forEach(checkbox => {
-                selectedPrograms.push(checkbox.value);
-            });
-
-            // Check if at least 2 optional programs are selected
-            const optionalPrograms = selectedPrograms.filter(program => 
-                !["Indoor Soccer", "Outdoor Soccer", "Small Group Training"].includes(program)
-            );
-
-            if (optionalPrograms.length < 2) {
-                alert('Please select at least 2 additional programs (Judo, Flag Football, etc.)');
+            const selectedPrograms = document.querySelectorAll('#program-selection input[type="checkbox"]:checked:not([disabled])');
+            if (selectedPrograms.length < 2) {
+                alert('Please select at least two additional programs.');
                 return;
             }
-
-            localStorage.setItem('selectedPrograms', JSON.stringify(selectedPrograms));
             document.getElementById('program-selection').style.display = 'none';
             document.getElementById('personal-info').style.display = 'block';
-            document.getElementById('summary-section').style.display = 'none';
-
-            // Load preloaded data if it exists
-            const playerData = JSON.parse(localStorage.getItem('playerData')) || {};
-            
-            // Fill in the form fields
-            document.getElementById('first-name').value = playerData.firstName || '';
-            document.getElementById('last-name').value = playerData.lastName || '';
-            document.getElementById('email').value = playerData.email || '';
-            document.getElementById('phone').value = playerData.phone || '';
-            document.getElementById('birth-year').value = playerData.birthYear || '';
-
-            // Show program days based on birth year and selected programs
-            const birthYear = parseInt(playerData.birthYear) || 2015;
-            const programDays = document.getElementById('program-days');
-            programDays.innerHTML = '';
-
-            selectedPrograms.forEach(program => {
-                if (program === "Indoor Soccer") {
-                    const days = birthYear >= 2015 ? ['Tuesday', 'Saturday'] : ['Monday', 'Sunday'];
-                } else if (program === "Outdoor Soccer") {
-                    const days = birthYear >= 2015 ? ['Tuesday', 'Saturday'] : ['Monday', 'Sunday'];
-                }
-                if (program === "Judo") {
-                    programDays.innerHTML += `
-                        <div class="program-days-selection">
-                            <h4>Judo</h4>
-                            <label><input type="checkbox" name="judo-days"> Wednesday</label>
-                            <label><input type="checkbox" name="judo-days"> Friday</label>
-                        </div>`;
-                }
-                if (program === "Flag Football") {
-                    programDays.innerHTML += `
-                        <div class="program-days-selection">
-                            <h4>Flag Football</h4>
-                            <label><input type="checkbox" checked disabled> Tuesday</label>
-                            <label><input type="checkbox" checked disabled> Sunday</label>
-                        </div>`;
-                }
-                if (program === "Small Group Training") {
-                    programDays.innerHTML += `
-                        <div class="program-days-selection">
-                            <h4>Small Group Training</h4>
-                            <div class="location-options">
-                                <h4>Locations</h4>
-                                <label><input type="checkbox" name="sg-locations"> Hunter Street Park</label>
-                                <label><input type="checkbox" name="sg-locations"> Apex Nature Park</label>
-                                <label><input type="checkbox" name="sg-locations"> XLSW Apex</label>
-                            </div>
-                            <div class="day-options">
-                                <h4>Available Days</h4>
-                                <label><input type="checkbox" name="sg-days"> Monday</label>
-                                <label><input type="checkbox" name="sg-days"> Tuesday</label>
-                                <label><input type="checkbox" name="sg-days"> Wednesday</label>
-                                <label><input type="checkbox" name="sg-days"> Thursday</label>
-                                <label><input type="checkbox" name="sg-days"> Friday</label>
-                                <label><input type="checkbox" name="sg-days"> Saturday</label>
-                                <label><input type="checkbox" name="sg-days"> Sunday</label>
-                            </div>
-                        </div>`;
-                }
-            });
-        });
-
-        document.getElementById('player-info-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            const playerData = {
-                parentFirstName: formData.get('parent-first-name'),
-                parentLastName: formData.get('parent-last-name'),
-                firstName: formData.get('first-name'),
-                lastName: formData.get('last-name'),
-                birthYear: formData.get('birth-year'),
-                email: formData.get('email'),
-                phone: formData.get('phone')
-            };
-            localStorage.setItem('playerData', JSON.stringify(playerData));
-            alert('Information submitted successfully!');
-        });
-
-        // Update the add parent functionality
-        document.querySelector('.add-parent-button').addEventListener('click', function() {
-            const parentSection = document.createElement('div');
-            parentSection.className = 'form-row parent-section';
-            parentSection.innerHTML = `
-                <div class="form-group">
-                    <label for="additional-parent-first-name">Parent First Name:</label>
-                    <input type="text" name="additional-parent-first-name">
-                </div>
-                <div class="form-group">
-                    <label for="additional-parent-last-name">Parent Last Name:</label>
-                    <input type="text" name="additional-parent-last-name">
-                </div>
-                <button type="button" class="remove-parent-button" title="Remove Parent/Guardian">−</button>
-            `;
-            
-            // Insert after the last parent section
-            const lastParentSection = [...document.querySelectorAll('.parent-section')].pop();
-            lastParentSection.after(parentSection);
-
-            // Add remove functionality
-            parentSection.querySelector('.remove-parent-button').addEventListener('click', function() {
-                parentSection.remove();
-            });
-        });
-
-        // Navigation functionality
-        document.getElementById('go-back').addEventListener('click', function() {
+            document.getElementById('back-to-selection').style.display = 'none';
+            document.getElementById('back-to-program').style.display = 'block';
             scrollToTop();
-            document.getElementById('personal-info').style.display = 'none';
-            document.getElementById('program-selection').style.display = 'block';
         });
 
-        document.getElementById('to-summary').addEventListener('click', function(e) {
-            e.preventDefault();
-            scrollToTop(); // Call this immediately to ensure it happens first
-            
+        document.getElementById('back-to-type-selection').addEventListener('click', function() {
+            document.getElementById('program-selection').style.display = 'none';
+            document.getElementById('program-type-selection').style.display = 'block';
+            scrollToTop();
+        });
+
+        document.getElementById('back-to-selection').addEventListener('click', function() {
+            document.getElementById('personal-info').style.display = 'none';
+            if (document.getElementById('program-selection').style.display === 'none') {
+                document.getElementById('program-type-selection').style.display = 'block';
+            } else {
+                document.getElementById('program-selection').style.display = 'block';
+            }
+            scrollToTop();
+        });
+
+        document.getElementById('next-to-summary').addEventListener('click', function() {
             let isValid = true;
             let errorMessage = '';
-
-            // Validate parent information
-            const parentFirstName = document.getElementById('parent-first-name');
-            const parentLastName = document.getElementById('parent-last-name');
-            if (!parentFirstName.value.trim()) {
-                errorMessage += 'Parent first name is required.\n';
-                isValid = false;
-            }
-            if (!parentLastName.value.trim()) {
-                errorMessage += 'Parent last name is required.\n';
-                isValid = false;
-            }
             
-            // Validate player information
-            const requiredFields = ['first-name', 'last-name', 'email', 'phone', 'birth-year'];
-            requiredFields.forEach(field => {
+            // Basic form validation
+            ['parent-first-name', 'parent-last-name', 'first-name', 'last-name', 'email', 'phone', 'birth-year'].forEach(field => {
                 const input = document.getElementById(field);
                 if (!input.value.trim()) {
                     errorMessage += `${field.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} is required.\n`;
                     isValid = false;
                 }
             });
+
+            // Additional validation for email and phone
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
             
-            // Validate Small Group Training selections
-            const smallGroupSelected = JSON.parse(localStorage.getItem('selectedPrograms')).includes('Small Group Training');
-            if (smallGroupSelected) {
-                const locations = document.querySelectorAll('[name="sg-locations"]:checked');
-                const days = document.querySelectorAll('[name="sg-days"]:checked');
-                
-                if (locations.length === 0) {
-                    errorMessage += 'Please select at least one location for Small Group Training.\n';
-                    isValid = false;
-                }
-                if (days.length === 0) {
-                    errorMessage += 'Please select at least one day for Small Group Training.\n';
-                    isValid = false;
-                }
+            if (!emailInput.validity.valid) {
+                errorMessage += 'Please enter a valid email address.\n';
+                isValid = false;
             }
             
-            // Validate Judo days if selected
-            const judoSelected = JSON.parse(localStorage.getItem('selectedPrograms')).includes('Judo');
-            if (judoSelected) {
-                const judoDays = document.querySelectorAll('[name="judo-days"]:checked');
-                if (judoDays.length === 0) {
-                    errorMessage += 'Please select at least one day for Judo.\n';
-                    isValid = false;
-                }
+            if (!phoneInput.validity.valid) {
+                errorMessage += 'Please enter a valid phone number in format (XXX) XXX-XXXX.\n';
+                isValid = false;
+            }
+
+            // Validate location and day selections
+            const selectedLocations = document.querySelectorAll('input[name="sgt-locations"]:checked');
+            const selectedDays = document.querySelectorAll('input[name="sgt-days"]:checked');
+            
+            if (selectedLocations.length === 0) {
+                errorMessage += 'Please select at least one location for Small Group Training.\n';
+                isValid = false;
             }
             
+            if (selectedDays.length < 2) {
+                errorMessage += 'Please select at least two available days for Small Group Training.\n';
+                isValid = false;
+            }
+
             if (!isValid) {
-                alert(errorMessage); // Show popup alert with error messages
-                scrollToTop(); // Ensure this is called if validation fails
+                alert(errorMessage);
                 return;
             }
-            
-            // If all valid, proceed to summary
-            // Get all form data
-            const formData = new FormData(document.getElementById('player-info-form'));
-            const selectedPrograms = JSON.parse(localStorage.getItem('selectedPrograms'));
-            
-            // Get selected days for Judo
-            const selectedJudoDays = [...document.querySelectorAll('[name="judo-days"]:checked')]
-                .map(cb => cb.parentElement.textContent.trim());
-            
-            // Get selected small group training options
-            const selectedLocations = [...document.querySelectorAll('[name="sg-locations"]:checked')]
-                .map(cb => cb.parentElement.textContent.trim());
-            const selectedDays = [...document.querySelectorAll('[name="sg-days"]:checked')]
-                .map(cb => cb.parentElement.textContent.trim());
-            
-            // Create summary HTML
-            const summaryContent = document.getElementById('summary-content');
-            summaryContent.innerHTML = `
-                <div class="summary-section">
-                    <div class="summary-block">
-                        <h4>Player Information</h4>
-                        <div class="summary-item">
-                            <strong>Name:</strong> ${formData.get('first-name')} ${formData.get('last-name')}
-                        </div>
-                        <div class="summary-item">
-                            <strong>Birth Year:</strong> ${formData.get('birth-year')}
-                        </div>
-                    </div>
-
-                    <div class="summary-block">
-                        <h4>Parent Information</h4>
-                        <div class="summary-item">
-                            <strong>Primary Parent:</strong> ${formData.get('parent-first-name')} ${formData.get('parent-last-name')}
-                        </div>
-                        ${[...document.querySelectorAll('[name="additional-parent-first-name"]')].map((input, i) => `
-                            <div class="summary-item">
-                                <strong>Additional Parent ${i + 1}:</strong> ${input.value} ${document.querySelectorAll('[name="additional-parent-last-name"]')[i].value}
-                            </div>
-                        `).join('')}
-                    </div>
-
-                    <div class="summary-block">
-                        <h4>Contact Information</h4>
-                        <div class="summary-item">
-                            <strong>Email:</strong> ${formData.get('email')}
-                        </div>
-                        <div class="summary-item">
-                            <strong>Phone:</strong> ${formData.get('phone')}
-                        </div>
-                    </div>
-
-                    <div class="summary-block">
-                        <h4>Selected Programs and Schedule</h4>
-                        ${selectedPrograms.map(program => {
-                            if (program === "Small Group Training") {
-                                return `
-                                    <div class="program-summary">
-                                        <h5>${program}</h5>
-                                        <div class="summary-item">
-                                            <strong>Training Locations:</strong> ${selectedLocations.join(', ') || 'None selected'}
-                                        </div>
-                                        <div class="summary-item">
-                                            <strong>Training Days:</strong> ${selectedDays.join(', ') || 'None selected'}
-                                        </div>
-                                    </div>`;
-                            } else if (program === "Judo") {
-                                return `
-                                    <div class="program-summary">
-                                        <h5>${program}</h5>
-                                        <div class="summary-item">
-                                            <strong>Training Days:</strong> ${selectedJudoDays.join(', ') || 'None selected'}
-                                        </div>
-                                    </div>`;
-                            } else {
-                                const birthYear = parseInt(formData.get('birth-year'));
-                                let days = '';
-                                if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
-                                    days = birthYear >= 2015 ? 'Tuesday, Saturday' : 'Monday, Sunday';
-                                } else if (program === "Flag Football") {
-                                    days = 'Tuesday, Sunday';
-                                }
-                                return `
-                                    <div class="program-summary">
-                                        <h5>${program}</h5>
-                                        <div class="summary-item">
-                                            <strong>Training Days:</strong> ${days}
-                                        </div>
-                                    </div>`;
-                            }
-                        }).join('')}
-                    </div>
-
-                    <div class="summary-block">
-                        <h4>Payment Information</h4>
-                        <div class="summary-item">
-                            <p>Monthly Program Fee: <strong>$200.00</strong></p>
-                            <p>Please complete payment via Zelle to proceed:</p>
-                            <div class="zelle-info">
-                                <strong>Zelle Email:</strong> brett@apexraptors.com
-                                <p>Amount: $200.00</p>
-                                <a href="https://enroll.zellepay.com/qr-codes?data=brett@apexraptors.com" 
-                                   class="zelle-button" 
-                                   target="_blank">
-                                   Pay with Zelle
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
 
             document.getElementById('personal-info').style.display = 'none';
             document.getElementById('summary-section').style.display = 'block';
+            generateSummary();
+            scrollToTop();
         });
 
-        // Helper function to show error messages
-        function showError(element, message) {
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error-message';
-            errorDiv.textContent = message;
-            element.classList.add('input-error');
-            element.parentNode.appendChild(errorDiv);
-        }
-
-        // Update the header click event listener
-        document.querySelectorAll('.sport-header').forEach(header => {
-            header.addEventListener('click', function(e) {
-                const checkbox = this.querySelector('input[type="checkbox"]');
-                if (!checkbox.disabled && e.target !== checkbox) {  // Only toggle if not disabled and not clicking checkbox directly
-                    checkbox.checked = !checkbox.checked;
-                }
-            });
-        });
-
-        // Add back the event listener for the back-to-form button
         document.getElementById('back-to-form').addEventListener('click', function() {
             scrollToTop();
             document.getElementById('summary-section').style.display = 'none';
             document.getElementById('personal-info').style.display = 'block';
         });
 
-        // Update submit handler to send a cleaner format
         document.getElementById('submit-final').addEventListener('click', function(e) {
             e.preventDefault();
             scrollToTop();
-            
             const formData = new FormData(document.getElementById('player-info-form'));
-            const selectedPrograms = JSON.parse(localStorage.getItem('selectedPrograms'));
-            
-            // Create a clean formatted message
+            const paymentPlanText = document.getElementById('payment-plan-select').selectedOptions[0].textContent;
             const emailMessage = `
-                APEX ATHLETIC CLUB - NEW REGISTRATION
-                
-                PLAYER INFORMATION
-                ------------------
-                Name: ${formData.get('first-name')} ${formData.get('last-name')}
-                Birth Year: ${formData.get('birth-year')}
-                
-                PARENT INFORMATION
-                -----------------
-                Primary Parent: ${formData.get('parent-first-name')} ${formData.get('parent-last-name')}
-                Email: ${formData.get('email')}
-                Phone: ${formData.get('phone')}
-                
-                PROGRAM SCHEDULE
-                ---------------
-                ${selectedPrograms.map(program => {
-                    let schedule = '';
-                    if (program === "Small Group Training") {
-                        const locations = [...document.querySelectorAll('[name="sg-locations"]:checked')]
-                            .map(cb => cb.parentElement.textContent.trim()).join(', ');
-                        const days = [...document.querySelectorAll('[name="sg-days"]:checked')]
-                            .map(cb => cb.parentElement.textContent.trim()).join(', ');
-                        schedule = `\n    Location: ${locations}\n    Days: ${days}`;
-                    } else if (program === "Judo") {
-                        const days = [...document.querySelectorAll('[name="judo-days"]:checked')]
-                            .map(cb => cb.parentElement.textContent.trim()).join(', ');
-                        schedule = `\n    Days: ${days}`;
-                    } else if (program === "Indoor Soccer" || program === "Outdoor Soccer") {
-                        const days = birthYear >= 2015 ? 'Tuesday, Saturday' : 'Monday, Sunday';
-                        schedule = `\n    Days: ${days}`;
-                    } else if (program === "Flag Football") {
-                        schedule = '\n    Days: Tuesday, Sunday';
-                    }
-                    return `${program}${schedule}`;
-                }).join('\n\n')}
-                
-                PAYMENT INFORMATION
-                ------------------
-                Monthly Fee: $200.00
-                Payment Method: Zelle
-                Payment Email: brett@apexraptors.com
-            `.replace(/^\s+/gm, ''); // Remove leading whitespace
+APEX ATHLETIC CLUB - NEW REGISTRATION
 
-            // First send admin notification
+PLAYER INFORMATION
+------------------
+Name: ${formData.get('first-name')} ${formData.get('last-name')}
+Birth Year: ${formData.get('birth-year')}
+
+PARENT INFORMATION
+------------------
+Primary Parent: ${formData.get('parent-first-name')} ${formData.get('parent-last-name')}
+Email: ${formData.get('email')}
+Phone: ${formData.get('phone')}
+
+PAYMENT INFORMATION
+------------------
+Payment Plan: ${paymentPlanText}
+            `.replace(/^\s+/gm, '');
             emailjs.send("service_jqvfs2x", "template_3ls7ajq", {
                 to_email: "brett@apexraptors.com",
                 from_name: `${formData.get('first-name')} ${formData.get('last-name')}`,
@@ -704,7 +582,6 @@
                 phone: formData.get('phone'),
                 message: emailMessage
             }).then(function(response) {
-                // Then send confirmation to player
                 return emailjs.send("service_jqvfs2x", "template_3ls7ajq", {
                     to_email: formData.get('email'),
                     from_name: "Apex Athletic Club",
@@ -727,16 +604,10 @@
             );
         });
 
-        // Update the scrollToTop function to ensure it targets the correct element
         function scrollToTop() {
-            const whiteBackgroundElement = document.querySelector('.program-content');
+            const whiteBackgroundElement = document.querySelector('.program-content:not([style*="display: none"])');
             if (whiteBackgroundElement) {
-                const rect = whiteBackgroundElement.getBoundingClientRect();
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                window.scrollTo({
-                    top: rect.top + scrollTop,
-                    behavior: 'smooth'
-                });
+                whiteBackgroundElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
 
@@ -748,39 +619,14 @@
             }
         });
 
-        // Update the program details sections to be consistent
-        const sportDetails = {
-            "Indoor Soccer": {
-                timeline: "October - February and May - August",
-                schedule: "Tuesdays and Saturdays"
-            },
-            "Outdoor Soccer": {
-                timeline: "March - May and August - October",
-                schedule: "Fridays"
-            },
-            "Judo": {
-                timeline: "October - February and May - August",
-                schedule: "Wednesdays and Fridays 5:00 PM"
-            },
-            "Flag Football": {
-                timeline: "March - May and August - October",
-                schedule: "Tuesdays and Sundays"
-            }
-        };
-
-        // Add loading state and validation for invite codes
         function handleInviteCode(code) {
             const validCodes = ['ELLIOT2025', 'COOPER2025'];
             const loadingDiv = document.getElementById('loading');
             loadingDiv.style.display = 'block';
             loadingDiv.textContent = 'Checking invite code...';
-
-            // Simulate network delay for 1.5 seconds
             setTimeout(() => {
                 if (validCodes.includes(code)) {
-                    // Keep the loading message visible
                     loadingDiv.textContent = 'Valid invite code - redirecting...';
-                    // Wait another second before redirecting
                     setTimeout(() => {
                         window.location.href = `program.html?invite_code=${code}`;
                     }, 1000);
@@ -796,7 +642,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const inviteCode = urlParams.get('invite_code');
-
             if (inviteCode) {
                 displayPlayerInfo(inviteCode);
             }
@@ -807,7 +652,6 @@
                 'ELLIOT2025': { name: 'Elliot Haxell', year: 2016, phone: '(919) 622-5755', email: 'susanna.haxell@gmail.com' },
                 'COOPER2025': { name: 'Cooper Young', year: 2017, phone: '(919) 624-1961', email: 'laurafranklin919@aol.com' }
             };
-
             const info = playerInfo[code];
             if (info) {
                 document.getElementById('playerName').textContent = info.name;
@@ -816,6 +660,200 @@
                 document.getElementById('playerEmail').textContent = info.email;
             }
         }
+
+        document.getElementById('judo').addEventListener('change', function() {
+            const judoSchedule = document.getElementById('judo-schedule');
+            judoSchedule.style.display = this.checked ? 'block' : 'none';
+        });
+
+        document.getElementById('flag-football').addEventListener('change', function() {
+            const ffSchedule = document.getElementById('flag-football-schedule');
+            ffSchedule.style.display = this.checked ? 'block' : 'none';
+        });
+
+        document.getElementById('back-to-program').addEventListener('click', function() {
+            document.getElementById('personal-info').style.display = 'none';
+            document.getElementById('program-selection').style.display = 'block';
+            scrollToTop();
+        });
+
+        function generateSummary() {
+            const programSummary = document.querySelector('.program-summary');
+            const scheduleSummary = document.querySelector('.schedule-summary');
+            const paymentSelect = document.getElementById('payment-plan-select');
+            const isFullProgram = document.getElementById('judo-schedule').style.display !== 'none' || 
+                                 document.getElementById('flag-football-schedule').style.display !== 'none' ||
+                                 document.querySelectorAll('#program-selection input[type="checkbox"]:checked:not([disabled])').length > 0;
+            
+            // Clear existing options
+            paymentSelect.innerHTML = '';
+            programSummary.innerHTML = '<h4>Selected Programs</h4>';
+            scheduleSummary.innerHTML = '<h4>Schedule Details</h4>';
+            paymentSelect.innerHTML = '<option value="" disabled selected>Select Payment Plan</option>';
+            
+            if (isFullProgram) {
+                // Add required programs
+                programSummary.innerHTML += `
+                    <p>Required Programs:</p>
+                    <ul>
+                        <li>Indoor Soccer/Futsal</li>
+                        <li>Outdoor Soccer</li>
+                        <li>Small Group Training</li>
+                    </ul>
+                    <p>Additional Programs:</p>
+                    <ul>
+                        ${document.getElementById('judo').checked ? '<li>Judo</li>' : ''}
+                        ${document.getElementById('flag-football').checked ? '<li>Flag Football</li>' : ''}
+                    </ul>
+                `;
+                
+                // Add payment options for full program
+                paymentSelect.innerHTML += `
+                    <option value="12-full">12 Month Payment - $2,100</option>
+                    <option value="6-full">6 Month Payment - $1,100</option>
+                    <option value="month-full">Monthly Payment - $200</option>
+                `;
+            } else {
+                programSummary.innerHTML += `
+                    <p>Selected Program:</p>
+                    <ul>
+                        <li>Small Group Training Only</li>
+                    </ul>
+                `;
+                
+                // Add payment option for small group only
+                paymentSelect.innerHTML += `
+                    <option value="12-sgt">12 Month Payment - $1,000</option>
+                    <option value="6-sgt">6 Month Payment - $550</option>
+                    <option value="month-sgt">Monthly Payment - $100</option>
+                `;
+            }
+            
+            // Add schedule details
+            const selectedLocations = Array.from(document.querySelectorAll('input[name="sgt-locations"]:checked'))
+                .map(input => input.parentElement.textContent.trim());
+            
+            const selectedDays = Array.from(document.querySelectorAll('input[name="sgt-days"]:checked'))
+                .map(input => input.parentElement.textContent.trim());
+            
+            scheduleSummary.innerHTML += `
+                <p>Small Group Training:</p>
+                <ul>
+                    <li>Locations: ${selectedLocations.join(', ')}</li>
+                    <li>Available Days: ${selectedDays.join(', ')}</li>
+                </ul>
+            `;
+            
+            if (document.getElementById('judo-schedule').style.display !== 'none') {
+                const judoDay = document.querySelector('input[name="judo-days"]:checked');
+                if (judoDay) {
+                    scheduleSummary.innerHTML += `
+                        <p>Judo:</p>
+                        <ul>
+                            <li>Location: Cary Judo Club</li>
+                            <li>Preferred Day: ${judoDay.parentElement.textContent.trim()}</li>
+                        </ul>
+                    `;
+                }
+            }
+        }
+
+        document.getElementById('payment-plan-select').addEventListener('change', function() {
+            const zelleAmount = document.getElementById('zelle-amount');
+            const selectedFee = document.getElementById('selected-fee');
+            let amount = '';
+            
+            switch(this.value) {
+                case '12-full': amount = '2100'; break;
+                case '6-full': amount = '1100'; break;
+                case 'month-full': amount = '200'; break;
+                case '12-sgt': amount = '1000'; break;
+                case '6-sgt': amount = '550'; break;
+                case 'month-sgt': amount = '100'; break;
+            }
+            
+            selectedFee.textContent = `$${amount}`;
+            zelleAmount.textContent = `Amount: $${amount}`;
+        });
+
+        let parentCount = 1;
+        
+        document.querySelector('.add-parent-button').addEventListener('click', function() {
+            parentCount++;
+            const newParentSection = document.createElement('div');
+            newParentSection.className = 'form-row parent-section';
+            newParentSection.innerHTML = `
+                <div class="form-group">
+                    <label for="parent-first-name-${parentCount}">Parent First Name:</label>
+                    <input type="text" id="parent-first-name-${parentCount}" name="parent-first-name-${parentCount}" required>
+                </div>
+                <div class="form-group">
+                    <label for="parent-last-name-${parentCount}">Parent Last Name:</label>
+                    <input type="text" id="parent-last-name-${parentCount}" name="parent-last-name-${parentCount}" required>
+                </div>
+                <button type="button" class="remove-parent-button" title="Remove Parent/Guardian">-</button>
+            `;
+            
+            // Insert new parent section after the last parent section
+            const parentSections = document.querySelectorAll('.parent-section');
+            const lastParentSection = parentSections[parentSections.length - 1];
+            lastParentSection.insertAdjacentElement('afterend', newParentSection);
+            
+            // Add remove button functionality
+            newParentSection.querySelector('.remove-parent-button').addEventListener('click', function() {
+                newParentSection.remove();
+            });
+        });
+
+        document.getElementById('zelle-button').addEventListener('click', function() {
+            const amount = document.getElementById('zelle-amount').textContent.split('$')[1];
+            if (!amount || amount === '0') {
+                alert('Please select a payment plan first');
+                return;
+            }
+            window.location.href = `https://enroll.zellepay.com/qr-codes?data={"token":"brett@apexraptors.com","amount":"${amount}"}`;
+        });
+
+        // Add phone number formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+
+        // Add invite code check at the start of the page
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const inviteCode = urlParams.get('invite_code');
+            
+            if (!inviteCode) {
+                window.location.href = '/invite.html';
+                return;
+            }
+            
+            // Hide content initially
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('program-type-selection').style.display = 'none';
+            
+            // Show loading message
+            const loadingDiv = document.getElementById('loading');
+            loadingDiv.style.display = 'block';
+            loadingDiv.textContent = 'Validating invite code...';
+            
+            // Validate invite code
+            setTimeout(() => {
+                const validCodes = ['ELLIOT2025', 'COOPER2025'];
+                if (!validCodes.includes(inviteCode)) {
+                    window.location.href = '/invite.html';
+                    return;
+                }
+                
+                // Show content after validation
+                loadingDiv.style.display = 'none';
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('program-type-selection').style.display = 'block';
+                displayPlayerInfo(inviteCode);
+            }, 1500);
+        });
     </script>
 </body>
 </html> 
