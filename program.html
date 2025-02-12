@@ -620,7 +620,7 @@ Payment Plan: ${paymentPlanText}
         });
 
         function handleInviteCode(code) {
-            const validCodes = ['ELLIOT2025', 'COOPER2025'];
+            const validCodes = ['AHRIK2025', 'RAYYAN2025', 'ELLIOT2025', 'COOPER2025', 'LOGAN2025'];
             const loadingDiv = document.getElementById('loading');
             loadingDiv.style.display = 'block';
             loadingDiv.textContent = 'Checking invite code...';
@@ -649,8 +649,11 @@ Payment Plan: ${paymentPlanText}
 
         function displayPlayerInfo(code) {
             const playerInfo = {
+                'AHRIK2025': { name: 'Ahrik Mathur', year: 2015, phone: '(718) 986-1869', email: 'smathurmd@gmail.com' },
+                'RAYYAN2025': { name: 'Rayyan Shanti', year: 2015, phone: '(919) 840-8094', email: 'heba2000_b@hotmail.com' },
                 'ELLIOT2025': { name: 'Elliot Haxell', year: 2016, phone: '(919) 622-5755', email: 'susanna.haxell@gmail.com' },
-                'COOPER2025': { name: 'Cooper Young', year: 2017, phone: '(919) 624-1961', email: 'laurafranklin919@aol.com' }
+                'COOPER2025': { name: 'Cooper Young', year: 2017, phone: '(919) 624-1961', email: 'laurafranklin919@aol.com' },
+                'LOGAN2025': { name: 'Logan Carey', year: 2016, phone: '(631) 291-0819', email: 'victoriamcarey@yahoo.com' }
             };
             const info = playerInfo[code];
             if (info) {
@@ -841,7 +844,7 @@ Payment Plan: ${paymentPlanText}
             
             // Validate invite code
             setTimeout(() => {
-                const validCodes = ['ELLIOT2025', 'COOPER2025'];
+                const validCodes = ['AHRIK2025', 'RAYYAN2025', 'ELLIOT2025', 'COOPER2025', 'LOGAN2025'];
                 if (!validCodes.includes(inviteCode)) {
                     window.location.href = '/invite.html';
                     return;
