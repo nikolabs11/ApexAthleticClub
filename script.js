@@ -252,32 +252,3 @@ function submitInviteCode() {
         alert('Invalid invite code. Please try again.');
     }
 }
-
-/* Prevent scroll jumping */
-html {
-    scroll-behavior: auto !important;
-}
-
-/* Fix canvas positioning */
-#vanta-bg {
-    position: fixed !important;
-    z-index: 0 !important;
-}
-
-window.addEventListener('beforeunload', function() {
-    localStorage.removeItem('loggedIn');
-});
-
-document.getElementById('build-program').addEventListener('click', function(e) {
-    e.preventDefault();
-    const programContent = document.querySelector('.program-content');
-    if (programContent) {
-        programContent.style.display = 'block';
-        setTimeout(() => { // Add slight delay
-            programContent.scrollIntoView({
-                behavior: 'auto', // Change to 'auto' instead of 'smooth'
-                block: 'start'
-            });
-        }, 50);
-    }
-});

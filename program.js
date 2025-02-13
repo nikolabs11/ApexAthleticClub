@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Only check login state on program page
+    if (!window.location.pathname.includes('program.html')) return;
+    
     if (!localStorage.getItem('loggedIn')) {
         window.location.href = '/invite.html';
         return;
     }
 
-    // Initialize Vanta only once
-    if (!window.vantaInitialized) {
+    // Initialize Vanta once
+    if (!window.vantaInitialized && document.getElementById('vanta-bg')) {
         VANTA.CELLS({
             el: "#vanta-bg",
             mouseControls: true,
