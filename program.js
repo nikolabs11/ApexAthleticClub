@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Only check login state on program page
-    if (!window.location.pathname.includes('program.html')) return;
-    
     if (!localStorage.getItem('loggedIn')) {
         window.location.href = '/invite.html';
         return;
@@ -79,12 +76,5 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 50);
             }
         });
-    }
-});
-
-// Clear login state when leaving program page
-window.addEventListener('beforeunload', function() {
-    if (window.location.pathname === '/program.html') {
-        localStorage.removeItem('loggedIn');
     }
 }); 

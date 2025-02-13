@@ -426,20 +426,6 @@
     <div id="loading" style="display: none; text-align: center; margin: 20px;"></div>
 
     <script>
-        VANTA.CELLS({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            color1: 0x045034,
-            color2: 0x109963,
-            size: 0.20,
-            speed: 0.00
-        });
-
         document.getElementById('btn-full-program').addEventListener('click', function() {
             document.getElementById('program-type-selection').style.display = 'none';
             document.getElementById('program-selection').style.display = 'block';
@@ -821,41 +807,6 @@ Payment Plan: ${paymentPlanText}
         document.getElementById('phone').addEventListener('input', function(e) {
             let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
             e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-        });
-
-        // Add invite code check at the start of the page
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const inviteCode = urlParams.get('invite_code');
-            
-            if (!inviteCode) {
-                window.location.href = '/invite.html';
-                return;
-            }
-            
-            // Hide content initially
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('program-type-selection').style.display = 'none';
-            
-            // Show loading message
-            const loadingDiv = document.getElementById('loading');
-            loadingDiv.style.display = 'block';
-            loadingDiv.textContent = 'Validating invite code...';
-            
-            // Validate invite code
-            setTimeout(() => {
-                const validCodes = ['AHRIK2025', 'RAYYAN2025', 'ELLIOT2025', 'COOPER2025', 'LOGAN2025'];
-                if (!validCodes.includes(inviteCode)) {
-                    window.location.href = '/invite.html';
-                    return;
-                }
-                
-                // Show content after validation
-                loadingDiv.style.display = 'none';
-                document.getElementById('overlay').style.display = 'block';
-                document.getElementById('program-type-selection').style.display = 'block';
-                displayPlayerInfo(inviteCode);
-            }, 1500);
         });
     </script>
 </body>
