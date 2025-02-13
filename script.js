@@ -1,27 +1,19 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DOM fully loaded and parsed");
-
-    if (!localStorage.getItem('loggedIn')) {
-        window.location.href = '/invite.html';
-        return;
-    }
     
-    // Only initialize Vanta if element exists
-    if (document.getElementById('vanta-bg')) {
-        let vantaEffect = VANTA.CELLS({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            color1: 0x045034,
-            color2: 0x109963,
-            size: 0.20,
-            speed: 0.00,
-        });
-    }
+    let vantaEffect = VANTA.CELLS({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        color1: 0x045034,
+        color2: 0x109963,
+        size: 0.20,
+        speed: 0.00,
+    });
 
     const learnMore = document.getElementById('learn-more');
     const content = document.querySelector('.content');
@@ -230,8 +222,6 @@ document.addEventListener("DOMContentLoaded", function() {
         inviteCodeInput.value = inviteCode;
         submitInviteCode();
     }
-
-    // ... existing code ...
 });
 
 function submitInviteCode() {

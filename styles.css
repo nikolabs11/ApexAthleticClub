@@ -405,3 +405,12 @@ table.dataTable tbody tr:hover {
 }
 
 /* Make sure the CSV file is in your website directory */
+
+/* Add to bottom of styles.css */
+html {
+    scroll-behavior: auto !important;
+}
+#vanta-bg {
+    position: fixed !important;
+    z-index: 0 !important;
+}
