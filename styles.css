@@ -15,19 +15,13 @@ body, html {
     width: 100% !important;
     height: 100% !important;
     z-index: 0 !important;
-    pointer-events: none; /* Prevent canvas from blocking clicks */
 }
 
 #overlay {
     position: relative;
     z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    background: rgba(0,0,0,0.7); /* Darker overlay for better contrast */
     min-height: 100vh;
-    padding: 20px;
-    text-align: center;
 }
 
 #logo-container {
@@ -298,14 +292,10 @@ h1 {
 
 /* Program Content Container */
 .program-content {
-    background: #ffffff; /* Ensure white background */
+    background: rgba(255,255,255,0.9); /* White background for content */
+    padding: 2rem;
     border-radius: 8px;
-    padding: 30px;
     margin: 20px auto;
-    width: 90%;
-    max-width: 800px;
-    color: #333;
-    margin-top: 40px;  /* Add space between welcome and program content */
 }
 
 /* Sport Option Styling */
