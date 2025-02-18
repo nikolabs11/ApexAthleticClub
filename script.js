@@ -241,7 +241,7 @@ function submitInviteCode() {
 
     // Valid invite codes
     const validCodes = [
-        'AHRIK2025', 'RAYYAN2025', 'ELLIOT2025', 'COOPER2025', 'LOGAN2025'
+        'AHRIK2025', 'RAYYAN2025', 'ELLIOT2025', 'COOPER2025', 'LOGAN2025', 'KABIR2025'
     ];
 
     if (validCodes.includes(code)) {
