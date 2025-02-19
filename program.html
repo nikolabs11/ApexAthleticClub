@@ -615,7 +615,7 @@ Payment Plan: ${paymentPlanText}
                 if (validCodes.includes(code)) {
                     loadingDiv.textContent = 'Valid invite code - redirecting...';
                     setTimeout(() => {
-                        window.location.href = `program.html?invite_code=${code}`;
+                        window.location.href = `program.html?inviteCode=${code}`;
                     }, 1000);
                 } else {
                     loadingDiv.textContent = 'Invalid invite code';
@@ -628,7 +628,7 @@ Payment Plan: ${paymentPlanText}
 
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const inviteCode = urlParams.get('invite_code');
+            const inviteCode = urlParams.get('inviteCode');
             if (inviteCode) {
                 displayPlayerInfo(inviteCode);
             }
@@ -645,6 +645,16 @@ Payment Plan: ${paymentPlanText}
             };
             const info = playerInfo[code];
             if (info) {
+                const [firstName, lastName] = info.name.split(' ');
+                document.getElementById('first-name').value = firstName || '';
+                document.getElementById('last-name').value = lastName || '';
+                document.getElementById('birth-year').value = info.year || '';
+                document.getElementById('email').value = info.email || '';
+                document.getElementById('phone').value = info.phone || '';
+                
+                // Optionally show player info
+                const playerInfoDiv = document.getElementById('playerInfo');
+                playerInfoDiv.style.display = 'block';
                 document.getElementById('playerName').textContent = info.name;
                 document.getElementById('playerYear').textContent = info.year;
                 document.getElementById('playerPhone').textContent = info.phone;

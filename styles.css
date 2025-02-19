@@ -450,3 +450,95 @@ html {
 .help-button:hover {
     background-color: #067a4d;
 }
+
+/* Modal Styles for Help Message */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 300px;
+    text-align: center;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the Request a Trial Form Card */
+.trial-form-card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px auto;
+    color: #333;
+}
+.trial-form-card h3 {
+    text-align: center;
+    color: #045034;
+    margin-bottom: 20px;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Share Tech Mono', monospace;
+    transition: border-color 0.3s ease;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: #045034;
+    outline: none;
+}
+.birthday-fields {
+    display: flex;
+    gap: 10px;
+}
+.form-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.cta-button.secondary {
+    background: #666;
+    border: none;
+}
+.cta-button.secondary:hover {
+    background: #888;
+}
+
+/* Styles for the Help Message */
+.help-message {
+    position: fixed;
+    bottom: 80px; /* Position above the help button */
+    right: 20px;
+    background-color: #045034; /* Dark green background */
+    color: white; /* White text for contrast */
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 101;
+    font-size: 0.9rem;
+    text-align: center;
+    max-width: 250px;
+}

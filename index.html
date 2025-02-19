@@ -92,5 +92,15 @@
     </script>
     <!-- Sticky Help Button -->
     <button class="help-button" title="Need Help?">?</button>
+    <div id="help-message" class="help-message" style="display: none;">
+        Contact <a href="mailto:brett@apexraptors.com">brett@apexraptors.com</a> for any questions.
+    </div>
+    <script>
+    // Event listener to toggle the help message visibility
+    document.querySelector('.help-button').addEventListener('click', () => {
+        const helpMessage = document.getElementById('help-message');
+        helpMessage.style.display = helpMessage.style.display === 'none' ? 'block' : 'none';
+    });
+    </script>
 </body>
 </html>
