@@ -239,9 +239,27 @@ function submitInviteCode() {
         return;
     }
 
-    // Valid invite codes
+    // Updated valid invite codes (19 codes)
     const validCodes = [
-        'AHRIK2025', 'RAYYAN2025', 'ELLIOT2025', 'COOPER2025', 'LOGAN2025', 'KABIR2025'
+        'AHRIK2025',
+        'RAYYAN2025',
+        'ELLIOT2025',
+        'COOPER2025',
+        'LOGAN2025',
+        'KABIR2025',
+        'SERGEI2025',
+        'ERIC2025',
+        'JERRY2025',
+        'JAXON2025',
+        'SHRAVIN2025',
+        'ATHARV2025',
+        'ANTONIO2025',
+        'AYAAN2025',
+        'CAMERON2025',
+        'YUHI2025',
+        'IVAN2025',
+        'HOLDEN2025',
+        'JACK2025'
     ];
 
     if (validCodes.includes(code)) {
