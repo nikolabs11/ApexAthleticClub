@@ -1,11 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --heading-font: 'Share Tech Mono', monospace;
+    --body-font: 'Roboto', sans-serif;
+}
 
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: var(--body-font);
     color: white;
+    line-height: 1.6;
+    font-size: 1rem;
 }
 
 #vanta-bg {
@@ -20,18 +28,26 @@ body, html {
 #overlay {
     position: relative;
     z-index: 2;
-    background: rgba(0,0,0,0.7); /* Darker overlay for better contrast */
+    background: rgba(0,0,0,0.7);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #logo-container {
     position: relative;
     z-index: 2;
     margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 #club-logo {
     max-width: 300px;
+    margin: 0 auto;
+    display: block;
 }
 
 #welcome-message {
@@ -400,4 +416,37 @@ table.dataTable tbody tr:hover {
 /* Add to bottom of styles.css */
 html {
     scroll-behavior: auto !important;
+}
+
+/* Styles for grid layout of program options */
+.sport-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+/* Sticky Help Button */
+.help-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #045034;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    font-size: 1.5rem;
+    z-index: 100;
+    transition: background-color 0.3s ease;
+}
+
+.help-button:hover {
+    background-color: #067a4d;
 }
