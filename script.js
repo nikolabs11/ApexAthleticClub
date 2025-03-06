@@ -239,7 +239,7 @@ function submitInviteCode() {
         return;
     }
 
-    // Updated valid invite codes (19 codes)
+    // Updated valid invite codes (20 codes now)
     const validCodes = [
         'AHRIK2025',
         'RAYYAN2025',
@@ -259,7 +259,8 @@ function submitInviteCode() {
         'YUHI2025',
         'IVAN2025',
         'HOLDEN2025',
-        'JACK2025'
+        'JACK2025',
+        'MASATERU2025'
     ];
 
     if (validCodes.includes(code)) {
