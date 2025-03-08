@@ -573,12 +573,13 @@ function createUserAccount(userData) {
         return { success: false, message: 'User already exists' };
     }
     
-    // Add new user
+    // Add new user with password (hashing would be done server-side in a real app)
     users.push({
         id: Date.now().toString(),
         email: userData.email,
         name: `${userData.firstName} ${userData.lastName}`,
         phone: userData.phone,
+        password: userData.password, // In a real app, this would be hashed
         role: 'parent',
         inviteCode: userData.inviteCode,
         players: [], // Will contain child players
@@ -596,15 +597,14 @@ function createUserAccount(userData) {
 
 function loginUser(email, password) {
     // In a real app, you'd verify credentials against server
-    // For now, just check if user exists
     const users = JSON.parse(localStorage.getItem('users')) || [];
-    const user = users.find(user => user.email === email);
+    const user = users.find(user => user.email === email && user.password === password);
     
     if (user) {
         localStorage.setItem('currentUser', JSON.stringify(user));
         return { success: true, message: 'Login successful' };
     } else {
-        return { success: false, message: 'User not found' };
+        return { success: false, message: 'Invalid email or password' };
     }
 }
 

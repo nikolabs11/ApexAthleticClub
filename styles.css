@@ -1298,3 +1298,37 @@ body, html {
 .cta-button.tertiary:hover {
     background-color: #2a3c7f;
 }
+
+/* White login button below learn more */
+.login-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 30px;
+    font-family: var(--heading-font);
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn:hover {
+    background-color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.login-btn i {
+    margin-right: 8px;
+}
+
+/* Adjust learn more button margin */
+.learn-more-btn {
+    margin-bottom: 8px;
+}
