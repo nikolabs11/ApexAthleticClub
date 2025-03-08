@@ -15,16 +15,27 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     
     // Check if user is logged in
-    if (!localStorage.getItem('loggedIn')) {
-        window.location.href = '/invite.html';
+    if (!isUserLoggedIn()) {
+        // Redirect to login page if not logged in
+        window.location.href = 'login.html';
         return;
     }
     
-    // Load player info
-    const inviteCode = localStorage.getItem('inviteCode');
-    if (inviteCode) {
-        loadPlayerInfo(inviteCode);
-    }
+    // Display user information
+    const currentUser = getCurrentUser();
+    document.getElementById('user-name').textContent = currentUser.name;
+    
+    // Set up logout functionality
+    document.getElementById('logout-btn').addEventListener('click', logoutUser);
+    
+    // Load player data
+    loadPlayerData();
+    
+    // Initialize dashboard components
+    loadUpcomingEvents();
+    loadAvailability();
+    loadTrainingSessions();
+    loadDevelopmentNotes();
     
     // Navigation handling
     const navLinks = document.querySelectorAll('.sidebar nav a');
@@ -65,20 +76,223 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Load events
     loadEvents();
-    
-    // Logout button
-    document.getElementById('logout-btn').addEventListener('click', function() {
-        localStorage.removeItem('loggedIn');
-        localStorage.removeItem('inviteCode');
-        window.location.href = '/';
-    });
 });
 
-function loadPlayerInfo(inviteCode) {
-    const player = getPlayerByCode(inviteCode);
-    if (player) {
-        document.getElementById('player-name').textContent = player.fullName;
+function loadPlayerData() {
+    const currentUser = getCurrentUser();
+    const playerSelect = document.getElementById('player-select');
+    
+    // Clear existing options
+    playerSelect.innerHTML = '';
+    
+    if (currentUser.players && currentUser.players.length > 0) {
+        // Add options for each player
+        currentUser.players.forEach(player => {
+            const option = document.createElement('option');
+            option.value = player.id;
+            option.textContent = player.name;
+            playerSelect.appendChild(option);
+        });
+        
+        // Set up change event to refresh data
+        playerSelect.addEventListener('change', function() {
+            loadUpcomingEvents();
+            loadAvailability();
+            loadTrainingSessions();
+            loadDevelopmentNotes();
+        });
+    } else {
+        // No players yet
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = 'No players yet';
+        option.disabled = true;
+        option.selected = true;
+        playerSelect.appendChild(option);
+        
+        // Show empty states
+        document.querySelectorAll('.dashboard-section').forEach(section => {
+            section.querySelector('div').innerHTML = '<p class="empty-state">Please add a player to your account first.</p>';
+        });
     }
+}
+
+function loadUpcomingEvents() {
+    const eventsContainer = document.getElementById('upcoming-events');
+    const playerSelect = document.getElementById('player-select');
+    const selectedPlayerId = playerSelect.value;
+    
+    // Show loading state
+    eventsContainer.innerHTML = '<div class="loading-spinner">Loading events...</div>';
+    
+    // In a real app, you'd fetch this from server
+    // For demo, use mock data
+    setTimeout(() => {
+        // Get events from localStorage or use demo data
+        const events = JSON.parse(localStorage.getItem('events')) || getDemoEvents();
+        
+        // Filter events for the selected player
+        const playerEvents = events.filter(event => {
+            return !event.targetPlayers || 
+                event.targetPlayers.includes(selectedPlayerId) ||
+                event.targetPlayers.length === 0;
+        });
+        
+        // Sort by date
+        playerEvents.sort((a, b) => new Date(a.start) - new Date(b.start));
+        
+        // Take only upcoming events (next 7 days)
+        const now = new Date();
+        const nextWeek = new Date(now);
+        nextWeek.setDate(now.getDate() + 7);
+        
+        const upcomingEvents = playerEvents.filter(event => {
+            const eventDate = new Date(event.start);
+            return eventDate >= now && eventDate <= nextWeek;
+        });
+        
+        // Render events
+        if (upcomingEvents.length > 0) {
+            eventsContainer.innerHTML = '';
+            upcomingEvents.forEach(event => {
+                const eventEl = createEventElement(event);
+                eventsContainer.appendChild(eventEl);
+            });
+        } else {
+            eventsContainer.innerHTML = '<p class="empty-state">No upcoming events this week.</p>';
+        }
+    }, 1000);
+}
+
+function createEventElement(event) {
+    const eventEl = document.createElement('div');
+    eventEl.className = 'event-item';
+    eventEl.dataset.eventId = event.id;
+    
+    const eventDate = new Date(event.start);
+    const formattedDate = eventDate.toLocaleDateString('en-US', { 
+        weekday: 'short', 
+        month: 'short', 
+        day: 'numeric' 
+    });
+    
+    const formattedTime = eventDate.toLocaleTimeString('en-US', { 
+        hour: 'numeric', 
+        minute: '2-digit' 
+    });
+    
+    eventEl.innerHTML = `
+        <div class="event-time">
+            <div class="event-date">${formattedDate}</div>
+            <div class="event-hour">${formattedTime}</div>
+        </div>
+        <div class="event-details">
+            <h4>${event.title}</h4>
+            <p>${event.location || 'Location TBD'}</p>
+            <div class="event-category ${event.category.toLowerCase().replace(' ', '-')}">${event.category}</div>
+        </div>
+        <div class="event-actions">
+            <button class="availability-toggle ${event.available ? 'available' : 'unavailable'}" 
+                    data-event-id="${event.id}">
+                ${event.available ? 'Available' : 'Unavailable'}
+            </button>
+        </div>
+    `;
+    
+    // Add event listener for availability toggle
+    const availabilityButton = eventEl.querySelector('.availability-toggle');
+    availabilityButton.addEventListener('click', function() {
+        toggleAvailability(event.id);
+    });
+    
+    return eventEl;
+}
+
+function toggleAvailability(eventId) {
+    // In a real app, you'd update this on the server
+    // For demo, update in localStorage
+    const events = JSON.parse(localStorage.getItem('events')) || getDemoEvents();
+    const eventIndex = events.findIndex(e => e.id === eventId);
+    
+    if (eventIndex >= 0) {
+        events[eventIndex].available = !events[eventIndex].available;
+        localStorage.setItem('events', JSON.stringify(events));
+        
+        // Update the UI
+        const button = document.querySelector(`.availability-toggle[data-event-id="${eventId}"]`);
+        if (button) {
+            button.textContent = events[eventIndex].available ? 'Available' : 'Unavailable';
+            button.className = `availability-toggle ${events[eventIndex].available ? 'available' : 'unavailable'}`;
+        }
+    }
+}
+
+function getDemoEvents() {
+    // Current date for reference
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    
+    // Demo events
+    const events = [
+        {
+            id: '1',
+            title: 'Small Group Training',
+            start: new Date(today.getTime() + 24 * 60 * 60 * 1000), // Tomorrow
+            end: new Date(today.getTime() + 24 * 60 * 60 * 1000 + 60 * 60 * 1000), // 1 hour later
+            location: 'XL Apex',
+            category: 'Small Group',
+            available: true,
+            targetPlayers: []
+        },
+        {
+            id: '2',
+            title: 'Flag Football Practice',
+            start: new Date(today.getTime() + 2 * 24 * 60 * 60 * 1000), // Day after tomorrow
+            end: new Date(today.getTime() + 2 * 24 * 60 * 60 * 1000 + 60 * 60 * 1000), // 1 hour later
+            location: 'XL Apex',
+            category: 'Flag Football',
+            available: true,
+            targetPlayers: []
+        },
+        {
+            id: '3',
+            title: 'Soccer Practice',
+            start: new Date(today.getTime() + 3 * 24 * 60 * 60 * 1000), // 3 days from now
+            end: new Date(today.getTime() + 3 * 24 * 60 * 60 * 1000 + 105 * 60 * 1000), // 1h45m later
+            location: 'Piney Wood Park',
+            category: 'Soccer',
+            available: true,
+            targetPlayers: []
+        }
+    ];
+    
+    // Save demo events to localStorage
+    localStorage.setItem('events', JSON.stringify(events));
+    
+    return events;
+}
+
+function loadAvailability() {
+    // Implementation for availability component
+}
+
+function loadTrainingSessions() {
+    // Implementation for training sessions component
+}
+
+function loadDevelopmentNotes() {
+    // Implementation for development notes component
+}
+
+function filterEvents(filter) {
+    const eventItems = document.querySelectorAll('.event-item');
+    eventItems.forEach(item => {
+        if (filter === 'all' || item.classList.contains(filter)) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
 }
 
 function loadEvents() {
@@ -150,17 +364,6 @@ function loadEvents() {
             const eventId = this.getAttribute('data-event-id');
             showAvailabilityModal(eventId);
         });
-    });
-}
-
-function filterEvents(filter) {
-    const eventItems = document.querySelectorAll('.event-item');
-    eventItems.forEach(item => {
-        if (filter === 'all' || item.classList.contains(filter)) {
-            item.style.display = 'flex';
-        } else {
-            item.style.display = 'none';
-        }
     });
 }
 
@@ -669,4 +872,17 @@ function requestSwap(toSessionId, fromSessionId, note) {
     setTimeout(() => {
         document.body.removeChild(message);
     }, 3000);
+}
+
+function isUserLoggedIn() {
+    return localStorage.getItem('currentUser') !== null;
+}
+
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem('currentUser'));
+}
+
+function logoutUser() {
+    localStorage.removeItem('currentUser');
+    window.location.href = '/';
 }

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Trial - Apex Athletic Club</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
+</head>
+<body>
+    <div id="vanta-bg"></div>
+    <div id="overlay">
+        <div id="logo-container">
+            <a href="/">
+                <img id="club-logo" src="images/AAC Logo.png" alt="Apex Athletic Club Logo">
+            </a>
+        </div>
+        
+        <div class="main-content">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Request a Trial Session</h2>
+                    <p>Experience Apex Athletic Club training firsthand</p>
+                </div>
+                
+                <div class="form-body">
+                    <form id="trial-form" name="trial-request" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+                        <!-- Parent Information Section -->
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <div class="form-section-icon">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <h3 class="form-section-title">Parent/Guardian Information</h3>
+                            </div>
+                            
+                            <div class="form-field-row">
+                                <div class="form-field">
+                                    <label for="parent-first-name">First Name*</label>
+                                    <input type="text" id="parent-first-name" name="parentFirstName" required>
+                                    <span class="form-field-error">Please enter your first name</span>
+                                </div>
+                                <div class="form-field">
+                                    <label for="parent-last-name">Last Name*</label>
+                                    <input type="text" id="parent-last-name" name="parentLastName" required>
+                                    <span class="form-field-error">Please enter your last name</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-field">
+                                <label for="parent-email">Email*</label>
+                                <input type="email" id="parent-email" name="parentEmail" required>
+                                <span class="form-field-error">Please enter a valid email address</span>
+                            </div>
+                            
+                            <div class="form-field">
+                                <label for="parent-phone">Phone Number*</label>
+                                <input type="tel" id="parent-phone" name="parentPhone" placeholder="123-456-7890" required>
+                                <span class="form-field-error">Please enter a valid phone number</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Player Information Section -->
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <div class="form-section-icon">
+                                    <i class="fas fa-running"></i>
+                                </div>
+                                <h3 class="form-section-title">Player Information</h3>
+                            </div>
+                            
+                            <div class="form-field-row">
+                                <div class="form-field">
+                                    <label for="player-first-name">First Name*</label>
+                                    <input type="text" id="player-first-name" name="playerFirstName" required>
+                                    <span class="form-field-error">Please enter player's first name</span>
+                                </div>
+                                <div class="form-field">
+                                    <label for="player-last-name">Last Name*</label>
+                                    <input type="text" id="player-last-name" name="playerLastName" required>
+                                    <span class="form-field-error">Please enter player's last name</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-field-row">
+                                <div class="form-field">
+                                    <label for="player-dob">Date of Birth*</label>
+                                    <input type="date" id="player-dob" name="playerDob" required>
+                                    <span class="form-field-error">Please enter player's date of birth</span>
+                                </div>
+                                <div class="form-field">
+                                    <label for="player-gender">Gender*</label>
+                                    <select id="player-gender" name="playerGender" required>
+                                        <option value="" disabled selected>Select gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <span class="form-field-error">Please select player's gender</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-field">
+                                <label for="player-experience">Previous Experience</label>
+                                <select id="player-experience" name="playerExperience">
+                                    <option value="" disabled selected>Select experience level</option>
+                                    <option value="beginner">Beginner (No Prior Experience)</option>
+                                    <option value="recreational">Recreational (Played For Fun)</option>
+                                    <option value="club">Prior Club Experience</option>
+                                    <option value="advanced">Advanced (Competitive Level)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Why Join AAC Section -->
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <div class="form-section-icon">
+                                    <i class="fas fa-question-circle"></i>
+                                </div>
+                                <h3 class="form-section-title">Additional Information</h3>
+                            </div>
+                            
+                            <div class="form-field">
+                                <label for="why-join">Why do you want to join Apex Athletic Club?*</label>
+                                <textarea id="why-join" name="whyJoin" rows="4" placeholder="Tell us why you're interested in joining our club..." required></textarea>
+                                <span class="form-field-error">Please tell us why you want to join AAC</span>
+                            </div>
+                            
+                            <div class="form-field">
+                                <label for="additional-info">Any other information</label>
+                                <textarea id="additional-info" name="additionalInfo" rows="4" placeholder="Any additional information or questions?"></textarea>
+                            </div>
+                            
+                            <div data-netlify-recaptcha="true"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <a href="/" class="cta-button secondary">
+                                <i class="fas fa-arrow-left"></i> BACK TO HOME
+                            </a>
+                            <button type="submit" class="cta-button">
+                                <i class="fas fa-paper-plane"></i> SUBMIT REQUEST
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Vanta background
+        VANTA.CELLS({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            color1: 0x045034,
+            color2: 0x109963,
+            size: 0.20,
+            speed: 0.00
+        });
+        
+        // Form validation
+        document.getElementById('trial-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let valid = true;
+            
+            // Validate all required fields
+            const requiredFields = this.querySelectorAll('[required]');
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    valid = false;
+                    field.closest('.form-field').classList.add('invalid');
+                } else {
+                    field.closest('.form-field').classList.remove('invalid');
+                }
+            });
+            
+            if (valid) {
+                // Show submission in progress
+                const submitButton = this.querySelector('button[type="submit"]');
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SUBMITTING...';
+                submitButton.disabled = true;
+                
+                // Submit the form
+                const formData = new FormData(this);
+                fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Success - show message and reset form
+                        alert('Thank you for your interest! We will contact you soon to schedule your trial session.');
+                        this.reset();
+                        window.location.href = '/';
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('There was a problem submitting your request. Please try again or contact us directly.');
+                })
+                .finally(() => {
+                    submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> SUBMIT REQUEST';
+                    submitButton.disabled = false;
+                });
+            } else {
+                // Scroll to first error
+                const firstError = document.querySelector('.invalid');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+        
+        // Live validation
+        document.querySelectorAll('#trial-form input[required], #trial-form select[required]').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    this.closest('.form-field').classList.add('invalid');
+                } else {
+                    this.closest('.form-field').classList.remove('invalid');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

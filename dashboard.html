@@ -3,68 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player Dashboard - Apex Athletic Club</title>
-    <link rel="stylesheet" href="dashboard.css">
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
+    <title>Team Dashboard - Apex Athletic Club</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css">
 </head>
 <body>
     <div id="vanta-bg"></div>
     <div id="overlay">
-        <div id="logo-container">
-            <a href="/">
-                <img id="club-logo" src="images/AAC Logo.png" alt="Apex Athletic Club Logo">
-            </a>
-        </div>
+        <header class="app-header">
+            <div class="logo-container">
+                <a href="/">
+                    <img id="club-logo" src="images/AAC Logo.png" alt="Apex Athletic Club Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                    <li><a href="schedule.html">Schedule</a></li>
+                    <li><a href="player-profile.html">Profile</a></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <span id="user-name">Loading...</span>
+                <button id="logout-btn" class="small-btn">Logout</button>
+            </div>
+        </header>
         
         <div class="dashboard-container">
-            <div class="sidebar">
-                <nav>
-                    <ul>
-                        <li class="active"><a href="#schedule">My Schedule</a></li>
-                        <li><a href="#availability">Update Availability</a></li>
-                        <li><a href="#small-group">Small Group Training</a></li>
-                        <li><a href="#development">Player Development</a></li>
-                        <li><a href="#payments">Payments</a></li>
-                        <li><a href="#settings">Settings</a></li>
-                    </ul>
-                </nav>
-                <div class="user-info">
-                    <p>Logged in as: <span id="player-name">Player Name</span></p>
-                    <button id="logout-btn">Logout</button>
+            <div class="dashboard-sidebar">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#upcoming">Upcoming Events</a></li>
+                    <li><a href="#availability">Update Availability</a></li>
+                    <li><a href="#training">Small Group Training</a></li>
+                    <li><a href="#development">Development Notes</a></li>
+                </ul>
+                
+                <div class="player-selector">
+                    <h3>Select Player</h3>
+                    <select id="player-select">
+                        <!-- Will be populated dynamically -->
+                    </select>
                 </div>
             </div>
             
-            <div class="main-content">
-                <!-- Schedule Section -->
-                <section id="schedule" class="active-section">
-                    <h2>My Schedule</h2>
-                    <div class="filter-controls">
-                        <label>Filter by: </label>
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="small-group">Small Group</button>
-                        <button class="filter-btn" data-filter="flag-football">Flag Football</button>
-                        <button class="filter-btn" data-filter="outdoor-soccer">Outdoor Soccer</button>
-                        <button class="filter-btn" data-filter="indoor-soccer">Indoor Soccer</button>
-                    </div>
-                    <div class="calendar-view">
-                        <!-- Calendar will be populated by JavaScript -->
-                    </div>
-                    <div class="upcoming-events">
-                        <h3>Upcoming Events</h3>
-                        <ul id="events-list">
-                            <!-- Events will be populated by JavaScript -->
-                        </ul>
+            <div class="dashboard-main">
+                <section id="upcoming" class="dashboard-section">
+                    <h2>Upcoming Events</h2>
+                    <div class="event-list" id="upcoming-events">
+                        <!-- Will be populated dynamically -->
+                        <div class="loading-spinner">Loading events...</div>
                     </div>
                 </section>
                 
-                <!-- Other sections will be added here -->
+                <section id="availability" class="dashboard-section">
+                    <h2>Availability This Week</h2>
+                    <div class="availability-grid" id="availability-container">
+                        <!-- Will be populated dynamically -->
+                    </div>
+                </section>
+                
+                <section id="training" class="dashboard-section">
+                    <h2>Small Group Training</h2>
+                    <div class="training-status">
+                        <p>Available Credits: <span id="training-credits">0</span></p>
+                        <button id="request-swap" class="cta-button secondary">Request Session Swap</button>
+                    </div>
+                    <div class="training-schedule" id="training-sessions">
+                        <!-- Will be populated dynamically -->
+                    </div>
+                </section>
+                
+                <section id="development" class="dashboard-section">
+                    <h2>Latest Development Notes</h2>
+                    <div class="notes-container" id="development-notes">
+                        <!-- Will be populated dynamically -->
+                        <p class="empty-state">No development notes yet.</p>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
     
+    <!-- Modals for interactions -->
+    <div id="availability-modal" class="modal hidden">
+        <!-- Modal content -->
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
     <script src="dashboard.js"></script>
 </body>
 </html>
