@@ -345,6 +345,7 @@ body, html {
     justify-content: center;
     gap: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
 }
 
 .cta-button:hover {
@@ -470,6 +471,7 @@ body, html {
     align-items: center;
     gap: 8px;
     margin-bottom: 20px;
+    text-decoration: none;
 }
 
 .learn-more-btn:hover {
@@ -1331,4 +1333,51 @@ body, html {
 /* Adjust learn more button margin */
 .learn-more-btn {
     margin-bottom: 8px;
+}
+
+/* Remove the previous background styles */
+#programs {
+    position: relative;
+    overflow: hidden; /* Ensure the image doesn't spill out */
+}
+
+.section-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.section-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.section-background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+#programs h2, #programs .programs-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* We don't need this anymore */
+.training-image-container {
+    display: none;
+}
+
+/* Also add to other button classes */
+.select-program-btn, .learn-more-btn, .program-type-button, .zelle-pay-button {
+    text-decoration: none;
 }

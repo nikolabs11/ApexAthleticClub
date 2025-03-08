@@ -381,7 +381,6 @@ if (inviteForm) {
 }
 
 // Trial form submission
-const trialForm = document.getElementById('trial-form');
 if (trialForm) {
     trialForm.addEventListener('submit', function(e) {
         e.preventDefault();
