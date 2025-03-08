@@ -201,10 +201,8 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        // Success - show message and reset form
-                        alert('Thank you for your interest! We will contact you soon to schedule your trial session.');
-                        this.reset();
-                        window.location.href = '/';
+                        // Success - redirect to confirmation page
+                        window.location.href = 'trial-confirmation.html';
                     } else {
                         throw new Error('Network response was not ok');
                     }
