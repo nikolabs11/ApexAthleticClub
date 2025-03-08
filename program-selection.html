@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Selection - Apex Athletic Club</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
+    <script src="playerData.js"></script>
+</head>
+<body>
+    <div id="vanta-bg"></div>
+    <div id="overlay">
+        <div id="logo-container">
+            <a href="/">
+                <img id="club-logo" src="images/AAC Logo.png" alt="Apex Athletic Club Logo">
+            </a>
+        </div>
+        
+        <div class="program-selection-container">
+            <div class="welcome-header">
+                <h1>Welcome to Apex Athletic Club</h1>
+                <div id="player-info">
+                    <p>Welcome, <span id="player-name">Player</span>!</p>
+                </div>
+            </div>
+            
+            <div class="program-options">
+                <h2>Choose Your Program</h2>
+                <p>Please select one of our program options below:</p>
+                
+                <div class="program-cards">
+                    <div class="program-option-card">
+                        <h3>Flight School</h3>
+                        <div class="program-option-content">
+                            <p><strong>Training Focus</strong></p>
+                            <ul>
+                                <li>Year-round training</li>
+                                <li>Maximum 4 players per coach</li>
+                                <li>Personalized attention and feedback</li>
+                                <li>Focused skill development</li>
+                                <li>Option to join team practices</li>
+                                <li>Outdoor tournament opportunities</li>
+                            </ul>
+                            <div class="price-options">
+                                <div class="price-option">
+                                    <input type="radio" id="flight-12month" name="flight-payment" value="12-month">
+                                    <label for="flight-12month">12 Month Payment: $1,000</label>
+                                </div>
+                                <div class="price-option">
+                                    <input type="radio" id="flight-6month" name="flight-payment" value="6-month">
+                                    <label for="flight-6month">6 Month Payment: $550</label>
+                                </div>
+                                <div class="price-option">
+                                    <input type="radio" id="flight-monthly" name="flight-payment" value="monthly" checked>
+                                    <label for="flight-monthly">Monthly Payment: $100</label>
+                                </div>
+                            </div>
+                            <button class="select-program-btn" data-program="flight-school">Select Flight School</button>
+                        </div>
+                    </div>
+                    
+                    <div class="program-option-card">
+                        <h3>Raptors Academy</h3>
+                        <div class="program-option-content">
+                            <p><strong>Full Program</strong></p>
+                            <ul>
+                                <li>Indoor Soccer/Futsal (October - February and May - August)</li>
+                                <li>Outdoor Soccer (March - May and August - October)</li>
+                                <li>Small Group Training (Year-round)</li>
+                                <li>Judo, Flag Football, and more</li>
+                                <li>Professional, licensed coaches</li>
+                                <li>Competitive matches through US Club Soccer</li>
+                            </ul>
+                            <div class="price-options">
+                                <div class="price-option">
+                                    <input type="radio" id="raptors-12month" name="raptors-payment" value="12-month">
+                                    <label for="raptors-12month">12 Month Payment: $2,100</label>
+                                </div>
+                                <div class="price-option">
+                                    <input type="radio" id="raptors-6month" name="raptors-payment" value="6-month">
+                                    <label for="raptors-6month">6 Month Payment: $1,100</label>
+                                </div>
+                                <div class="price-option">
+                                    <input type="radio" id="raptors-monthly" name="raptors-payment" value="monthly" checked>
+                                    <label for="raptors-monthly">Monthly Payment: $200</label>
+                                </div>
+                            </div>
+                            <button class="select-program-btn" data-program="raptors-academy">Select Raptors Academy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="program-details-container hidden" id="flight-school-details">
+                <h2>Flight School Registration</h2>
+                <div class="program-details-content">
+                    <h3>Small Group Training Preferences</h3>
+                    
+                    <div class="form-section">
+                        <h4>Preferred Locations</h4>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="location-hunter" name="locations" value="hunter">
+                                <label for="location-hunter">Hunter Street Park</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="location-apex" name="locations" value="apex">
+                                <label for="location-apex">Apex Nature Park</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="location-xlsw" name="locations" value="xlsw">
+                                <label for="location-xlsw">XL Sports World Apex</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h4>Preferred Days</h4>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="day-monday" name="days" value="monday">
+                                <label for="day-monday">Monday</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="day-tuesday" name="days" value="tuesday">
+                                <label for="day-tuesday">Tuesday</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="day-wednesday" name="days" value="wednesday">
+                                <label for="day-wednesday">Wednesday</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="day-thursday" name="days" value="thursday">
+                                <label for="day-thursday">Thursday</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="day-friday" name="days" value="friday">
+                                <label for="day-friday">Friday</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="day-saturday" name="days" value="saturday">
+                                <label for="day-saturday">Saturday</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="day-sunday" name="days" value="sunday">
+                                <label for="day-sunday">Sunday</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-section">
+                        <h3>Payment Information</h3>
+                        <p>Selected Plan: <span id="flight-payment-plan">Monthly Payment: $100</span></p>
+                        <p>Please complete your registration by making a payment via Zelle to:</p>
+                        <div class="zelle-info">
+                            <p><strong>brett@apexraptors.com</strong></p>
+                            <a href="#" id="flight-zelle-link" class="zelle-button">Pay with Zelle</a>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button id="flight-back-btn" class="back-btn">Back to Program Selection</button>
+                        <button id="flight-complete-btn" class="complete-btn">Complete Registration</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="program-details-container hidden" id="raptors-academy-details">
+                <h2>Raptors Academy Registration</h2>
+                <div class="program-details-content">
+                    <h3>Required Programs</h3>
+                    <ul class="required-programs">
+                        <li>Indoor Soccer/Futsal</li>
+                        <li>Outdoor Soccer</li>
+                        <li>Small Group Training</li>
+                    </ul>
+                    
+                    <h3>Optional Programs</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="judo-option" name="optional-programs" value="judo">
+                            <label for="judo-option">Judo</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="flag-football-option" name="optional-programs" value="flag-football">
+                            <label for="flag-football-option">Flag Football</label>
+                        </div>
+                    </div>
+                    
+                    <div id="judo-details" class="optional-details hidden">
+                        <h4>Judo Preferences</h4>
+                        <p>Location: Cary Judo Club</p>
+                        <p>Preferred Day:</p>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="judo-wednesday" name="judo-day" value="wednesday" checked>
+                                <label for="judo-wednesday">Wednesday</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="judo-friday" name="judo-day" value="friday">
+                                <label for="judo-friday">Friday</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="flag-football-details" class="optional-details hidden">
+                        <h4>Flag Football Preferences</h4>
+                        <p>Location: Apex Community Park</p>
+                        <p>Preferred Day:</p>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="ff-sunday" name="ff-day" value="sunday" checked>
+                                <label for="ff-sunday">Sunday</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="ff-thursday" name="ff-day" value="thursday">
+                                <label for="ff-thursday">Thursday</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Small Group Training Preferences</h3>
+                        <h4>Preferred Locations</h4>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="ra-location-hunter" name="ra-locations" value="hunter">
+                                <label for="ra-location-hunter">Hunter Street Park</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="ra-location-apex" name="ra-locations" value="apex">
+                                <label for="ra-location-apex">Apex Nature Park</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="ra-location-xlsw" name="ra-locations" value="xlsw">
+                                <label for="ra-location-xlsw">XL Sports World Apex</label>
+                            </div>
+                        </div>
+                        
+                        <h4>Preferred Days</h4>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="ra-day-monday" name="ra-days" value="monday">
+                                <label for="ra-day-monday">Monday</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="ra-day-tuesday" name="ra-days" value="tuesday">
+                                <label for="ra-day-tuesday">Tuesday</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="ra-day-wednesday" name="ra-days" value="wednesday">
+                                <label for="ra-day-wednesday">Wednesday</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="ra-day-thursday" name="ra-days" value="thursday">
+                                <label for="ra-day-thursday">Thursday</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="ra-day-friday" name="ra-days" value="friday">
+                                <label for="ra-day-friday">Friday</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="ra-day-saturday" name="ra-days" value="saturday">
+                                <label for="ra-day-saturday">Saturday</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="ra-day-sunday" name="ra-days" value="sunday">
+                                <label for="ra-day-sunday">Sunday</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-section">
+                        <h3>Payment Information</h3>
+                        <p>Selected Plan: <span id="raptors-payment-plan">Monthly Payment: $200</span></p>
+                        <p>Please complete your registration by making a payment via Zelle to:</p>
+                        <div class="zelle-info">
+                            <p><strong>brett@apexraptors.com</strong></p>
+                            <a href="#" id="raptors-zelle-link" class="zelle-button">Pay with Zelle</a>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button id="raptors-back-btn" class="back-btn">Back to Program Selection</button>
+                        <button id="raptors-complete-btn" class="complete-btn">Complete Registration</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="registration-complete hidden" id="registration-complete">
+                <h2>Registration Complete!</h2>
+                <div class="complete-content">
+                    <p>Thank you for registering with Apex Athletic Club!</p>
+                    <p>Your registration has been submitted successfully.</p>
+                    <p>You will receive an email confirmation shortly with next steps.</p>
+                    <p>You can now access your player dashboard to view your schedule and manage your account.</p>
+                    <button id="go-to-dashboard" class="cta-button">Go to Dashboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sticky Help Button -->
+    <button class="help-button" title="Need Help?">?</button>
+    <div id="help-message" class="help-message" style="display: none;">
+        Contact <a href="mailto:brett@apexraptors.com">brett@apexraptors.com</a> for any questions.
+    </div>
+    
+    <script>
+        // Initialize Vanta background
+        VANTA.CELLS({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            color1: 0x045034,
+            color2: 0x109963,
+            size: 0.20,
+            speed: 0.00,
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const loggedIn = localStorage.getItem('loggedIn');
+            const inviteCode = localStorage.getItem('inviteCode');
+            
+            if (!loggedIn || !inviteCode) {
+                window.location.href = '/';
+                return;
+            }
+            
+            // Load player info
+            if (typeof getPlayerByCode === 'function') {
+                const playerInfo = getPlayerByCode(inviteCode);
+                if (playerInfo) {
+                    document.getElementById('player-name').textContent = playerInfo.fullName;
+                }
+            }
+            
+            // Program selection buttons
+            document.querySelectorAll('.select-program-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const program = this.getAttribute('data-program');
+                    document.querySelector('.program-options').classList.add('hidden');
+                    
+                    if (program === 'flight-school') {
+                        document.getElementById('flight-school-details').classList.remove('hidden');
+                    } else if (program === 'raptors-academy') {
+                        document.getElementById('raptors-academy-details').classList.remove('hidden');
+                    }
+                });
+            });
+            
+            // Back buttons
+            document.getElementById('flight-back-btn').addEventListener('click', function() {
+                document.getElementById('flight-school-details').classList.add('hidden');
+                document.querySelector('.program-options').classList.remove('hidden');
+            });
+            
+            document.getElementById('raptors-back-btn').addEventListener('click', function() {
+                document.getElementById('raptors-academy-details').classList.add('hidden');
+                document.querySelector('.program-options').classList.remove('hidden');
+            });
+            
+            // Complete registration buttons
+            document.getElementById('flight-complete-btn').addEventListener('click', function() {
+                document.getElementById('flight-school-details').classList.add('hidden');
+                document.getElementById('registration-complete').classList.remove('hidden');
+                localStorage.setItem('programType', 'flight-school');
+            });
+            
+            document.getElementById('raptors-complete-btn').addEventListener('click', function() {
+                document.getElementById('raptors-academy-details').classList.add('hidden');
+                document.getElementById('registration-complete').classList.remove('hidden');
+                localStorage.setItem('programType', 'raptors-academy');
+            });
+            
+            // Go to dashboard button
+            document.getElementById('go-to-dashboard').addEventListener('click', function() {
+                window.location.href = '/dashboard.html';
+            });
+            
+            // Optional program toggles
+            document.getElementById('judo-option').addEventListener('change', function() {
+                document.getElementById('judo-details').classList.toggle('hidden', !this.checked);
+            });
+            
+            document.getElementById('flag-football-option').addEventListener('change', function() {
+                document.getElementById('flag-football-details').classList.toggle('hidden', !this.checked);
+            });
+            
+            // Payment plan selection for Flight School
+            document.querySelectorAll('input[name="flight-payment"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    let planText, amount;
+                    if (this.value === '12-month') {
+                        planText = 'Annual Payment: $1,000';
+                        amount = '1000';
+                    } else if (this.value === '6-month') {
+                        planText = '6 Month Payment: $550';
+                        amount = '550';
+                    } else {
+                        planText = 'Monthly Payment: $100';
+                        amount = '100';
+                    }
+                    document.getElementById('flight-payment-plan').textContent = planText;
+                    document.getElementById('flight-zelle-link').href = `https://enroll.zellepay.com/qr-codes?data={"token":"brett@apexraptors.com","amount":"${amount}"}`;
+                });
+            });
+            
+            // Payment plan selection for Raptors Academy
+            document.querySelectorAll('input[name="raptors-payment"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    let planText, amount;
+                    if (this.value === '12-month') {
+                        planText = 'Annual Payment: $2,100';
+                        amount = '2100';
+                    } else if (this.value === '6-month') {
+                        planText = '6 Month Payment: $1,100';
+                        amount = '1100';
+                    } else {
+                        planText = 'Monthly Payment: $200';
+                        amount = '200';
+                    }
+                    document.getElementById('raptors-payment-plan').textContent = planText;
+                    document.getElementById('raptors-zelle-link').href = `https://enroll.zellepay.com/qr-codes?data={"token":"brett@apexraptors.com","amount":"${amount}"}`;
+                });
+            });
+            
+            // Set initial Zelle links
+            document.getElementById('flight-zelle-link').href = `https://enroll.zellepay.com/qr-codes?data={"token":"brett@apexraptors.com","amount":"100"}`;
+            document.getElementById('raptors-zelle-link').href = `https://enroll.zellepay.com/qr-codes?data={"token":"brett@apexraptors.com","amount":"200"}`;
+            
+            // Help button
+            document.querySelector('.help-button').addEventListener('click', function() {
+                const helpMessage = document.getElementById('help-message');
+                helpMessage.style.display = helpMessage.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+    </script>
+    
+    <style>
+        /* Additional styles for program selection page */
+        .program-selection-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .welcome-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .program-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .program-option-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            color: var(--text-dark);
+        }
+        
+        .program-option-card h3 {
+            color: var(--primary-color);
+            font-family: var(--heading-font);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .program-option-content ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .price-options {
+            margin: 20px 0;
+        }
+        
+        .price-option {
+            margin-bottom: 10px;
+        }
+        
+        .select-program-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 24px;
+            font-family: var(--heading-font);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .select-program-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .program-details-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 30px;
+            color: var(--text-dark);
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .program-details-container h2 {
+            color: var(--primary-color);
+            font-family: var(--heading-font);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+        }
+        
+        .checkbox-group, .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-option, .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .payment-section {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .zelle-info {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .zelle-button {
+            display: inline-block;
+            background: #6B4CD5;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .zelle-button:hover {
+            background: #5939B3;
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .back-btn, .complete-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-family: var(--heading-font);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-btn {
+            background: #666;
+            color: white;
+        }
+        
+        .back-btn:hover {
+            background: #888;
+        }
+        
+        .complete-btn {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .complete-btn:hover {
+            background: var(--secondary-color);
+        }
+        
+        .registration-complete {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 30px;
+            color: var(--text-dark);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .registration-complete h2 {
+            color: var(--primary-color);
+            font-family: var(--heading-font);
+            margin-bottom: 20px;
+        }
+        
+        .complete-content {
+            margin-bottom: 30px;
+        }
+        
+        .required-programs {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .optional-details {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .button-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .back-btn, .complete-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</body>
+</html> 

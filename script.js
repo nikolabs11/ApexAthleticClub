@@ -222,6 +222,68 @@ document.addEventListener("DOMContentLoaded", function() {
         inviteCodeInput.value = inviteCode;
         submitInviteCode();
     }
+
+    // Populate birthday dropdowns
+    populateDayDropdown();
+    populateYearDropdown();
+
+    // Register button event listeners
+    document.getElementById('register-button').addEventListener('click', showInviteModal);
+    document.getElementById('register-button-bottom').addEventListener('click', showInviteModal);
+    
+    // Trial button event listeners
+    document.getElementById('trial-button').addEventListener('click', showTrialModal);
+    document.getElementById('trial-button-bottom').addEventListener('click', showTrialModal);
+    
+    // Close modal buttons
+    document.querySelectorAll('.close-modal').forEach(button => {
+        button.addEventListener('click', function() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.classList.add('hidden');
+            });
+        });
+    });
+    
+    // Close modal when clicking outside
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+    });
+    
+    // Invite form submission
+    document.getElementById('invite-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const inviteCode = document.getElementById('invite-code').value.trim().toUpperCase();
+        if (inviteCode) {
+            handleInviteCode(inviteCode);
+        } else {
+            alert('Please enter an invite code.');
+        }
+    });
+    
+    // Trial form submission
+    document.getElementById('trial-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (this.checkValidity()) {
+            // Form is valid, submit it
+            submitTrialForm(this);
+        } else {
+            // Trigger browser's native validation
+            this.reportValidity();
+        }
+    });
+    
+    // Phone number formatting
+    document.getElementById('phone').addEventListener('input', function(e) {
+        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    });
+
+    // Initialize carousel
+    initCarousel();
 });
 
 function submitInviteCode() {
@@ -270,4 +332,177 @@ function submitInviteCode() {
     } else {
         alert('Invalid invite code. Please try again.');
     }
+}
+
+// Show invite code modal
+function showInviteModal() {
+    document.getElementById('invite-modal').classList.remove('hidden');
+    document.getElementById('invite-code').focus();
+}
+
+// Show trial request modal
+function showTrialModal() {
+    document.getElementById('trial-modal').classList.remove('hidden');
+    document.getElementById('parent-first-name').focus();
+}
+
+// Handle invite code submission
+function handleInviteCode(code) {
+    const loadingIndicator = document.getElementById('invite-loading');
+    loadingIndicator.classList.remove('hidden');
+    loadingIndicator.textContent = 'Checking invite code...';
+    
+    // List of valid invite codes
+    const validCodes = [
+        'AHRIK2025', 'RAYYAN2025', 'ELLIOT2025', 'COOPER2025',
+        'LOGAN2025', 'KABIR2025', 'SERGEI2025', 'ERIC2025',
+        'JERRY2025', 'JAXON2025', 'SHRAVIN2025', 'ATHARV2025',
+        'ANTONIO2025', 'AYAAN2025', 'CAMERON2025', 'YUHI2025',
+        'IVAN2025', 'HOLDEN2025', 'JACK2025', 'MASATERU2025'
+    ];
+    
+    // Simulate server check with timeout
+    setTimeout(() => {
+        if (validCodes.includes(code)) {
+            loadingIndicator.textContent = 'Valid invite code - redirecting...';
+            
+            // Store the invite code and set logged in status
+            localStorage.setItem('inviteCode', code);
+            localStorage.setItem('loggedIn', 'true');
+            
+            // Redirect to program selection page
+            setTimeout(() => {
+                window.location.href = 'program-selection.html';
+            }, 1000);
+        } else {
+            loadingIndicator.textContent = 'Invalid invite code';
+            setTimeout(() => {
+                loadingIndicator.classList.add('hidden');
+            }, 2000);
+        }
+    }, 1500);
+}
+
+// Submit trial request form
+function submitTrialForm(form) {
+    const formData = new FormData(form);
+    const submitButton = form.querySelector('button[type="submit"]');
+    
+    // Disable submit button and show loading state
+    submitButton.disabled = true;
+    submitButton.textContent = 'SUBMITTING...';
+    
+    // Use Netlify's form handling
+    fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+    })
+    .then(response => {
+        if (response.ok) {
+            // Show success message
+            alert('Thank you for your interest! We will contact you soon about trial opportunities.');
+            
+            // Reset form and close modal
+            form.reset();
+            document.getElementById('trial-modal').classList.add('hidden');
+        } else {
+            throw new Error('Network response was not ok');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('There was a problem submitting your request. Please try again or contact us directly.');
+    })
+    .finally(() => {
+        // Re-enable submit button
+        submitButton.disabled = false;
+        submitButton.textContent = 'SUBMIT';
+        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> SUBMIT';
+    });
+}
+
+// Initialize sports carousel
+function initCarousel() {
+    const track = document.querySelector('.carousel-track');
+    const cards = Array.from(track.children);
+    const nextButton = document.querySelector('.carousel-control.next');
+    const prevButton = document.querySelector('.carousel-control.prev');
+    
+    if (!track || !cards.length || !nextButton || !prevButton) {
+        console.error("Carousel elements not found");
+        return;
+    }
+    
+    // Set card width to 100% of container
+    const cardWidth = track.parentElement.clientWidth;
+    
+    // Position cards next to each other
+    cards.forEach((card, index) => {
+        card.style.left = cardWidth * index + 'px';
+    });
+    
+    // Current card index
+    let currentIndex = 0;
+    
+    // Update card indicator function
+    const updateCardIndicator = () => {
+        document.querySelector('.card-indicator').textContent = `${currentIndex + 1}/${cards.length}`;
+    };
+    
+    // Move to card function
+    const moveToCard = (targetIndex) => {
+        // Ensure index is within bounds
+        if (targetIndex < 0) targetIndex = 0;
+        if (targetIndex >= cards.length) targetIndex = cards.length - 1;
+        
+        currentIndex = targetIndex;
+        const targetPosition = -cardWidth * targetIndex;
+        
+        // Apply transform to move track
+        track.style.transform = `translateX(${targetPosition}px)`;
+        
+        // Update indicator
+        updateCardIndicator();
+        
+        // Update button states
+        prevButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex === cards.length - 1;
+        
+        // Update button appearance
+        prevButton.style.opacity = currentIndex === 0 ? "0.5" : "1";
+        nextButton.style.opacity = currentIndex === cards.length - 1 ? "0.5" : "1";
+    };
+    
+    // Initialize card indicator
+    const carouselControls = document.querySelector('.carousel-controls');
+    const indicator = document.createElement('div');
+    indicator.className = 'card-indicator';
+    carouselControls.appendChild(indicator);
+    
+    // Set initial state
+    updateCardIndicator();
+    
+    // Next button click
+    nextButton.addEventListener('click', () => {
+        moveToCard(currentIndex + 1);
+    });
+    
+    // Previous button click
+    prevButton.addEventListener('click', () => {
+        moveToCard(currentIndex - 1);
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        const newCardWidth = track.parentElement.clientWidth;
+        
+        // Update card positions
+        cards.forEach((card, index) => {
+            card.style.left = newCardWidth * index + 'px';
+        });
+        
+        // Update track position
+        moveToCard(currentIndex);
+    });
 }

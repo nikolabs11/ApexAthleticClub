@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
     <script src="script.js" defer></script>
@@ -19,88 +20,360 @@
                 <img id="club-logo" src="images/AAC Logo.png" alt="Apex Athletic Club Logo">
             </a>
         </div>
-        <div id="content-container" class="hidden">
-            <div class="content">
-                <button id="learn-more"><span>LEARN MORE</span></button>
-                <div id="partnership-container">
-                    <img id="partner-logo" src="images/Ecuador_national_football_team.png" alt="Ecuador National Football Team Logo">
-                    <p id="partnership-text">In partnership with the Ecuadorian Football Federation</p>
-                </div>
+        
+        <div class="hero-section">
+            <h1>Apex Athletic Club</h1>
+            <h2>A Talent Factory for Promising Individuals</h2>
+            <div class="hero-buttons">
+                <button id="register-button" class="cta-button"><i class="fas fa-user-plus"></i> REGISTER</button>
+                <button id="trial-button" class="cta-button secondary"><i class="fas fa-calendar-check"></i> REQUEST A TRIAL</button>
             </div>
-            <div id="actions" class="hidden">
-                <input type="text" id="invite-code" placeholder="Enter Invite Code" class="hidden">
-                <button id="submit-code" class="hidden"><span>SUBMIT CODE</span></button>
-                <button id="enter-code"><span>ENTER INVITE CODE</span></button>
-                <button id="request-trial"><span>REQUEST A TRIAL</span></button>
-                <button id="back"><span>RETURN</span></button>
+            <div id="partnership-container">
+                <img id="partner-logo" src="images/Ecuador_national_football_team.png" alt="Ecuador National Football Team Logo">
+                <p id="partnership-text">In partnership with the Ecuadorian Football Federation</p>
             </div>
-            <form id="trial-form" class="hidden" name="trial-request" method="POST" data-netlify="true" data-netlify-recaptcha="true">
-                <div class="name-fields">
-                    <input type="text" name="parentFirstName" placeholder="Parent First Name" required>
-                    <input type="text" name="parentLastName" placeholder="Parent Last Name" required>
+        </div>
+
+        <div class="main-content">
+            <!-- About Us Section -->
+            <section id="about" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> About Us</h2>
+                <div class="section-content">
+                    <p>Our coaches are full-time professionals that utilize best practices from the top youth academies around the world. We offer 12 months of programming across multiple sports with the primary focus on soccer.</p>
+                    
+                    <p>Training and development within our Raptors Academy is guaranteed but placement on official Raptors teams is not. Playing on official Raptors teams is dependent on development, attendance, and performances in games. Regardless, we will have teams and games for all Apex Athletic Club players.</p>
                 </div>
-                <div class="name-fields">
-                    <input type="text" name="playerFirstName" placeholder="Player First Name" required>
-                    <input type="text" name="playerLastName" placeholder="Player Last Name" required>
+            </section>
+
+            <!-- Programs Section -->
+            <section id="programs" class="content-section">
+                <h2><i class="fas fa-graduation-cap"></i> Our Programs</h2>
+                
+                <div class="programs-container">
+                    <div class="program-card">
+                        <h3><i class="fas fa-plane"></i> Flight School</h3>
+                        <div class="program-details">
+                            <p><strong>Training Focus</strong></p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Year-round training</li>
+                                <li><i class="fas fa-check"></i> Maximum 4 players per coach</li>
+                                <li><i class="fas fa-check"></i> Personalized attention and feedback</li>
+                                <li><i class="fas fa-check"></i> Focused skill development</li>
+                                <li><i class="fas fa-check"></i> Option to join team practices</li>
+                                <li><i class="fas fa-check"></i> Outdoor tournament opportunities</li>
+                            </ul>
+                            <p class="program-price">Starting at $100/month</p>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card">
+                        <h3><i class="fas fa-trophy"></i> Raptors Academy</h3>
+                        <div class="program-details">
+                            <p><strong>Full Program</strong></p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Indoor Soccer/Futsal (Oct-Feb & May-Aug)</li>
+                                <li><i class="fas fa-check"></i> Outdoor Soccer (Mar-May & Aug-Oct)</li>
+                                <li><i class="fas fa-check"></i> Small Group Training (Year-round)</li>
+                                <li><i class="fas fa-check"></i> Judo, Flag Football, and more</li>
+                                <li><i class="fas fa-check"></i> Professional, licensed coaches</li>
+                                <li><i class="fas fa-check"></i> Competitive matches through US Club Soccer</li>
+                            </ul>
+                            <p class="program-price">Starting at $200/month</p>
+                        </div>
+                    </div>
                 </div>
-                <label for="birthday-fields">Player's Birthday:</label>
-                <div class="birthday-fields" id="birthday-fields">
-                    <select name="birthMonth" required>
-                        <option value="" disabled selected>Month</option>
-                        <option value="01">January</option>
-                        <option value="02">February</option>
-                        <option value="03">March</option>
-                        <option value="04">April</option>
-                        <option value="05">May</option>
-                        <option value="06">June</option>
-                        <option value="07">July</option>
-                        <option value="08">August</option>
-                        <option value="09">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                    <select name="birthDay" required>
-                        <option value="" disabled selected>Day</option>
-                        <!-- JavaScript will populate this -->
-                    </select>
-                    <select name="birthYear" required>
-                        <option value="" disabled selected>Year</option>
-                        <!-- JavaScript will populate this -->
-                    </select>
+            </section>
+
+            <!-- Sports Section with Rotating Cards -->
+            <section id="sports" class="content-section">
+                <h2><i class="fas fa-futbol"></i> Sports We Offer</h2>
+                
+                <div class="sports-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-track">
+                            <!-- Indoor Soccer/Futsal Card -->
+                            <div class="sport-card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <h3>Indoor Soccer/Futsal</h3>
+                                        <i class="fas fa-futbol card-icon"></i>
+                                        <p><strong>October - February and May - August</strong></p>
+                                    </div>
+                                    <div class="card-back">
+                                        <h3>Indoor Soccer/Futsal</h3>
+                                        <p>Focus on technical skills and fast-paced decision making in a controlled environment.</p>
+                                        <ul>
+                                            <li>Small-sided games</li>
+                                            <li>Technical skill development</li>
+                                            <li>Futsal tournaments</li>
+                                            <li>Creative play emphasis</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Outdoor Soccer Card -->
+                            <div class="sport-card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <h3>Outdoor Soccer</h3>
+                                        <i class="fas fa-running card-icon"></i>
+                                        <p><strong>March - May and August - October</strong></p>
+                                    </div>
+                                    <div class="card-back">
+                                        <h3>Outdoor Soccer</h3>
+                                        <p>Emphasis on tactical understanding, game intelligence, and position-specific training.</p>
+                                        <ul>
+                                            <li>Competitive matches</li>
+                                            <li>Tactical awareness</li>
+                                            <li>Team play concepts</li>
+                                            <li>US Club Soccer affiliation</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Judo Card -->
+                            <div class="sport-card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <h3>Judo</h3>
+                                        <i class="fas fa-hand-rock card-icon"></i>
+                                        <p><strong>October - February and May - August</strong></p>
+                                    </div>
+                                    <div class="card-back">
+                                        <h3>Judo</h3>
+                                        <p>Develops balance, coordination, and mental discipline. Used by top clubs like Ajax for youth training.</p>
+                                        <ul>
+                                            <li>Balance and coordination</li>
+                                            <li>Body awareness</li>
+                                            <li>Mental discipline</li>
+                                            <li>Falling techniques</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Flag Football Card -->
+                            <div class="sport-card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <h3>Flag Football</h3>
+                                        <i class="fas fa-football-ball card-icon"></i>
+                                        <p><strong>March - May and August - October</strong></p>
+                                    </div>
+                                    <div class="card-back">
+                                        <h3>Flag Football</h3>
+                                        <p>Non-contact skill development focusing on agility, strategic thinking, and field awareness.</p>
+                                        <ul>
+                                            <li>Agility training</li>
+                                            <li>Strategic thinking</li>
+                                            <li>Hand-eye coordination</li>
+                                            <li>Team play concepts</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Roller Hockey Card (Coming Soon) -->
+                            <div class="sport-card coming-soon">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <h3>Roller Hockey</h3>
+                                        <i class="fas fa-hockey-puck card-icon"></i>
+                                        <p><strong>Coming Soon</strong></p>
+                                    </div>
+                                    <div class="card-back">
+                                        <h3>Roller Hockey</h3>
+                                        <p>Fast-paced sport that develops coordination, balance, and quick decision making.</p>
+                                        <ul>
+                                            <li>Skating techniques</li>
+                                            <li>Stick handling</li>
+                                            <li>Team strategy</li>
+                                            <li>Coming Fall 2024</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Basketball Card (Coming Soon) -->
+                            <div class="sport-card coming-soon">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <h3>Basketball</h3>
+                                        <i class="fas fa-basketball-ball card-icon"></i>
+                                        <p><strong>Coming Soon</strong></p>
+                                    </div>
+                                    <div class="card-back">
+                                        <h3>Basketball</h3>
+                                        <p>Develops hand-eye coordination, teamwork, and spatial awareness.</p>
+                                        <ul>
+                                            <li>Shooting techniques</li>
+                                            <li>Dribbling skills</li>
+                                            <li>Defensive positioning</li>
+                                            <li>Coming Winter 2024</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-control prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-control next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
                 </div>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="tel" name="phone" placeholder="Phone Number" required>
-                <textarea name="message" placeholder="Why do you want to join Apex Athletic Club?" required></textarea>
-                <div data-netlify-recaptcha="true"></div>
-                <button type="submit" id="submit-trial">Submit</button>
-                <button type="button" id="back-trial"><span>RETURN</span></button>
-            </form>
+            </section>
+
+            <!-- Pricing Section -->
+            <section id="pricing" class="content-section">
+                <h2><i class="fas fa-tags"></i> Pricing</h2>
+                
+                <div class="pricing-table">
+                    <div class="pricing-column">
+                        <h3><i class="fas fa-plane"></i> Flight School</h3>
+                        <div class="price-option">
+                            <h4><i class="fas fa-calendar-alt"></i> 12 Month Payment</h4>
+                            <p class="price">$1,000</p>
+                        </div>
+                        <div class="price-option">
+                            <h4><i class="fas fa-calendar-alt"></i> 6 Month Payment</h4>
+                            <p class="price">$550</p>
+                        </div>
+                        <div class="price-option">
+                            <h4><i class="fas fa-calendar-alt"></i> Monthly Payment</h4>
+                            <p class="price">$100</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-column">
+                        <h3><i class="fas fa-trophy"></i> Raptors Academy</h3>
+                        <div class="price-option">
+                            <h4><i class="fas fa-calendar-alt"></i> 12 Month Payment</h4>
+                            <p class="price">$2,100</p>
+                        </div>
+                        <div class="price-option">
+                            <h4><i class="fas fa-calendar-alt"></i> 6 Month Payment</h4>
+                            <p class="price">$1,100</p>
+                        </div>
+                        <div class="price-option">
+                            <h4><i class="fas fa-calendar-alt"></i> Monthly Payment</h4>
+                            <p class="price">$200</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section id="cta" class="content-section">
+                <h2><i class="fas fa-rocket"></i> Ready to Join?</h2>
+                <div class="cta-buttons">
+                    <button id="register-button-bottom" class="cta-button"><i class="fas fa-user-plus"></i> REGISTER</button>
+                    <button id="trial-button-bottom" class="cta-button secondary"><i class="fas fa-calendar-check"></i> REQUEST A TRIAL</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Invite Code Modal -->
+        <div id="invite-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3><i class="fas fa-key"></i> Enter Your Invite Code</h3>
+                <form id="invite-form">
+                    <input type="text" id="invite-code" placeholder="Enter Invite Code">
+                    <button type="submit" class="cta-button"><i class="fas fa-arrow-right"></i> SUBMIT</button>
+                </form>
+                <div id="invite-loading" class="loading-indicator hidden"></div>
+            </div>
+        </div>
+
+        <!-- Trial Request Modal -->
+        <div id="trial-modal" class="modal hidden">
+            <div class="modal-content trial-form-card">
+                <span class="close-modal">&times;</span>
+                <h3><i class="fas fa-calendar-check"></i> Request a Trial</h3>
+                <form id="trial-form" name="trial-request" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parent-first-name">Parent First Name</label>
+                            <input type="text" id="parent-first-name" name="parentFirstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parent-last-name">Parent Last Name</label>
+                            <input type="text" id="parent-last-name" name="parentLastName" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="player-first-name">Player First Name</label>
+                            <input type="text" id="player-first-name" name="playerFirstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="player-last-name">Player Last Name</label>
+                            <input type="text" id="player-last-name" name="playerLastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthday-fields">Player's Birthday</label>
+                        <div class="birthday-fields" id="birthday-fields">
+                            <select name="birthMonth" required>
+                                <option value="" disabled selected>Month</option>
+                                <option value="01">January</option>
+                                <option value="02">February</option>
+                                <option value="03">March</option>
+                                <option value="04">April</option>
+                                <option value="05">May</option>
+                                <option value="06">June</option>
+                                <option value="07">July</option>
+                                <option value="08">August</option>
+                                <option value="09">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                            <select name="birthDay" required>
+                                <option value="" disabled selected>Day</option>
+                                <!-- JavaScript will populate this -->
+                            </select>
+                            <select name="birthYear" required>
+                                <option value="" disabled selected>Year</option>
+                                <!-- JavaScript will populate this -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Why do you want to join Apex Athletic Club?</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <div data-netlify-recaptcha="true"></div>
+                    <div class="form-buttons">
+                        <button type="submit" class="cta-button"><i class="fas fa-paper-plane"></i> SUBMIT</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    <script>
-        // Clear login status when landing on home page
-        localStorage.removeItem('loggedIn');
 
-        // Check for invite code in URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const inviteCode = urlParams.get('inviteCode');
-        if (inviteCode) {
-            document.getElementById('invite-code').value = inviteCode;
-            submitInviteCode();
-        }
-    </script>
     <!-- Sticky Help Button -->
     <button class="help-button" title="Need Help?">?</button>
     <div id="help-message" class="help-message" style="display: none;">
         Contact <a href="mailto:brett@apexraptors.com">brett@apexraptors.com</a> for any questions.
     </div>
+    
     <script>
-    // Event listener to toggle the help message visibility
-    document.querySelector('.help-button').addEventListener('click', () => {
-        const helpMessage = document.getElementById('help-message');
-        helpMessage.style.display = helpMessage.style.display === 'none' ? 'block' : 'none';
-    });
+        // Event listener to toggle the help message visibility
+        document.querySelector('.help-button').addEventListener('click', () => {
+            const helpMessage = document.getElementById('help-message');
+            helpMessage.style.display = helpMessage.style.display === 'none' ? 'block' : 'none';
+        });
     </script>
 </body>
 </html>
