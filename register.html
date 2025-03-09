@@ -28,7 +28,10 @@
                 </div>
                 
                 <div class="form-body">
-                    <form id="register-form" name="registration" method="POST" data-netlify="true" action="https://formsubmit.co/brett@apexraptors.com">
+                    <form id="register-form" name="registration" method="POST" data-netlify="true">
+                        <!-- Add this hidden field for Netlify -->
+                        <input type="hidden" name="form-name" value="registration">
+                        
                         <!-- Player Section -->
                         <div class="form-section">
                             <div class="form-section-header">
@@ -273,14 +276,27 @@
                 submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SUBMITTING...';
                 submitButton.disabled = true;
                 
-                // Submit the form
-                this.submit();
-                
-                // Show confirmation message (only for demo purposes since page will reload on submit)
-                setTimeout(function() {
+                // Netlify form submission
+                const form = this;
+                fetch('/', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(new FormData(form)).toString()
+                })
+                .then(() => {
+                    // Show confirmation message
                     document.getElementById('register-form').style.display = 'none';
                     document.getElementById('submission-message').classList.remove('hidden');
-                }, 1000);
+                    
+                    // Scroll to message
+                    document.getElementById('submission-message').scrollIntoView({ behavior: 'smooth' });
+                })
+                .catch(error => {
+                    alert('There was a problem submitting your form. Please try again.');
+                    console.error(error);
+                    submitButton.innerHTML = '<i class="fas fa-check"></i> COMPLETE REGISTRATION';
+                    submitButton.disabled = false;
+                });
             } else {
                 // Scroll to first error
                 const firstError = document.querySelector('.invalid');

@@ -28,7 +28,10 @@
                 </div>
                 
                 <div class="form-body">
-                    <form id="trial-form" name="trial-request" method="POST" data-netlify="true" data-netlify-recaptcha="true" action="https://formsubmit.co/brett@apexraptors.com">
+                    <form id="trial-form" name="trial-request" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+                        <!-- Add this hidden field for Netlify -->
+                        <input type="hidden" name="form-name" value="trial-request">
+                        
                         <!-- Parent Information Section -->
                         <div class="form-section">
                             <div class="form-section-header">
