@@ -1381,3 +1381,104 @@ body, html {
 .select-program-btn, .learn-more-btn, .program-type-button, .zelle-pay-button {
     text-decoration: none;
 }
+
+/* Add this to your styles.css */
+.admin-section {
+    display: none;
+}
+
+.admin-section.active {
+    display: block;
+}
+
+/* Make sure initially the event manager is visible */
+#event-manager {
+    display: block;
+}
+
+/* Styles for submission messages */
+.hidden {
+    display: none;
+}
+
+#submission-message, #trial-submission-message {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 30px;
+    margin: 50px auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+#submission-message h2, #trial-submission-message h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+#submission-message p, #trial-submission-message p {
+    margin-bottom: 15px;
+}
+
+/* Parent entry styling */
+.parent-entry {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+}
+
+.additional-parent {
+    position: relative;
+}
+
+.parent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.parent-header h4 {
+    margin: 0;
+}
+
+.remove-parent-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.remove-parent-btn:hover {
+    background-color: #c82333;
+}
+
+.add-parent-action {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.secondary-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.secondary-button:hover {
+    background-color: #5a6268;
+}
+
+hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}

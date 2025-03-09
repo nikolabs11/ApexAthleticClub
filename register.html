@@ -28,62 +28,7 @@
                 </div>
                 
                 <div class="form-body">
-                    <form id="register-form" name="registration" method="POST" data-netlify="true">
-                        <!-- Account Section -->
-                        <div class="form-section">
-                            <div class="form-section-header">
-                                <div class="form-section-icon">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <h3 class="form-section-title">Account Information</h3>
-                            </div>
-                            
-                            <div class="form-field">
-                                <label for="invite-code">Invite Code*</label>
-                                <input type="text" id="invite-code" name="inviteCode" placeholder="Enter your invite code" required>
-                                <span class="form-field-hint">The code provided to you by the club</span>
-                                <span class="form-field-error">Please enter a valid invite code</span>
-                            </div>
-                            
-                            <div class="form-field-row">
-                                <div class="form-field">
-                                    <label for="first-name">First Name*</label>
-                                    <input type="text" id="first-name" name="firstName" required>
-                                    <span class="form-field-error">Please enter your first name</span>
-                                </div>
-                                <div class="form-field">
-                                    <label for="last-name">Last Name*</label>
-                                    <input type="text" id="last-name" name="lastName" required>
-                                    <span class="form-field-error">Please enter your last name</span>
-                                </div>
-                            </div>
-                            
-                            <div class="form-field">
-                                <label for="email">Email*</label>
-                                <input type="email" id="email" name="email" required>
-                                <span class="form-field-error">Please enter a valid email address</span>
-                            </div>
-                            
-                            <div class="form-field">
-                                <label for="phone">Phone Number*</label>
-                                <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required>
-                                <span class="form-field-error">Please enter a valid phone number</span>
-                            </div>
-                            
-                            <div class="form-field-row">
-                                <div class="form-field">
-                                    <label for="password">Password*</label>
-                                    <input type="password" id="password" name="password" required>
-                                    <span class="form-field-error">Password must be at least 8 characters</span>
-                                </div>
-                                <div class="form-field">
-                                    <label for="confirm-password">Confirm Password*</label>
-                                    <input type="password" id="confirm-password" name="confirmPassword" required>
-                                    <span class="form-field-error">Passwords do not match</span>
-                                </div>
-                            </div>
-                        </div>
-                        
+                    <form id="register-form" name="registration" method="POST" data-netlify="true" action="https://formsubmit.co/brett@apexraptors.com">
                         <!-- Player Section -->
                         <div class="form-section">
                             <div class="form-section-header">
@@ -91,6 +36,13 @@
                                     <i class="fas fa-running"></i>
                                 </div>
                                 <h3 class="form-section-title">Player Information</h3>
+                            </div>
+                            
+                            <div class="form-field">
+                                <label for="inviteCode">Invite Code*</label>
+                                <input type="text" id="inviteCode" name="inviteCode" required>
+                                <span class="form-field-hint">The code provided to you by the club</span>
+                                <span class="form-field-error">Please enter a valid invite code</span>
                             </div>
                             
                             <div class="form-field-row">
@@ -106,22 +58,68 @@
                                 </div>
                             </div>
                             
-                            <div class="form-field-row">
-                                <div class="form-field">
-                                    <label for="player-dob">Date of Birth*</label>
-                                    <input type="date" id="player-dob" name="playerDob" required>
-                                    <span class="form-field-error">Please enter player's date of birth</span>
+                            <div class="form-field">
+                                <label for="playerDOB">Date of Birth*</label>
+                                <input type="date" id="playerDOB" name="playerDOB" required>
+                                <span class="form-field-error">Please enter player's date of birth</span>
+                            </div>
+                            
+                            <div class="form-field">
+                                <label for="email">Contact Email*</label>
+                                <input type="email" id="email" name="email" required>
+                                <span class="form-field-error">Please enter a valid email address</span>
+                            </div>
+                            
+                            <div class="form-field">
+                                <label for="phone">Contact Phone*</label>
+                                <input type="tel" id="phone" name="phone" required>
+                                <span class="form-field-error">Please enter a valid phone number</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Parents/Guardians Section -->
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <div class="form-section-icon">
+                                    <i class="fas fa-user-shield"></i>
                                 </div>
-                                <div class="form-field">
-                                    <label for="player-gender">Gender*</label>
-                                    <select id="player-gender" name="playerGender" required>
-                                        <option value="" disabled selected>Select gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                    <span class="form-field-error">Please select player's gender</span>
+                                <h3 class="form-section-title">Parents/Guardians</h3>
+                            </div>
+                            
+                            <div id="parents-container">
+                                <!-- First parent (required) -->
+                                <div class="parent-entry">
+                                    <h4>Primary Parent/Guardian</h4>
+                                    <div class="form-field-row">
+                                        <div class="form-field">
+                                            <label for="parent1-first-name">First Name*</label>
+                                            <input type="text" id="parent1-first-name" name="parent1FirstName" required>
+                                            <span class="form-field-error">Please enter parent's first name</span>
+                                        </div>
+                                        <div class="form-field">
+                                            <label for="parent1-last-name">Last Name*</label>
+                                            <input type="text" id="parent1-last-name" name="parent1LastName" required>
+                                            <span class="form-field-error">Please enter parent's last name</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-field">
+                                        <label for="parent1-relationship">Relationship to Player*</label>
+                                        <select id="parent1-relationship" name="parent1Relationship" required>
+                                            <option value="">Select relationship</option>
+                                            <option value="Mother">Mother</option>
+                                            <option value="Father">Father</option>
+                                            <option value="Guardian">Legal Guardian</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <span class="form-field-error">Please select a relationship</span>
+                                    </div>
                                 </div>
+                            </div>
+                            
+                            <div class="add-parent-action">
+                                <button type="button" id="add-parent-btn" class="secondary-button">
+                                    <i class="fas fa-plus"></i> Add Another Parent/Guardian
+                                </button>
                             </div>
                         </div>
                         
@@ -135,11 +133,11 @@
                             </div>
                             
                             <div class="form-field">
-                                <label for="program-choice">Choose a Program*</label>
-                                <select id="program-choice" name="programChoice" required>
-                                    <option value="" disabled selected>Select program</option>
-                                    <option value="flight-school">Flight School ($100/month)</option>
-                                    <option value="raptors-academy">Raptors Academy ($200/month)</option>
+                                <label for="program">Program Interest*</label>
+                                <select id="program" name="program" required>
+                                    <option value="">Select a program</option>
+                                    <option value="flight_school">Flight School ($100/month)</option>
+                                    <option value="raptors_academy">Raptors Academy ($200/month)</option>
                                 </select>
                                 <span class="form-field-error">Please select a program</span>
                             </div>
@@ -159,6 +157,49 @@
         </div>
     </div>
     
+    <div id="submission-message" class="hidden">
+        <h2>Registration Submitted!</h2>
+        <p>Thank you for registering with Apex Athletic Club.</p>
+        <p>I will personally reach out to confirm your placement and send you a payment link to complete your enrollment.</p>
+        <p>If you have any questions, please email me at brett@apexraptors.com</p>
+    </div>
+    
+    <!-- Template for additional parents -->
+    <template id="parent-template">
+        <div class="parent-entry additional-parent">
+            <hr>
+            <div class="parent-header">
+                <h4>Additional Parent/Guardian</h4>
+                <button type="button" class="remove-parent-btn danger-button">
+                    <i class="fas fa-times"></i> Remove
+                </button>
+            </div>
+            <div class="form-field-row">
+                <div class="form-field">
+                    <label for="parentX-first-name">First Name*</label>
+                    <input type="text" class="parent-first-name" name="additionalParentFirstName[]" required>
+                    <span class="form-field-error">Please enter parent's first name</span>
+                </div>
+                <div class="form-field">
+                    <label for="parentX-last-name">Last Name*</label>
+                    <input type="text" class="parent-last-name" name="additionalParentLastName[]" required>
+                    <span class="form-field-error">Please enter parent's last name</span>
+                </div>
+            </div>
+            <div class="form-field">
+                <label for="parentX-relationship">Relationship to Player*</label>
+                <select class="parent-relationship" name="additionalParentRelationship[]" required>
+                    <option value="">Select relationship</option>
+                    <option value="Mother">Mother</option>
+                    <option value="Father">Father</option>
+                    <option value="Guardian">Legal Guardian</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span class="form-field-error">Please select a relationship</span>
+            </div>
+        </div>
+    </template>
+    
     <script>
         // Initialize Vanta background
         VANTA.CELLS({
@@ -173,6 +214,25 @@
             color2: 0x109963,
             size: 0.20,
             speed: 0.00
+        });
+        
+        // Add parent functionality
+        document.getElementById('add-parent-btn').addEventListener('click', function() {
+            const template = document.getElementById('parent-template');
+            const parentContainer = document.getElementById('parents-container');
+            
+            // Clone the template content
+            const clone = document.importNode(template.content, true);
+            
+            // Add event listener to remove button
+            const removeBtn = clone.querySelector('.remove-parent-btn');
+            removeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.closest('.parent-entry').remove();
+            });
+            
+            // Append to container
+            parentContainer.appendChild(clone);
         });
         
         // Form validation
@@ -192,17 +252,8 @@
                 }
             });
             
-            // Password validation
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-            
-            if (password !== confirmPassword) {
-                valid = false;
-                document.getElementById('confirm-password').closest('.form-field').classList.add('invalid');
-            }
-            
             // Invite code validation
-            const inviteCode = document.getElementById('invite-code').value.trim().toUpperCase();
+            const inviteCode = document.getElementById('inviteCode').value.trim().toUpperCase();
             const validCodes = [
                 'AHRIK2025', 'RAYYAN2025', 'ELLIOT2025', 'COOPER2025',
                 'LOGAN2025', 'KABIR2025', 'SERGEI2025', 'ERIC2025',
@@ -213,28 +264,23 @@
             
             if (!validCodes.includes(inviteCode)) {
                 valid = false;
-                document.getElementById('invite-code').closest('.form-field').classList.add('invalid');
+                document.getElementById('inviteCode').closest('.form-field').classList.add('invalid');
             }
             
             if (valid) {
-                // Create user account
-                const formData = new FormData(this);
-                const userData = {
-                    firstName: formData.get('firstName'),
-                    lastName: formData.get('lastName'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    password: formData.get('password'),
-                    inviteCode: formData.get('inviteCode')
-                };
+                // Show submission in progress
+                const submitButton = this.querySelector('button[type="submit"]');
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SUBMITTING...';
+                submitButton.disabled = true;
                 
-                const result = createUserAccount(userData);
+                // Submit the form
+                this.submit();
                 
-                if (result.success) {
-                    window.location.href = 'dashboard.html';
-                } else {
-                    alert(result.message);
-                }
+                // Show confirmation message (only for demo purposes since page will reload on submit)
+                setTimeout(function() {
+                    document.getElementById('register-form').style.display = 'none';
+                    document.getElementById('submission-message').classList.remove('hidden');
+                }, 1000);
             } else {
                 // Scroll to first error
                 const firstError = document.querySelector('.invalid');
@@ -245,24 +291,14 @@
         });
         
         // Live validation
-        document.querySelectorAll('#register-form input, #register-form select').forEach(field => {
+        document.querySelectorAll('#register-form input[required], #register-form select[required]').forEach(field => {
             field.addEventListener('blur', function() {
-                if (this.hasAttribute('required') && !this.value.trim()) {
+                if (!this.value.trim()) {
                     this.closest('.form-field').classList.add('invalid');
                 } else {
                     this.closest('.form-field').classList.remove('invalid');
                 }
             });
-        });
-        
-        // Password match validation
-        document.getElementById('confirm-password').addEventListener('input', function() {
-            const password = document.getElementById('password').value;
-            if (this.value !== password) {
-                this.closest('.form-field').classList.add('invalid');
-            } else {
-                this.closest('.form-field').classList.remove('invalid');
-            }
         });
     </script>
     <script src="script.js"></script>

@@ -28,7 +28,7 @@
                 </div>
                 
                 <div class="form-body">
-                    <form id="trial-form" name="trial-request" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+                    <form id="trial-form" name="trial-request" method="POST" data-netlify="true" data-netlify-recaptcha="true" action="https://formsubmit.co/brett@apexraptors.com">
                         <!-- Parent Information Section -->
                         <div class="form-section">
                             <div class="form-section-header">
@@ -153,6 +153,14 @@
         </div>
     </div>
     
+    <!-- Add a hidden submission message div after the form -->
+    <div id="trial-submission-message" class="hidden">
+        <h2>Trial Request Submitted!</h2>
+        <p>Thank you for your interest in Apex Athletic Club.</p>
+        <p>I will personally reach out to confirm a trial date and time that works for you.</p>
+        <p>If you have any questions, please email me at brett@apexraptors.com</p>
+    </div>
+    
     <script>
         // Initialize Vanta background
         VANTA.CELLS({
@@ -201,8 +209,11 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        // Success - redirect to confirmation page
-                        window.location.href = 'trial-confirmation.html';
+                        // Success - show confirmation message
+                        setTimeout(function() {
+                            document.getElementById('trial-form').style.display = 'none';
+                            document.getElementById('trial-submission-message').classList.remove('hidden');
+                        }, 1000);
                     } else {
                         throw new Error('Network response was not ok');
                     }
